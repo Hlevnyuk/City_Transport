@@ -27,6 +27,7 @@ public class RouteController {
     private final SetRouteService setRouteService;
     private final StopRouteService stopRouteService;
     private final TransportService transportService;
+    private final TraficJemService traficJemService;
     @GetMapping("/routes/{numberRoute}")
     public String routeInfoPage(@PathVariable int numberRoute, Model model){
         model.addAttribute("route", routeService.getRouteByNumberRoute(numberRoute,
@@ -38,6 +39,8 @@ public class RouteController {
         model.addAttribute("freeTransport", transportService.findFreeTransport(numberRoute,
                 httpSessionBean.getConnection()));
         model.addAttribute("freeStop", stopService.findFreeByNumberRoute(numberRoute,
+                httpSessionBean.getConnection()));
+        model.addAttribute("traficJemTitle", traficJemService.findByRouteId(numberRoute,
                 httpSessionBean.getConnection()));
         return "route-info";
     }

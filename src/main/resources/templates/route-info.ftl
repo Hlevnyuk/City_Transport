@@ -50,6 +50,14 @@
         </form>
 </div>
 <hr>
+Пробки на маршруте:
+<#list traficJemTitle as item>
+    Номер маршрута:${item.numberRoute}<br>
+    Адрес:${item.address}<br>
+    Время начала:${item.timeStart}<br>
+    Время конца:${item.timeEnd}<br>
+</#list>
+<hr>
 <form action="/route/delete/${route.numberRoute}" method="post">
     <input type="submit" value="Удалить маршрут"/>
 </form>

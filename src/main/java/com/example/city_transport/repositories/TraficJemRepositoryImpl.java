@@ -1,6 +1,7 @@
 package com.example.city_transport.repositories;
 
 import com.example.city_transport.models.TraficJem;
+import com.example.city_transport.models.TraficJemTitle;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -12,8 +13,7 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
     public List<TraficJem> findAll(Connection connection) {
         List<TraficJem> listResult = new ArrayList<>();
         String query = """
-                        SELECT id_trafic_jem, stop, date_traficjem, start_point,
-                        end_point, time_start, time_final, extent
+                        SELECT *
                         FROM trafic_jem
                        """;
         try (Statement stmt = connection.createStatement()) {
@@ -21,13 +21,9 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
             while (rs.next()) {
                 TraficJem traficJem = new TraficJem();
                 traficJem.setIdTraficJem(rs.getInt("id_trafic_jem"));
-                traficJem.setStop(rs.getString("stop"));
-                traficJem.setDateTraficJem(rs.getDate("date_traficjem"));
-                traficJem.setStartPoint(rs.getString("start_point"));
-                traficJem.setEndPoint(rs.getString("end_point"));
                 traficJem.setTimeStart(rs.getTime("time_start"));
                 traficJem.setTimeEnd(rs.getTime("time_final"));
-                traficJem.setExtent(rs.getInt("extent"));
+                traficJem.setNumberStop(rs.getInt("number_stop"));
                 listResult.add(traficJem);
             }
         } catch (SQLException e) {
@@ -37,9 +33,6 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
     }
     @Override
     public void save(TraficJem traficJem, Connection connection) {
-        java.util.Date utilPackageDate
-                = traficJem.getDateTraficJem();
-        java.sql.Date sqlDate = new java.sql.Date(utilPackageDate.getTime());
         java.util.Date utilPackageDate1
                 = traficJem.getTimeStart();
         java.sql.Time sqlDate1 = new java.sql.Time(utilPackageDate1.getTime());
@@ -48,19 +41,14 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
         java.sql.Time sqlDate2 = new java.sql.Time(utilPackageDate2.getTime());
         String query = """
                        INSERT INTO trafic_jem
-                       VALUES(?,?,?,?,?,?,?,?,?,?);
+                       VALUES(?,?,?,?,?);
                        """;
         try(PreparedStatement stmt = connection.prepareStatement(query)){
             stmt.setInt(1, traficJem.getIdTraficJem());
-            stmt.setString(2, traficJem.getStop());
-            stmt.setDate(3, sqlDate);
-            stmt.setString(4, traficJem.getStartPoint());
-            stmt.setString(5, traficJem.getEndPoint());
-            stmt.setInt(6, traficJem.getNumberEmployee());
-            stmt.setInt(7, traficJem.getNumberStop());
-            stmt.setTime(8, sqlDate1);
-            stmt.setTime(9, sqlDate2);
-            stmt.setInt(10, traficJem.getExtent());
+            stmt.setInt(2, traficJem.getNumberEmployee());
+            stmt.setInt(3, traficJem.getNumberStop());
+            stmt.setTime(4, sqlDate1);
+            stmt.setTime(5, sqlDate2);
             stmt.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
@@ -76,7 +64,6 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
         try(PreparedStatement statement = connection.prepareStatement(query)){
             statement.setInt(1, idTraficJem);
             statement.executeUpdate();
-            System.out.println("Record deleted successfully");
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -85,8 +72,7 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
     public TraficJem findById(int idTraficJem, Connection connection) {
         TraficJem traficJem = new TraficJem();
         String query = """
-                        SELECT id_trafic_jem, stop, date_traficjem, start_point,
-                        end_point, time_start, time_final, extent
+                        SELECT *
                         FROM public.trafic_jem
                         WHERE id_trafic_jem = ?
                        """;
@@ -95,17 +81,34 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 traficJem.setIdTraficJem(rs.getInt("id_trafic_jem"));
-                traficJem.setStop(rs.getString("stop"));
-                traficJem.setDateTraficJem(rs.getDate("date_traficjem"));
-                traficJem.setStartPoint(rs.getString("start_point"));
-                traficJem.setEndPoint(rs.getString("end_point"));
                 traficJem.setTimeStart(rs.getTime("time_start"));
                 traficJem.setTimeEnd(rs.getTime("time_final"));
-                traficJem.setExtent(rs.getInt("extent"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return traficJem;
+    }
+    public List<TraficJemTitle> findByRouteId(int numberRoute, Connection connection){
+        List<TraficJemTitle> listResult = new ArrayList<>();
+        String query = """
+                       SELECT * FROM trafic_jem_title
+                       WHERE number_route = ?
+                       """;
+        try(PreparedStatement prst = connection.prepareStatement(query)){
+            prst.setInt(1, numberRoute);
+            ResultSet rs = prst.executeQuery();
+            while (rs.next()) {
+                TraficJemTitle traficJemTitle = new TraficJemTitle();
+                traficJemTitle.setNumberRoute(rs.getInt("number_route"));
+                traficJemTitle.setAddress(rs.getString("adres"));
+                traficJemTitle.setTimeStart(rs.getTime("time_start"));
+                traficJemTitle.setTimeEnd(rs.getTime("time_final"));
+                listResult.add(traficJemTitle);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return listResult;
     }
 }

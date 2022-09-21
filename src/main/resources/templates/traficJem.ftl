@@ -13,6 +13,8 @@
      <a href="/traficJem/${eltraficJem.idTraficJem}">Подробнее...</a><br>
 </#list>
 <hr>
+
+<hr>
 <#if role == "transport_officer">
     <h3>Добавить пробку</h3>
     <form action="/traficJem/create" method="post" enctype="multipart/form-data">
