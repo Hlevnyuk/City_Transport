@@ -42,7 +42,14 @@ public class RouteController {
                 httpSessionBean.getConnection()));
         model.addAttribute("traficJemTitle", traficJemService.findByRouteId(numberRoute,
                 httpSessionBean.getConnection()));
+//        model.addAttribute("traficJemTitle", traficJemService.deleteByRouteId(numberRoute,
+//                httpSessionBean.getConnection()));
         return "route-info";
+    }
+    @PostMapping("/routes/deleteTraficJem/{numberRoute}")
+    public String deleteTraficJem(@PathVariable int numberRoute){
+        traficJemService.deleteByRouteId(numberRoute, httpSessionBean.getConnection());
+        return "redirect:/routes/{numberRoute}";
     }
     @PostMapping("/routes/addStop/{numberRoute}")
     public String addStopByNumberRoute(@PathVariable int numberRoute, @RequestParam int numberStop,

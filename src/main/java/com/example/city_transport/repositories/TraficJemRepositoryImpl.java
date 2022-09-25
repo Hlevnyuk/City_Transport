@@ -1,5 +1,6 @@
 package com.example.city_transport.repositories;
 
+import com.example.city_transport.models.Route;
 import com.example.city_transport.models.TraficJem;
 import com.example.city_transport.models.TraficJemTitle;
 import org.springframework.stereotype.Component;
@@ -108,6 +109,21 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+        return listResult;
+    }
+    public List<TraficJem> deleteByNumberRoute(int numberRoute, Connection connection){
+        List<TraficJem> listResult = new ArrayList<>();
+        String query = """
+                        DELETE FROM trafic_jem
+                        WHERE number_stop IN(SELECT number_stop FROM stop_route
+                		WHERE number_route = ?)
+                       """;
+        try(PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setInt(1, numberRoute);
+            statement.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
         }
         return listResult;
     }

@@ -8,8 +8,10 @@
     Всі пробки<br><br>
 <#list traficJemTitle as eltraficJem>
      <b>Id: </b>${eltraficJem.idTraficJem}<br>
-     <b>Начало пробки: </b>${eltraficJem.startPoint}<br>
-     <b>Конец пробки: </b>${eltraficJem.endPoint}<br>
+     <b>Время начала: </b>${eltraficJem.timeStart}<br>
+     <b>Время конца: </b>${eltraficJem.timeEnd}<br>
+     <b>Номер остановки: </b>${eltraficJem.numberStop}<br>
+     <b>Номер работника: </b>${eltraficJem.numberEmployee}<br>
      <a href="/traficJem/${eltraficJem.idTraficJem}">Подробнее...</a><br>
 </#list>
 <hr>
