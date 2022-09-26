@@ -47,15 +47,15 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
     }
 
     @Override
-    public void deleteById(int numberStop, Connection connection) {
+    public void delete(int numberStop, int numberRoute, Connection connection) {
         String query = """
-                        DELETE FROM stopRoute
-                        WHERE number_stop = ?
+                        DELETE FROM stop_route
+                        WHERE number_stop = ? AND number_route = ?
                        """;
         try(PreparedStatement statement = connection.prepareStatement(query)){
             statement.setInt(1, numberStop);
+            statement.setInt(2, numberRoute);
             statement.executeUpdate();
-            System.out.println("Record deleted successfully");
         } catch(SQLException e){
             e.printStackTrace();
         }
@@ -66,7 +66,7 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
         StopRoute stopRoute = new StopRoute();
         String query = """
                         SELECT *
-                        FROM stopRoute
+                        FROM stop_route
                         WHERE number_stop = ?
                        """;
         try(PreparedStatement statement = connection.prepareStatement(query)){

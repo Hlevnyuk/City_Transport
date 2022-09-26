@@ -102,6 +102,7 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
             while (rs.next()) {
                 TraficJemTitle traficJemTitle = new TraficJemTitle();
                 traficJemTitle.setNumberRoute(rs.getInt("number_route"));
+                traficJemTitle.setNumberStop(rs.getInt("number_stop"));
                 traficJemTitle.setAddress(rs.getString("adres"));
                 traficJemTitle.setTimeStart(rs.getTime("time_start"));
                 traficJemTitle.setTimeEnd(rs.getTime("time_final"));
@@ -112,15 +113,16 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
         }
         return listResult;
     }
-    public List<TraficJem> deleteByNumberRoute(int numberRoute, Connection connection){
+    public List<TraficJem> deleteByNumberRoute(int numberRoute, int numberStop, Connection connection){
         List<TraficJem> listResult = new ArrayList<>();
         String query = """
                         DELETE FROM trafic_jem
                         WHERE number_stop IN(SELECT number_stop FROM stop_route
-                		WHERE number_route = ?)
+                		WHERE number_route = ? AND number_stop = ?)
                        """;
         try(PreparedStatement statement = connection.prepareStatement(query)){
             statement.setInt(1, numberRoute);
+            statement.setInt(2, numberStop);
             statement.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();

@@ -29,7 +29,7 @@ public class StopService {
     public void addStop(Stop stop, Connection connection) {
         stopRepositoryImpl.save(stop, connection);
     }
-    public List<String> findStopByNumberRoute(int numberRoute, Connection connection){
+    public List<Stop> findStopByNumberRoute(int numberRoute, Connection connection){
         return stopRepositoryImpl.findStopByNumberRoute(numberRoute, connection);
     }
     public List<Stop> findFreeByNumberRoute(int numberRoute, Connection connection){

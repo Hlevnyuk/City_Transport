@@ -54,10 +54,10 @@ public class StopRepositoryImpl implements StopRepository{
     }
 
     @Override
-    public List<String> findStopByNumberRoute(int numberRoute, Connection connection) {
-        List<String> list = new ArrayList<>();
+    public List<Stop> findStopByNumberRoute(int numberRoute, Connection connection) {
+        List<Stop> list = new ArrayList<>();
         String query = """
-                        SELECT adres FROM stop
+                        SELECT * FROM stop
                 	        WHERE number_stop IN(SELECT number_stop FROM stop_route
                 					WHERE number_route = ?)
                        """;
@@ -65,7 +65,10 @@ public class StopRepositoryImpl implements StopRepository{
             statement.setInt(1, numberRoute);
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
-                list.add(rs.getString("adres"));
+                Stop stop = new Stop();
+                stop.setNumberStop(rs.getInt(1));
+                stop.setAddress(rs.getString(2));
+                list.add(stop);
             }
         } catch(SQLException e){
             e.printStackTrace();

@@ -10,6 +10,6 @@ import java.util.List;
 public interface StopRouteRepository {
     List<StopRoute> findAll(Connection connection);
     void save(StopRoute stopRoute, Connection connection) throws SQLException;
-    void deleteById(int numberStop, Connection connection);
+    void delete(int numberStop, int numberRoute, Connection connection);
     StopRoute findById(int numberRoute, Connection connection);
 }

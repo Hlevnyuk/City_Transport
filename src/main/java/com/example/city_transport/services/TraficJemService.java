@@ -29,7 +29,7 @@ public class TraficJemService {
     public List<TraficJemTitle> findByRouteId(int numberRoute, Connection connection){
         return traficJemRepositoryImpl.findByRouteId(numberRoute, connection);
     }
-    public List<TraficJem> deleteByRouteId(int numberRoute, Connection connection){
-        return traficJemRepositoryImpl.deleteByNumberRoute(numberRoute, connection);
+    public List<TraficJem> deleteByRouteId(int numberRoute, int numberStop, Connection connection){
+        return traficJemRepositoryImpl.deleteByNumberRoute(numberRoute, numberStop, connection);
     }
 }

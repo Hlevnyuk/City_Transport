@@ -11,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class TraficJemTitle {
     private int numberRoute;
+    private int numberStop;
     private String address;
     @DateTimeFormat(pattern = "HH:mm")
     private Date timeStart;

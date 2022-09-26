@@ -9,7 +9,7 @@
 <b>Номер маршрута: </b>${route.numberRoute}<br>
 <b>Остановки:</b><br>
 <#list stop as item>
-    ${item};<br>
+    ${item.address};<br>
 </#list>
 <b>Интервал: </b>${route.interval}<br>
 <b>Дата создания: </b>${route.dateTime}<br>
@@ -47,17 +47,27 @@
             </select>
             <input type="number" name="stopOrder"/>
             <input type="submit" value="Добавить остановку"/>
-        </form>
+    </form>
+    <form action="/routes/deleteStop/${route.numberRoute}" method="post">
+            <select name = "numberStop">
+                <#list stop as itam>
+                    <option value = "${itam.numberStop}" name="${itam.numberStop}"> ${itam.numberStop} - ${itam.address}</option>
+                </#list>
+            </select>
+            <input type="submit" value="Удалить остановку"/>
+    </form>
 </div>
 <hr>
 Пробки на маршруте:<br>
 <#list traficJemTitle as item>
     Адрес:${item.address}<br>
     Время начала:${item.timeStart}<br>
-    Время конца:${item.timeEnd}
-    <form action="/routes/deleteTraficJem/${route.numberRoute}" method="post">
-        <input type="submit" value="Удалить пробку"/><br>
-    </form>
+    Время конца:${item.timeEnd}<br>
+    <#if role == "transport_officer">
+        <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
+            <input type="submit" value="Удалить пробку"/><br>
+        </form>
+    </#if>
 </#list>
 <hr>
 <form action="/route/delete/${route.numberRoute}" method="post">

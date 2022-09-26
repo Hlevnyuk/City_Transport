@@ -33,6 +33,7 @@ public class MainController {
         model.addAttribute("route", routeService.routeList(httpSessionBean.getConnection()));
         model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+
         return "routes";
     }
     @GetMapping("/traficJem")

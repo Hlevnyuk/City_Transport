@@ -10,7 +10,7 @@ import java.util.List;
 public interface StopRepository {
     List<Stop> findAll(Connection connection);
     List<Stop> findFreeByNumberRoute(int numberRoute, Connection connection);
-    List<String> findStopByNumberRoute(int numberRoute, Connection connection);
+    List<Stop> findStopByNumberRoute(int numberRoute, Connection connection);
     void save(Stop stop, Connection connection) throws SQLException;
     void deleteById(int numberStop, Connection connection);
     Stop findById(int numberStop, Connection connection);

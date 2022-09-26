@@ -19,8 +19,8 @@ public class StopRouteService {
     public List<StopRoute> StopRouteList(Connection connection){
         return stopRouteRepositoryImpl.findAll(connection);
     }
-    public void deleteStopRoute(int numberStop, Connection connection){
-        stopRouteRepositoryImpl.deleteById(numberStop, connection);
+    public void deleteStopRoute(int numberStop, int numberRoute, Connection connection){
+        stopRouteRepositoryImpl.delete(numberStop, numberRoute, connection);
     }
     public void addStopRoute(StopRoute stopRoute, Connection connection) {
         stopRouteRepositoryImpl.save(stopRoute, connection);
