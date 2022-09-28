@@ -77,23 +77,23 @@ public class TransportRepositoryImpl implements TransportRepository {
         return list;
     }
 
-    @Override
-    public void save(Transport transport, Connection connection) {
-        String query = """
-                       INSERT INTO transport
-                       VALUES(?,?,?,?,?);
-                       """;
-        try(PreparedStatement stmt = connection.prepareStatement(query)){
-            stmt.setInt(1, transport.getIdTransport());
-            stmt.setInt(2, transport.getNumberTransport());
-            stmt.setString(3, transport.getTypeTransport());
-            stmt.setString(4, transport.getGarage());
-            stmt.setInt(5, transport.getIdContract());
-            int p = stmt.executeUpdate();
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void save(Transport transport, Connection connection) {
+//        String query = """
+//                       INSERT INTO transport
+//                       VALUES(?,?,?,?,?);
+//                       """;
+//        try(PreparedStatement stmt = connection.prepareStatement(query)){
+//            stmt.setInt(1, transport.getIdTransport());
+//            stmt.setInt(2, transport.getNumberTransport());
+//            stmt.setString(3, transport.getTypeTransport());
+//            stmt.setString(4, transport.getGarage());
+//            stmt.setInt(5, transport.getIdContract());
+//            int p = stmt.executeUpdate();
+//        } catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void deleteById(int idTransport, Connection connection) {
@@ -133,5 +133,20 @@ public class TransportRepositoryImpl implements TransportRepository {
         }
         return transport;
     }
-
+    @Override
+    public void change(int idTransport, int numberTransport, String garage, Connection connection){
+        String query = """
+                       UPDATE transport
+                       SET number_transport = ?, garage = ?
+                       WHERE id_transport = ?
+                       """;
+        try(PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setInt(1, numberTransport);
+            statement.setString(2, garage);
+            statement.setInt(3, idTransport);
+            statement.executeQuery();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

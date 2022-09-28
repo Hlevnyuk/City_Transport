@@ -24,17 +24,18 @@ public class RouteController {
     @Autowired
     private HttpSessionBean httpSessionBean;
     private final RouteService routeService;
-
     private final StopService stopService;
     private final SetRouteService setRouteService;
     private final StopRouteService stopRouteService;
     private final TransportService transportService;
     private final TraficJemService traficJemService;
+    private final RoadRepairService roadRepairService;
     @GetMapping("/routes/{numberRoute}")
     public String routeInfoPage(@PathVariable int numberRoute, Model model) throws SQLException {
         model.addAttribute("route", routeService.getRouteByNumberRoute(numberRoute,
                 httpSessionBean.getConnection()));
-        model.addAttribute("stop", stopService.findStopByNumberRoute(numberRoute, httpSessionBean.getConnection()));
+        model.addAttribute("stop", stopService.findStopByNumberRoute(numberRoute,
+                httpSessionBean.getConnection()));
         model.addAttribute("transport", transportService.findTransportByNumberRoute(numberRoute,
                 httpSessionBean.getConnection()));
         model.addAttribute("allTransport", transportService.transportList(httpSessionBean.getConnection()));
@@ -44,9 +45,17 @@ public class RouteController {
                 httpSessionBean.getConnection()));
         model.addAttribute("traficJemTitle", traficJemService.findByRouteId(numberRoute,
                 httpSessionBean.getConnection()));
+        model.addAttribute("roadRepairTitle", roadRepairService.findByRouteId(numberRoute,
+                httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
         return "route-info";
     }
+    @PostMapping("/routes/deleteRoadRepair/{numberRoute}/{numberStop}")
+    public String deleteRoadRepairByRouteId(@PathVariable int numberRoute, @PathVariable int numberStop){
+        roadRepairService.deleteByNumberRoute(numberRoute, numberStop, httpSessionBean.getConnection());
+        return "redirect:/routes/{numberRoute}";
+    }
+
     @PostMapping("/routes/deleteTraficJem/{numberRoute}/{numberStop}")
     public String deleteTraficJem(@PathVariable int numberRoute, @PathVariable int numberStop){
         traficJemService.deleteByRouteId(numberRoute, numberStop ,httpSessionBean.getConnection());

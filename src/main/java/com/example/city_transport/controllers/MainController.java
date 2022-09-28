@@ -22,10 +22,15 @@ public class MainController {
     private final RouteService routeService;
     private final TraficJemService traficJemService;
     private final StopService stopService;
+    private final RoadRepairService roadRepairService;
+    private final ContractService contractService;
+    private final FirmService firmService;
+    private final TypeTransportService typeTransportService;
     @Autowired
     private HttpSessionBean httpSessionBean;
     @GetMapping("/")
-    public String mainPage(){
+    public String mainPage(Model model) throws SQLException {
+        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
         return "main";
     }
     @GetMapping("/routes")
@@ -33,7 +38,6 @@ public class MainController {
         model.addAttribute("route", routeService.routeList(httpSessionBean.getConnection()));
         model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
-
         return "routes";
     }
     @GetMapping("/traficJem")
@@ -44,8 +48,15 @@ public class MainController {
     }
     @GetMapping("/roadRepair")
     public String roadRepairPage(Model model) throws SQLException {
-        model.addAttribute("roadRepairTitle");
+        model.addAttribute("roadRepair", roadRepairService.roadRepairList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
         return "roadRepair";
+    }
+    @GetMapping("/contract")
+    public String contractPage(Model model) throws SQLException {
+        model.addAttribute("contract", contractService.contractList(httpSessionBean.getConnection()));
+        model.addAttribute("typeTransport", typeTransportService.transportList(httpSessionBean.getConnection()));
+        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+        return "contract";
     }
 }

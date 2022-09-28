@@ -5,13 +5,12 @@
 </head>
 <body>
 <h4>Всі ремонти доріг</h4>
-<#-- это тот же список for each -->
-<#list roadRepair as iRoadRepair>
-
-    <b>Дата начала: </b>${iRoadRepair.dateStartRoad}<br>
-    <b>Дата конца: </b>${iRoadRepair.dateEndRoad}<br>
-    <a href="/routes/${elroute.numberRoute}">Подробнее...</a><br>
+<#list roadRepair as item>
+    <b>Id: </b>${item.id}
+    <b>Дата начала: </b>${item.dateStartRoad}<br>
+    <b>Дата конца: </b>${item.dateEndRoad};<br>
 </#list>
 <hr>
 </body>
 </html>
+

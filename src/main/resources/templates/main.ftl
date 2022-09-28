@@ -37,8 +37,12 @@
             <div class="nav-container">
                 <nav class="nav">
                     <a href="/routes" class = "btn btnhelp">Всі маршрути</a>
-                    <a href="/traficJem" class = "btn btnhelp">Пробки</a>
-                    <a href="/roadRepair" class = "btn btnhelp">Ремонти доріг</a>
+                    <#if role == "transport_officer">
+                        <a href="/traficJem" class = "btn btnhelp">Пробки</a>
+                        <a href="/roadRepair" class = "btn btnhelp">Ремонти доріг</a>
+                        <a href="/contract" class = "btn btnhelp">Договір</a>
+                        <a href="/transport" class = "btn btnhelp">Транспорт</a>
+                    </#if>
                 </nav>
             </div>
 </body>

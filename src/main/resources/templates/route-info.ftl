@@ -13,7 +13,6 @@
 </#list>
 <b>Интервал: </b>${route.interval}<br>
 <b>Дата создания: </b>${route.dateTime}<br>
-
 <b>Транспорт проходящий через этот маршрут:</b><br>
 <#list transport as item>
     <b>Номер: </b>${item.numberTransport} <b>Тип: </b>${item.typeTransport};<br>
@@ -58,7 +57,7 @@
     </form>
 </div>
 <hr>
-Пробки на маршруте:<br>
+<b>Пробки на маршруте:</b><br>
 <#list traficJemTitle as item>
     Адрес:${item.address}<br>
     Время начала:${item.timeStart}<br>
@@ -68,6 +67,17 @@
             <input type="submit" value="Удалить пробку"/><br>
         </form>
     </#if>
+</#list>
+<b>Ремонты дорог:</b><br>
+<#list roadRepairTitle as item>
+    Адрес:${item.addres}<br>
+    Время начала ремонта:${item.dateStartRoad}<br>
+    Время конца ремонта:${item.dateEndRoad}<br>
+    <#if role == "transport_officer">
+            <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
+                <input type="submit" value="Удалить ремонт дорог"/><br>
+            </form>
+        </#if>
 </#list>
 <hr>
 <form action="/route/delete/${route.numberRoute}" method="post">

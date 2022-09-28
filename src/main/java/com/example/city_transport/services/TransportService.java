@@ -25,13 +25,13 @@ public class TransportService {
     public void deleteTransport(int idTransport, Connection connection){
         transportRepositoryImpl.deleteById(idTransport, connection);
     }
-    public void addTransport(Transport transport, Connection connection) {
-        transportRepositoryImpl.save(transport, connection);
-    }
     public List<Transport> findTransportByNumberRoute(int numberRoute, Connection connection){
         return transportRepositoryImpl.findTransportByNumberRoute(numberRoute, connection);
     }
     public List<Transport> findFreeTransport(int numberRoute, Connection connection){
         return transportRepositoryImpl.findFreeTransport(numberRoute, connection);
+    }
+    public void change(int idTransport, int numberTransport, String garage, Connection connection){
+        transportRepositoryImpl.change(idTransport, numberTransport, garage, connection);
     }
 }

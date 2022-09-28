@@ -47,9 +47,9 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
         try(PreparedStatement stmt = connection.prepareStatement(query)){
             stmt.setInt(1, traficJem.getIdTraficJem());
             stmt.setInt(2, traficJem.getNumberEmployee());
-            stmt.setInt(3, traficJem.getNumberStop());
-            stmt.setTime(4, sqlDate1);
-            stmt.setTime(5, sqlDate2);
+            stmt.setTime(3, sqlDate1);
+            stmt.setTime(4, sqlDate2);
+            stmt.setInt(5, traficJem.getNumberStop());
             stmt.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
@@ -90,6 +90,7 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
         }
         return traficJem;
     }
+    @Override
     public List<TraficJemTitle> findByRouteId(int numberRoute, Connection connection){
         List<TraficJemTitle> listResult = new ArrayList<>();
         String query = """
@@ -113,6 +114,7 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
         }
         return listResult;
     }
+    @Override
     public List<TraficJem> deleteByNumberRoute(int numberRoute, int numberStop, Connection connection){
         List<TraficJem> listResult = new ArrayList<>();
         String query = """

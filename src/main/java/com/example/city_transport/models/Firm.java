@@ -9,5 +9,6 @@ public class Firm {
     private String nameFirm;
     private String email;
     private String address;
+    private String director;
     private String phoneNumber;
 }

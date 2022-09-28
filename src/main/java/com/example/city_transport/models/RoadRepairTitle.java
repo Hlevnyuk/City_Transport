@@ -1,19 +1,20 @@
 package com.example.city_transport.models;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Contract {
-    private int id;
-    private String firm;
+public class RoadRepairTitle {
+    private int numberRoute;
+    private String addres;
+    private int numberStop;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateStartContract;
+    private Date dateStartRoad;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dateEndContract;
-    private int transportCount;
-    private String typeTransport;
+    private Date dateEndRoad;
 }

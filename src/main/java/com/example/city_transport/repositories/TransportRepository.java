@@ -10,7 +10,7 @@ public interface TransportRepository {
     List<Transport> findAll(Connection connection);
     List<Transport> findTransportByNumberRoute(int numberRoute, Connection connection);
     List<Transport> findFreeTransport(int numberRoute, Connection connection);
-    void save(Transport transport, Connection connection) throws SQLException;
     void deleteById(int idTransport, Connection connection);
     Transport findById(int idTransport, Connection connection);
+    void change(int idTransport, int numberTransport, String garage, Connection connection);
 }
