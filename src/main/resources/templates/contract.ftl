@@ -16,7 +16,7 @@
      <a href="/contract/${item.id}">Подробнее...</a><br>
 </#list>
 <hr>
-<#if role == "transport_officer">
+<#if role == "transport_employee">
     <h3>Создать договор</h3>
     <form action="/contract/create" method="post" enctype="multipart/form-data">
         Id: <input type="number" name="id"/><br><br>

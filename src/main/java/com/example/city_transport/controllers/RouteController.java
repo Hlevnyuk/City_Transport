@@ -47,7 +47,7 @@ public class RouteController {
                 httpSessionBean.getConnection()));
         model.addAttribute("roadRepairTitle", roadRepairService.findByRouteId(numberRoute,
                 httpSessionBean.getConnection()));
-        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+        model.addAttribute("role", httpSessionBean.getRole());
         return "route-info";
     }
     @PostMapping("/routes/deleteRoadRepair/{numberRoute}/{numberStop}")

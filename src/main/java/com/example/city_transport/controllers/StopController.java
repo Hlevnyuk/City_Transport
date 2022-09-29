@@ -21,7 +21,6 @@ public class StopController {
     @PostMapping("/stop/add")
     public String addStop(Stop stop, @RequestParam(name = "numberStop") int numberStop,
                           @RequestParam(name = "address") String address){
-
         stopService.addStop(stop, httpSessionBean.getConnection());
         return "redirect:/routes";
     }

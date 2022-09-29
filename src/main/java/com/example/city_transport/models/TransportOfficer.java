@@ -16,4 +16,5 @@ public class TransportOfficer {
     private String post;
     private Date dateBirth;
     private String address;
+    private String password;
 }

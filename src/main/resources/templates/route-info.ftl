@@ -62,7 +62,7 @@
     Адрес:${item.address}<br>
     Время начала:${item.timeStart}<br>
     Время конца:${item.timeEnd}<br>
-    <#if role == "transport_officer">
+    <#if role == "transport_employee">
         <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
             <input type="submit" value="Удалить пробку"/><br>
         </form>
@@ -73,7 +73,7 @@
     Адрес:${item.addres}<br>
     Время начала ремонта:${item.dateStartRoad}<br>
     Время конца ремонта:${item.dateEndRoad}<br>
-    <#if role == "transport_officer">
+    <#if role == "transport_employee">
             <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
                 <input type="submit" value="Удалить ремонт дорог"/><br>
             </form>

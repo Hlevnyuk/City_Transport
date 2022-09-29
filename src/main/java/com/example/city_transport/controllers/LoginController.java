@@ -22,6 +22,8 @@ public class LoginController {
                         @RequestParam String password) throws SQLException {
         httpSessionBean.getConnection().close();
         httpSessionBean.setConnection(loginService.getConnection(name, password));
+        httpSessionBean.setId(loginService.getUserId(name, httpSessionBean.getConnection()));
+        httpSessionBean.setRole(loginService.getRole(name, httpSessionBean.getConnection()));
         return "redirect:/";
     }
     @GetMapping("/login")
@@ -31,7 +33,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout() throws SQLException {
         httpSessionBean.getConnection().close();
-        httpSessionBean.setConnection(loginService.getConnection("guest", "guest"));
+        httpSessionBean.setConnection(loginService.getConnection("guest1", "guest1"));
         return "redirect:/";
     }
 }

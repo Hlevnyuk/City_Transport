@@ -10,6 +10,8 @@ import java.sql.SQLException;
 @Component
 public class HttpSessionBean {
     Connection connection;
+    int id = 1;
+    String role = "transport_employee";
     {
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CityTransport?currentSchema = public",

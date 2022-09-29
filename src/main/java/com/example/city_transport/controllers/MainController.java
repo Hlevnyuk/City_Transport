@@ -19,6 +19,7 @@ import java.util.Date;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
+    private final LoginService loginService;
     private final RouteService routeService;
     private final TraficJemService traficJemService;
     private final StopService stopService;
@@ -30,33 +31,33 @@ public class MainController {
     private HttpSessionBean httpSessionBean;
     @GetMapping("/")
     public String mainPage(Model model) throws SQLException {
-        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+        model.addAttribute("role", httpSessionBean.getRole());
         return "main";
     }
     @GetMapping("/routes")
     public String routePage(Model model) throws SQLException {
         model.addAttribute("route", routeService.routeList(httpSessionBean.getConnection()));
         model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
-        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+        model.addAttribute("role", httpSessionBean.getRole());
         return "routes";
     }
     @GetMapping("/traficJem")
     public String traficJemPage(Model model) throws SQLException {
         model.addAttribute("traficJemTitle", traficJemService.traficJemList(httpSessionBean.getConnection()));
-        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+        model.addAttribute("role", httpSessionBean.getRole());
         return "traficJem";
     }
     @GetMapping("/roadRepair")
     public String roadRepairPage(Model model) throws SQLException {
         model.addAttribute("roadRepair", roadRepairService.roadRepairList(httpSessionBean.getConnection()));
-        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+        model.addAttribute("role", httpSessionBean.getRole());
         return "roadRepair";
     }
     @GetMapping("/contract")
     public String contractPage(Model model) throws SQLException {
         model.addAttribute("contract", contractService.contractList(httpSessionBean.getConnection()));
         model.addAttribute("typeTransport", typeTransportService.transportList(httpSessionBean.getConnection()));
-        model.addAttribute("role", httpSessionBean.getConnection().getMetaData().getUserName());
+        model.addAttribute("role", httpSessionBean.getRole());
         return "contract";
     }
 }
