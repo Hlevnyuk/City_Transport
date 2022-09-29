@@ -13,7 +13,7 @@
      <b>Дата окончания договора: </b>${item.dateEndContract}<br>
      <b>Количество заказанного транспорта: </b>${item.transportCount}<br>
      <b>Тип: </b>${item.typeTransport}<br>
-     <a href="/contract/info">Подробнее...</a><br>
+     <a href="/contract/${item.id}">Подробнее...</a><br>
 </#list>
 <hr>
 <#if role == "transport_officer">
