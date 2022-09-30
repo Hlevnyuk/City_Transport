@@ -14,6 +14,12 @@
 <h3>Добавити ремонт доріг</h3>
     <form action="/roadRepair/add" method="post" enctype="multipart/form-data">
         Id: <input type="number" name="id"/><br><br>
+        Остановка:
+        <select name = "numberStop">
+           <#list stop as item>
+               <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
+           </#list>
+        </select>
         Дата начала: <input type="date" name="dateStartRoad"/><br><br>
         Дата кінця: <input type="date" name="dateEndRoad"/><br><br>
         <input type="submit" value="Добавити ремонт доріг"/>

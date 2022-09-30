@@ -17,6 +17,7 @@
 <#list transport as item>
     <b>Номер: </b>${item.numberTransport} <b>Тип: </b>${item.typeTransport};<br>
 </#list>
+<#if role == "administrator">
 <div>
     <p>Работа с транспортом</p>
     <form action="/routes/${route.numberRoute}" method="post">
@@ -36,6 +37,8 @@
         <input type="submit" value="Отвязать транспорт"/>
     </form>
 </div>
+</#if>
+<#if role == "administrator">
 <div>
     <p>Работа с остановками</p>
     <form action="/routes/addStop/${route.numberRoute}" method="post">
@@ -56,6 +59,7 @@
             <input type="submit" value="Удалить остановку"/>
     </form>
 </div>
+</#if>
 <hr>
 <b>Пробки на маршруте:</b><br>
 <#list traficJemTitle as item>

@@ -84,12 +84,66 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
                 traficJem.setIdTraficJem(rs.getInt("id_trafic_jem"));
                 traficJem.setTimeStart(rs.getTime("time_start"));
                 traficJem.setTimeEnd(rs.getTime("time_final"));
+                traficJem.setNumberStop(rs.getInt("number_stop"));
+                traficJem.setNumberEmployee(rs.getInt("number_employee"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return traficJem;
     }
+    @Override
+    public List<TraficJemTitle> findAllTraficJemTitle(Connection connection) {
+        List<TraficJemTitle> listResult = new ArrayList<>();
+        String query = """
+                        SELECT DISTINCT id_trafic_jem, number_stop, adres, time_start, time_final
+                        FROM trafic_jem_title
+                       """;
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                TraficJemTitle traficJemTitle = new TraficJemTitle();
+                traficJemTitle.setIdTraficJem(rs.getInt("id_trafic_jem"));
+                //traficJemTitle.setNumberRoute(rs.getInt("number_route"));
+                traficJemTitle.setNumberStop(rs.getInt("number_stop"));
+                traficJemTitle.setAddress(rs.getString("adres"));
+                traficJemTitle.setTimeStart(rs.getTime("time_start"));
+                traficJemTitle.setTimeEnd(rs.getTime("time_final"));
+                //traficJemTitle.setNumberEmployee(rs.getInt("number_employee"));
+                listResult.add(traficJemTitle);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listResult;
+    }
+
+    @Override
+    public TraficJemTitle findByIdTitle(int idTraficJem, Connection connection) {
+        TraficJemTitle traficJemTitle = new TraficJemTitle();
+        String query = """
+                        SELECT *
+                        FROM trafic_jem_title
+                        WHERE id_trafic_jem = ?
+                       """;
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, idTraficJem);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                traficJemTitle.setIdTraficJem(rs.getInt("id_trafic_jem"));
+                traficJemTitle.setNumberRoute(rs.getInt("number_route"));
+                traficJemTitle.setNumberStop(rs.getInt("number_stop"));
+                traficJemTitle.setAddress(rs.getString("adres"));
+                traficJemTitle.setTimeStart(rs.getTime("time_start"));
+                traficJemTitle.setTimeEnd(rs.getTime("time_final"));
+                traficJemTitle.setNumberEmployee(rs.getInt("number_employee"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return traficJemTitle;
+    }
+
     @Override
     public List<TraficJemTitle> findByRouteId(int numberRoute, Connection connection){
         List<TraficJemTitle> listResult = new ArrayList<>();
@@ -102,11 +156,13 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
             ResultSet rs = prst.executeQuery();
             while (rs.next()) {
                 TraficJemTitle traficJemTitle = new TraficJemTitle();
+                traficJemTitle.setIdTraficJem(rs.getInt("id_trafic_jem"));
                 traficJemTitle.setNumberRoute(rs.getInt("number_route"));
                 traficJemTitle.setNumberStop(rs.getInt("number_stop"));
                 traficJemTitle.setAddress(rs.getString("adres"));
                 traficJemTitle.setTimeStart(rs.getTime("time_start"));
                 traficJemTitle.setTimeEnd(rs.getTime("time_final"));
+                traficJemTitle.setNumberEmployee(rs.getInt("number_employee"));
                 listResult.add(traficJemTitle);
             }
         } catch (SQLException throwables) {

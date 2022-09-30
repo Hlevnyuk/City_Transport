@@ -1,9 +1,6 @@
 package com.example.city_transport.repositories;
 
-import com.example.city_transport.models.RoadRepair;
-import com.example.city_transport.models.RoadRepairTitle;
-import com.example.city_transport.models.TraficJem;
-import com.example.city_transport.models.TraficJemTitle;
+import com.example.city_transport.models.*;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -134,5 +131,20 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
             e.printStackTrace();
         }
         return listResult;
+    }
+
+    @Override
+    public void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection) {
+        String query = """
+                       INSERT INTO road_repaironstop
+                       VALUES(?,?);
+                       """;
+        try(PreparedStatement stmt = connection.prepareStatement(query)){
+            stmt.setInt(1, roadRepairOnStop.getIdRepairOnStop());
+            stmt.setInt(2, roadRepairOnStop.getNumberStop());
+            stmt.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }

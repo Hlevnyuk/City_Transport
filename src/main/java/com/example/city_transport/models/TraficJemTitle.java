@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TraficJemTitle {
+    private int idTraficJem;
     private int numberRoute;
     private int numberStop;
     private String address;
@@ -17,4 +18,5 @@ public class TraficJemTitle {
     private Date timeStart;
     @DateTimeFormat(pattern = "HH:mm")
     private Date timeEnd;
+    private int numberEmployee;
 }

@@ -20,7 +20,7 @@ public class TraficJemController {
     private final TraficJemService traficJemService;
     @GetMapping("/traficJem/{idTraficJem}")
     public String traficJemPage(@PathVariable int idTraficJem, Model model){
-        model.addAttribute("traficJem", traficJemService.findById(idTraficJem,
+        model.addAttribute("traficJemTitle", traficJemService.findByIdTitle(idTraficJem,
                 httpSessionBean.getConnection()));
         return "traficJem-info";
     }

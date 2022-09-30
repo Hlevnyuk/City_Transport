@@ -13,7 +13,7 @@ public class TransportOfficerRepositoryImpl implements TransportOfficerRepositor
         int userId = 0;
         String query = """
                 SELECT number_employee FROM transport_officer
-                WHERE email = ?
+                WHERE login = ?
                 """;
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, login);

@@ -10,7 +10,7 @@
      <b>Id: </b>${eltraficJem.idTraficJem}<br>
      <b>Время начала: </b>${eltraficJem.timeStart}<br>
      <b>Время конца: </b>${eltraficJem.timeEnd}<br>
-     <b>Номер остановки: </b>${eltraficJem.numberStop}<br>
+     <b>Остановка: </b>${eltraficJem.address}<br>
      <a href="/traficJem/${eltraficJem.idTraficJem}">Подробнее...</a><br>
 </#list>
 <hr>
@@ -20,7 +20,12 @@
         Id: <input type="number" name="idTraficJem"/><br><br>
         Время начала: <input type="time" name="timeStart"/><br><br>
         Время конца: <input type="time" name="timeEnd"/><br><br>
-        Номер остановки: <input type="number" name="numberStop"/><br><br>
+        Остановки: <br><br>
+        <select name = "numberStop">
+           <#list stop as item>
+               <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
+           </#list>
+        </select>
         Номер работника: <input type="number" name="numberEmployee"/><br><br>
         <input type="submit" value="Добавить остановку"/>
     </form>

@@ -43,13 +43,16 @@ public class MainController {
     }
     @GetMapping("/traficJem")
     public String traficJemPage(Model model) throws SQLException {
-        model.addAttribute("traficJemTitle", traficJemService.traficJemList(httpSessionBean.getConnection()));
+        model.addAttribute("traficJemTitle",
+                traficJemService.findAllTraficJemTitle(httpSessionBean.getConnection()));
+        model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getRole());
         return "traficJem";
     }
     @GetMapping("/roadRepair")
     public String roadRepairPage(Model model) throws SQLException {
         model.addAttribute("roadRepair", roadRepairService.roadRepairList(httpSessionBean.getConnection()));
+        model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getRole());
         return "roadRepair";
     }

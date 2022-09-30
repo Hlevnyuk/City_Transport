@@ -14,7 +14,7 @@ public class AdministratorRepositoryImpl implements AdministratorRepository{
         int userId = 0;
         String query = """
                 SELECT id_administrator FROM administrator
-                WHERE email = ?
+                WHERE login = ?
                 """;
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, login);

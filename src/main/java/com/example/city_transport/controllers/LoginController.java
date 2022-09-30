@@ -34,6 +34,8 @@ public class LoginController {
     public String logout() throws SQLException {
         httpSessionBean.getConnection().close();
         httpSessionBean.setConnection(loginService.getConnection("guest1", "guest1"));
+        httpSessionBean.setId(0);
+        httpSessionBean.setRole("guest");
         return "redirect:/";
     }
 }

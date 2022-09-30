@@ -13,4 +13,7 @@ public interface TraficJemRepository{
     TraficJem findById(int idTraficJem, Connection connection);
     List<TraficJemTitle> findByRouteId(int numberRoute, Connection connection);
     List<TraficJem> deleteByNumberRoute(int numberRoute, int numberStop, Connection connection);
+    List<TraficJemTitle> findAllTraficJemTitle(Connection connection);
+    TraficJemTitle findByIdTitle(int idTraficJem, Connection connection);
+
 }
