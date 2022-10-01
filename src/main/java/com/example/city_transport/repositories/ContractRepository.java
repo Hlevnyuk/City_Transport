@@ -11,4 +11,5 @@ public interface ContractRepository {
     void save(Contract contract, Connection connection) throws SQLException;
     void deleteById(int id, Connection connection);
     Contract findById(int id, Connection connection);
+
 }

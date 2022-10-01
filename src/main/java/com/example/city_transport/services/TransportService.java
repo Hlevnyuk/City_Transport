@@ -34,4 +34,7 @@ public class TransportService {
     public void change(int idTransport, int numberTransport, String garage, Connection connection){
         transportRepositoryImpl.change(idTransport, numberTransport, garage, connection);
     }
+    public List<Transport> findByIdContract(int idContract, Connection connection){
+        return transportRepositoryImpl.findByIdContract(idContract, connection);
+    }
 }

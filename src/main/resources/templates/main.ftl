@@ -42,6 +42,7 @@
                         <a href="/roadRepair" class = "btn btnhelp">Ремонти доріг</a>
                         <a href="/contract" class = "btn btnhelp">Договір</a>
                         <a href="/transport" class = "btn btnhelp">Транспорт</a>
+                        <a href="/analyticks/0" class = "btn btnhelp">Аналитика</a>
                     </#if>
                 </nav>
             </div>

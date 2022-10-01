@@ -13,4 +13,5 @@ public interface TransportRepository {
     void deleteById(int idTransport, Connection connection);
     Transport findById(int idTransport, Connection connection);
     void change(int idTransport, int numberTransport, String garage, Connection connection);
+    List<Transport> findByIdContract(int idContract, Connection connection);
 }

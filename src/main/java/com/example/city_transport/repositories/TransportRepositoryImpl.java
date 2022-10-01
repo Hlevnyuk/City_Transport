@@ -76,25 +76,6 @@ public class TransportRepositoryImpl implements TransportRepository {
         }
         return list;
     }
-
-//    @Override
-//    public void save(Transport transport, Connection connection) {
-//        String query = """
-//                       INSERT INTO transport
-//                       VALUES(?,?,?,?,?);
-//                       """;
-//        try(PreparedStatement stmt = connection.prepareStatement(query)){
-//            stmt.setInt(1, transport.getIdTransport());
-//            stmt.setInt(2, transport.getNumberTransport());
-//            stmt.setString(3, transport.getTypeTransport());
-//            stmt.setString(4, transport.getGarage());
-//            stmt.setInt(5, transport.getIdContract());
-//            int p = stmt.executeUpdate();
-//        } catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
-
     @Override
     public void deleteById(int idTransport, Connection connection) {
         String query = """
@@ -148,5 +129,31 @@ public class TransportRepositoryImpl implements TransportRepository {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Transport> findByIdContract(int idContract, Connection connection) {
+        List<Transport> transportList = new ArrayList<>();
+        String query = """
+                    SELECT * FROM transport
+                        WHERE id_contract IN(SELECT id_contract FROM contract
+                			WHERE id_contract = ?)
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, idContract);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                Transport transport = new Transport();
+                transport.setIdTransport(rs.getInt("id_transport"));
+                transport.setNumberTransport(rs.getInt("number_transport"));
+                transport.setTypeTransport(rs.getString("type_transport"));
+                transport.setGarage(rs.getString("garage"));
+                transport.setIdContract(rs.getInt("id_contract"));
+                transportList.add(transport);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return transportList;
     }
 }

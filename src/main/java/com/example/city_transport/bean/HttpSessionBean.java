@@ -10,12 +10,12 @@ import java.sql.SQLException;
 @Component
 public class HttpSessionBean {
     Connection connection;
-    int id = 0;
-    String role = "guest";
+    int id = 1;
+    String role = "transport_employee";
     {
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CityTransport?currentSchema = public",
-                    "guest1", "guest1");
+                    "transport_officer", "transport_officer");
         } catch (SQLException e) {
             e.printStackTrace();
         }

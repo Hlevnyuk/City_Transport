@@ -6,6 +6,7 @@ import com.example.city_transport.repositories.RouteRepository;
 import com.example.city_transport.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class MainController {
     private final ContractService contractService;
     private final FirmService firmService;
     private final TypeTransportService typeTransportService;
+    private final FunctionsService functionsService;
     @Autowired
     private HttpSessionBean httpSessionBean;
     @GetMapping("/")
@@ -62,5 +64,11 @@ public class MainController {
         model.addAttribute("typeTransport", typeTransportService.transportList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getRole());
         return "contract";
+    }
+    @GetMapping("/analyticks/{result}")
+    public String analyticksPage(@PathVariable int result, Model model){
+        model.addAttribute("result", result);
+        model.addAttribute("role", httpSessionBean.getRole());
+        return "analyticks";
     }
 }
