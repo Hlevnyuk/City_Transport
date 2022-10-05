@@ -29,6 +29,7 @@ public class MainController {
     private final FirmService firmService;
     private final TypeTransportService typeTransportService;
     private final FunctionsService functionsService;
+    private final TicketSoldService ticketSoldService;
     @Autowired
     private HttpSessionBean httpSessionBean;
     @GetMapping("/")
@@ -67,6 +68,8 @@ public class MainController {
     }
     @GetMapping("/analyticks/{result}")
     public String analyticksPage(@PathVariable int result, Model model){
+        model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
+        model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
         model.addAttribute("result", result);
         model.addAttribute("role", httpSessionBean.getRole());
         return "analyticks";

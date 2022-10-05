@@ -14,4 +14,5 @@ public class TicketSold {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateSold;
     private int kolTicketSold;
+    private int id;
 }

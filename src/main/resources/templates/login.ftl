@@ -5,20 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+    <title>Вхід</title>
 </head>
 <body>
-<div class="log-form-conteiner">
-    <form action="/login/authorization" method="post">
-        <p>Увійти</p>
-        <p>Логін</p>
-        <input type="text" name="name">
-        <p>Пароль</p>
-        <input type="password" name="password"><br>
-        <div class="account">
-            <a href="/registration">Створити обліковий запис</a>
-        </div>
-        <button type="submit" class="log-button">Увійти</button>
+<h1>Увійти</h1>
+<div id="wrapper">
+    <form id="signin" action="/login/authorization" method="post" autocomplete="off">
+        <input type="text" id="user" name="name" placeholder="Логін">
+        <input type="password" id="pass" name="password" placeholder="Пароль"><br>
+        <button type="submit">&#xf0da;</button>
     </form>
 </div>
 </body>

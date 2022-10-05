@@ -1,39 +1,73 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="css/routes.css"/>
+    <script src="JavaScript/routes.js" defer></script>
     <title>Route</title>
 </head>
 <body>
-    Всі маршрути<br><br>
-<#-- это тот же список for each -->
-<#list routeTitle as elroute>
-     <b>Номер маршрута: </b>${elroute.numberRoute}<br>
-     <b>Начальная точка: </b>${elroute.startPoint}<br>
-     <b>Конечная точка: </b>${elroute.endPoint}<br>
-     <a href="/routes/${elroute.numberRoute}">Подробнее...</a><br>
-</#list>
+<h1>Всі маршрути</h1><br><br>
+<ul class="list3b">
+    <#list routeTitle as elroute>
+        <li class="text">
+            <b>Номер маршрута: </b>${elroute.numberRoute}<br>
+            <b>Начальная точка: </b>${elroute.startPoint}<br>
+            <b>Конечная точка: </b>${elroute.endPoint}<br><br>
+            <a href="/routes/${elroute.numberRoute}" class = "btn1">Подробнее...</a><br>
+        </li>
+    </#list>
+</ul>
 <hr>
 <#if role == "administrator">
-    <h3>Создать новый маршрут</h3>
-    <form action="/route/create" method="post" enctype="multipart/form-data">
-        Номер маршрута: <input type="number" name="numberRoute"/><br><br>
-        Интервал: <input type="text" name="interval"/><br><br>
-        Дата создания: <input type="date" name="dateTime"/><br><br>
-        Администратор id: <input type="int" name="idAdministrator"/><br><br>
-        Начальная остановка: <input type="number" name="startPoint"/><br><br>
-        Конечная остановка: <input type="number" name="endPoint"/><br><br>
-        Количество остановок: <input type="number" name="stopOrder"/><br><br>
-        <input type="submit" value="Добавить маршрут"/>
-    </form>
-</#if>
-<#if role == "administrator">
-    <h3>Создать новую остановку</h3>
-    <form action="/stop/add" method="post" enctype="multipart/form-data">
-        Номер остановки: <input type="number" name="numberStop"/><br><br>
-        Адрес: <input type="text" name="address"/><br><br>
-        <input type="submit" value="Добавить остановку"/>
-    </form>
+    <article class="container">
+        <div class="block">
+            <section class="block__item block-item">
+                <h2 class="block-item__title">Створення маршруту</h2>
+                <button class="block-item__btn route-btn">Створити</button>
+            </section>
+            <section class="block__item block-item">
+                <h2 class="block-item__title">Створення зупинок</h2>
+                <button class="block-item__btn stop-btn">Створити</button>
+            </section>
+        </div>
+        <div class="form-box">
+            <form action="/route/create" method="post" class="form form_route" enctype="multipart/form-data">
+                <h3 class="form__title">Створення маршруту</h3>
+                <p>
+                    <input type="number" name="numberRoute" class="form__input" placeholder="Номер маршруту">
+                </p>
+                <p>
+                    <input type="text" name="interval" class="form__input" placeholder="Інтервал їзди транспорту"/>
+                </p>
+                <p>
+                    <input type="date" name="dateTime" class="form__input" placeholder="Дата створення маршруту"/>
+                </p>
+                <p>
+                    <input type="number" name="startPoint" class="form__input" placeholder="Початок маршруту"/>
+                </p>
+                <p>
+                    <input type="number" name="endPoint" class="form__input" placeholder="Кінець маршруту"/>
+                </p>
+                <p>
+                    <input type="number" name="stopOrder" class="form__input" placeholder="Номер зупинки"/>
+                </p>
+                <p>
+                    <input type="int" name="idAdministrator" class="form__input" placeholder="Айді працівника"/>
+                </p>
+                <button type="submit" class="form__btn">Створити</button>
+            </form>
+            <form action="/stop/add" method="post" class="form form_stop" enctype="multipart/form-data">
+                <h3 class="form__title">Створення зупинки</h3>
+                <p>
+                    <input type="number" name="stopOrder" class="form__input" placeholder="Номер зупинки"/>
+                </p>
+                <p>
+                    <input type="int" name="idAdministrator" class="form__input" placeholder="Адреса"/>
+                </p>
+                <button type="submit" class="form__btn">Створити</button>
+            </form>
+        </div>
+    </article>
 </#if>
 </body>
 </html>
