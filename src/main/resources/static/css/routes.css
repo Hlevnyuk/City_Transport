@@ -9,6 +9,29 @@ body{
     overflow-x: hidden;
     width: 100%;
 }
+.header{
+    width: 100%;
+  }
+.header-btn-conteiner{
+      position: relative;
+      top: 20px;
+ }
+.btn {
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.5s;
+  }
+.btn:hover {
+  background-color: orange;
+  color: white;
+  }
 .btn1 {
     text-transform: uppercase;
     text-decoration: none;
@@ -17,7 +40,6 @@ body{
 .text {
     color: white;
     font-size: 16px;
-
 }
 .list3b {
     padding:0;
@@ -178,4 +200,28 @@ body{
     color: #fff;
     padding: 10px 50px;
 }
-
+.table{
+    font-size: 14px;
+    background: white;
+    max-width: 70%;
+    width: 70%;
+    border-collapse: collapse;
+    text-align: left;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+}
+.tr{
+    border: 1px solid grey;
+}
+.td{
+    border: 1px solid grey;
+    padding: 9px;
+    transition: .3s linear;
+}
+.th {
+    font-weight: normal;
+    border-bottom: 2px solid #6678b1;
+    padding: 10px;
+}
+.tr:hover .td {
+    background: #748eec; /* Цвет фона при наведении */
+}

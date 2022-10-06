@@ -15,7 +15,7 @@
             <div class="header-btn-conteiner1" method="post">
                 <a href="/logout" class = "btn">Вихід</a>
             </div>
-        </header>
+    </header>
         <div class="slider">
             <input type="radio" name="switch" id="btn1" checked>
             <input type="radio" name="switch" id="btn2">

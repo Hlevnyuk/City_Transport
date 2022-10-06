@@ -6,7 +6,13 @@
     <title>Route</title>
 </head>
 <body>
-<h1>Всі маршрути</h1><br><br>
+<header class = "header">
+        <div class="header-btn-conteiner">
+            <a href="/" class = "btn">Головна</a>
+        </div>
+</header>
+<br><br>
+<p class="text">Всі маршрути</p>
 <ul class="list3b">
     <#list routeTitle as elroute>
         <li class="text">
@@ -59,15 +65,32 @@
             <form action="/stop/add" method="post" class="form form_stop" enctype="multipart/form-data">
                 <h3 class="form__title">Створення зупинки</h3>
                 <p>
-                    <input type="number" name="stopOrder" class="form__input" placeholder="Номер зупинки"/>
+                    <input type="number" name="numberStop" class="form__input" placeholder="Номер зупинки"/>
                 </p>
                 <p>
-                    <input type="int" name="idAdministrator" class="form__input" placeholder="Адреса"/>
+                    <input type="text" name="address" class="form__input" placeholder="Адреса"/>
                 </p>
                 <button type="submit" class="form__btn">Створити</button>
             </form>
         </div>
     </article>
+    <br><br>
+    <table class="table">
+        <thead>
+            <th class="th">Номер зупинки</th>
+            <th class="th">Адреса</th>
+        </thead>
+        <tbody>
+            <form action="/routes" method="get" enctype="multipart/form-data">
+                 <#list stop as itam>
+                      <tr class="tr">
+                        <td class="td"></b>${itam.numberStop}</td>
+                        <td class="td"></b>${itam.address}</td>
+                      </tr>
+                 </#list>
+            </form>
+        </tbody>
+    </table>
 </#if>
 </body>
 </html>
