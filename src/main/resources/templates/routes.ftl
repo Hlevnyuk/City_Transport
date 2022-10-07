@@ -6,13 +6,12 @@
     <title>Route</title>
 </head>
 <body>
-<header class = "header">
-        <div class="header-btn-conteiner">
-            <a href="/" class = "btn">Головна</a>
-        </div>
+<header>
+        <p class="p">Міський</p>
+        <p class="p1">Транспорт</p>
+        <a href="/" class = "a2">Головна</a>
 </header>
-<br><br>
-<p class="text">Всі маршрути</p>
+<p class="size">Всі маршрути</p>
 <ul class="list3b">
     <#list routeTitle as elroute>
         <li class="text">
@@ -23,8 +22,8 @@
         </li>
     </#list>
 </ul>
-<hr>
 <#if role == "administrator">
+<br>
     <article class="container">
         <div class="block">
             <section class="block__item block-item">

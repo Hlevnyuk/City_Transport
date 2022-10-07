@@ -9,13 +9,14 @@
     <title>Вхід</title>
 </head>
 <body>
-<h1>Увійти</h1>
-<div id="wrapper">
-    <form id="signin" action="/login/authorization" method="post" autocomplete="off">
-        <input type="text" id="user" name="name" placeholder="Логін">
-        <input type="password" id="pass" name="password" placeholder="Пароль"><br>
-        <button type="submit">&#xf0da;</button>
-    </form>
-</div>
+<form class="decor" action="/login/authorization" method="post">
+    <div class="form-inner">
+        <h3>Заповніть форму</h3>
+        <br>
+        <input type="text" id="user" name="name" placeholder="Логін" autocomplete="off">
+        <input type="password" id="pass" name="password" placeholder="Пароль" autocomplete="off"><br>
+        <input type="submit" value="Увійти">
+    </div>
+</form>
 </body>
 </html>

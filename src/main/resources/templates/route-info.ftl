@@ -5,8 +5,13 @@
     <title>Route</title>
 </head>
 <body>
-<h1>Детальна інформація про маршрут</h1>
-<hr>
+<header>
+        <p class="p">Міський</p>
+        <p class="p1">Транспорт</p>
+        <a href="/" class = "a2">Головна</a>
+</header>
+<p class="size">Детальна інформація про маршрут</p>
+<br>
 <table class="table">
     <thead>
         <th class="th">Номер маршруту</th>
@@ -34,58 +39,69 @@
     </tbody>
 </table>
 <#if role == "administrator">
-        <form action="/routes/${route.numberRoute}" method="post" class="decor">
-            <div class="form-inner">
-                <p>Назначити транспортний засіб</p>
-                <select name = "idTransport" class="radius">
+    <div class="container alignment">
+        <div class="brand-title">
+            Назначини транспортний засіб
+        </div>
+        <div class="inputs">
+            <form action="/routes/${route.numberRoute}" method="post">
+                <select name = "idTransport" class="select">
                     <#list freeTransport as item>
                         <option value = "${item.idTransport}"> ${item.idTransport} - ${item.numberTransport}</option>
                     </#list>
                 </select>
-                <input type="submit" value="Назначить транспорт"/>
-            </div>
-        </form>
-        <form action="/routes/deleteTransport/${route.numberRoute}" method="post" class="decor1">
-            <div class="form-inner">
-                <p>Забрати транспортний засіб</p>
-                <select name = "idTransport" class="radius">
+                <button type="submit" class="button">Назначити</button>
+            </form>
+        </div>
+    </div>
+    <div class="container alignment">
+        <div class="brand-title">
+            Забрати транспортний засіб
+        </div>
+        <div class="inputs">
+            <form action="/routes/deleteTransport/${route.numberRoute}" method="post">
+                <select name = "idTransport" class="select">
                     <#list transport as item>
                         <option value = "${item.idTransport}"> ${item.idTransport} - ${item.numberTransport}</option>
                     </#list>
                 </select>
-                <input type="submit" value="Отвязать транспорт"/>
-            </div>
-        </form>
-</#if>
-<#if role == "administrator">
-    <form action="/routes/addStop/${route.numberRoute}" method="post" class="decor2">
-        <div class="form-inner">
-            <p>Работа с остановками</p>
-            <select name = "numberStop" class="radius">
-                <#list freeStop as item>
-                    <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
-                </#list>
-            </select>
-            <br>
-            <br>
-            <br>
-            <input type="number" name="stopOrder"/>
-            <input type="submit" value="Добавить остановку"/>
+                <button type="submit" class="button">Відвязати</button>
+            </form>
         </div>
-    </form>
-    <form action="/routes/deleteStop/${route.numberRoute}" method="post" class="decor3">
-        <div class="form-inner">
-            <p>Видалити зупинку</p>
-            <select name = "numberStop" class="radius">
-                <#list stop as itam>
-                    <option value = "${itam.numberStop}" name="${itam.numberStop}"> ${itam.numberStop} - ${itam.address}</option>
-                </#list>
-            </select>
-            <input type="submit" value="Удалить остановку"/>
+    </div>
+    <div class="container alignment1">
+        <div class="brand-title">
+            Робота з зупинками
         </div>
-    </form>
+        <div class="inputs">
+            <form action="/routes/addStop/${route.numberRoute}" method="post">
+                <select name = "numberStop" class="select">
+                    <#list freeStop as item>
+                        <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
+                    </#list>
+                </select>
+                <input type="number" name="stopOrder" class="input"/>
+                <button type="submit" class="button">Добавити</button>
+            </form>
+        </div>
+    </div>
+    <div class="container alignment2">
+        <div class="brand-title">
+            Видалити зупинку
+        </div>
+        <div class="inputs">
+            <form action="/routes/deleteStop/${route.numberRoute}" method="post">
+                <select name = "numberStop" class="select">
+                    <#list stop as itam>
+                        <option value = "${itam.numberStop}" name="${itam.numberStop}"> ${itam.numberStop} - ${itam.address}</option>
+                    </#list>
+                </select>
+                <button type="submit" class="button">Видалити</button>
+            </form>
+        </div>
+    </div>
 </#if>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br>
 <hr>
 <b>Пробки на маршруте:</b><br>
 <#list traficJemTitle as item>

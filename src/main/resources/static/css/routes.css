@@ -1,41 +1,54 @@
-*{
-  margin: 0;
-  padding: 0;
+* {
+    margin:0;
+    padding:0;
 }
-body{
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("../images/phone-routes.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    overflow-x: hidden;
-    width: 100%;
+body {
+  min-width: 900px;
+  background: #312e2e;
 }
-.header{
-    width: 100%;
-  }
-.header-btn-conteiner{
-      position: relative;
-      top: 20px;
- }
-.btn {
+html {
+    width:100%;
+    height:100%;
+}
+header{
+  width:100%;
+  height:80px;
+  background:#181818;
+}
+.p{
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  color: #b0b0b0;
+  font-size: 35px;
+}
+.p1{
+  position: absolute;
+  top: 20px;
+  left: 275px;
+  font-size: 35px;
+  color: #b30000;
+}
+a {
+    color: #f7f7f7;
     text-decoration: none;
-    text-transform: uppercase;
-    background-color: #ddd;
-    border: none;
-    color: black;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition: 0.5s;
-  }
-.btn:hover {
-  background-color: orange;
-  color: white;
-  }
+}
+.a2{
+  position: absolute;
+  font-size: 18px;
+  top: 20px;
+  right: 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 .btn1 {
     text-transform: uppercase;
     text-decoration: none;
     color: red;
+}
+.size {
+    text-align: center;
+    color: #b0b0b0;
+    font-size: 25px;
 }
 .text {
     color: white;
@@ -102,19 +115,17 @@ body{
     -moz-transform: translateX(-50%) translateY(-50%) scale(1);
     transform: translateX(-50%) translateY(-50%) scale(1);
 }
-
-
 /* === Add to route and stop Form === */
-
 .container {
     width: 800px;
     height: 500px;
     padding: 40px 0;
     position: relative;
+    right: -290px;
 }
 .block {
     height: 100%;
-    background-color: rgba(64, 224, 248);
+    background-color: rgba(255, 10, 30, 1);
     box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
@@ -140,7 +151,6 @@ body{
     font-size: 16px;
     font-weight: 500;
 }
-
 /* === Form block === */
 .form-box {
     background-color: #fff;
@@ -202,26 +212,26 @@ body{
 }
 .table{
     font-size: 14px;
-    background: white;
+    background:#312e2e;
     max-width: 70%;
     width: 70%;
     border-collapse: collapse;
     text-align: left;
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-}
-.tr{
-    border: 1px solid grey;
+    position: relative;
+    right: -260px;
 }
 .td{
-    border: 1px solid grey;
-    padding: 9px;
-    transition: .3s linear;
+    font-family: 'Play',sans-serif;
+    border-bottom: 1px solid grey;
+    color: #999;
+    font-size:.875rem;
+    padding: 16px 12px;
 }
 .th {
-    font-weight: normal;
-    border-bottom: 2px solid #6678b1;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ff0800;
     padding: 10px;
-}
-.tr:hover .td {
-    background: #748eec; /* Цвет фона при наведении */
+    color: white;
+    font-family: 'Play',sans-serif;
 }

@@ -1,109 +1,149 @@
-*{
-  margin: 0;
-  padding: 0;
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+body{
+    background: #312e2e;
+}
+header{
+  width:100%;
+  height:80px;
+  background:#181818;
+}
+.p{
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  color: #b0b0b0;
+  font-size: 35px;
+}
+.p1{
+  position: absolute;
+  top: 20px;
+  left: 275px;
+  font-size: 35px;
+  color: #b30000;
+}
+a {
+    color: #f7f7f7;
+    text-decoration: none;
+}
+.a2{
+  position: absolute;
+  font-size: 18px;
+  top: 20px;
+  right: 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.size {
+    text-align: center;
+    color: #b0b0b0;
+    font-size: 25px;
 }
 .table{
     font-size: 14px;
-    background: white;
+    background:#312e2e;
     max-width: 70%;
     width: 70%;
     border-collapse: collapse;
     text-align: left;
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-}
-.tr{
-    border: 1px solid grey;
+    position: relative;
+    margin: 0 auto;
 }
 .td{
-    border: 1px solid grey;
-    padding: 9px;
-    transition: .3s linear;
+    font-family: 'Play',sans-serif;
+    border-bottom: 1px solid grey;
+    color: #999;
+    font-size:.875rem;
+    padding: 16px 12px;
 }
 .th {
-    font-weight: normal;
-    border-bottom: 2px solid #6678b1;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ff0800;
     padding: 10px;
+    color: white;
+    font-family: 'Play',sans-serif;
 }
-.tr:hover .td {
-    background: #748eec; /* Цвет фона при наведении */
-}
-
-.decor {
-  position: absolute;
-  left: 0;
-  max-width: 400px;
-  left: 100px;
-  background: #181818;
-  border-radius: 30px;
-}
-.decor1{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+.container {
   position: relative;
-  max-width: 400px;
-  margin-left: 550px;
-  top: 0px;
-  background: #181818;
-  border-radius: 30px;
-}
-.decor2 {
-  position: absolute;
-  max-width: 400px;
-  left: 100px;
-  top: 500px;
-  background: #181818;
-  border-radius: 30px;
-}
-.decor3 {
-    position: absolute;
-    max-width: 400px;
-    left: 500px;
-    top: 550px;
-    background: #181818;
-    border-radius: 30px;
-}
-.form-inner {
-  padding: 50px;
-}
-.form-inner input{
-  display: block;
-  width: 85%;
-  max-width: 260px;
-  padding: 0 20px;
-  margin-bottom: 10px;
-  background: #E9EFF6;
-  line-height: 40px;
-  border-width: 0;
+  width: 350px;
+  height: 500px;
   border-radius: 20px;
-  font-family: 'Roboto', sans-serif;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #ecf0f3;
 }
-.form-inner input[type="submit"] {
+.brand-title {
+  margin-top: 10px;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #1DA1F2;
+  letter-spacing: 1px;
+}
+.inputs {
+  text-align: left;
   margin-top: 30px;
-  background: #fc4d4d;
-  border-bottom: 4px solid #ff0000;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
 }
-.form-inner p {
-  margin-top: 0;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-  color: white;
-}
-.radius{
-  border-radius: 30px;
-  color: #707981;
-  background: #E9EFF6;
-  border: none;
+.select, .button {
+  display: block;
   width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.input {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+.input {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+.select {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+.button {
+  color: white;
+  margin-top: 20px;
+  background: #1DA1F2;
   height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
 }
-.place{
-    position: relative;
-    left: -200px;
+.button:hover {
+  box-shadow: none;
 }
-.place1{
-    position: relative;
-    right: -250px;
-    top: -330px;
+.alignment {
+    display: inline-block;
+    margin-left: 180px;
+}
+.alignment1 {
+    margin-left: 180px;
+}
+.alignment2 {
+    position: absolute;
+    right: 285px;
+    top: 800px;
 }

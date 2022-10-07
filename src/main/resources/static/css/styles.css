@@ -1,32 +1,52 @@
-*{
-  margin: 0;
-  padding: 0;
+* {
+    margin:0;
+    padding:0;
 }
-body{
-    background-color: gray;
-    background-image: url("../images/phon.png");
-    overflow-x: hidden;
-    width: 100%;
-  }
-.header{
-    width: 100%;
-  }
-.header-btn-conteiner{
-      position: absolute;
-      top: 20px;
-      right: 200px;
- }
- .header-btn-conteiner1{
-      position: absolute;
-      top: 20px;
-      right: 50px;
-   }
-.header div img{
-     margin-left: 28%;
-  }
-.slider p{
-    font-size: 40px;
-  }
+body {
+  min-width: 900px;
+  background: #312e2e;
+}
+html {
+    width:100%;
+    height:100%;
+}
+header{
+  width:100%;
+  height:80px;
+  background:#181818;
+}
+.p{
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  color: #b0b0b0;
+  font-size: 35px;
+}
+.p1{
+  position: absolute;
+  top: 20px;
+  left: 275px;
+  font-size: 35px;
+  color: #b30000;
+}
+a {
+    color: #f7f7f7;
+    text-decoration: none;
+}
+.a1{
+  position: absolute;
+  font-size: 18px;
+  top: 20px;
+  right: 100px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.a2{
+  position: absolute;
+  font-size: 18px;
+  top: 20px;
+  right: 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 .btn {
     text-decoration: none;
     text-transform: uppercase;
@@ -43,6 +63,9 @@ body{
   background-color: orange;
   color: white;
   }
+.slider p{
+    font-size: 40px;
+}
   /*slider*/
 .slider {
     position: relative;
@@ -50,7 +73,6 @@ body{
     margin: 50px auto;
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
   }
-  
 .slider input[name="switch"] {
     display: none;
   }
