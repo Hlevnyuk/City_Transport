@@ -38,7 +38,75 @@
         </tr>
     </tbody>
 </table>
+<table class="table">
+    <thead>
+        <th class="th">Адреса</th>
+        <th class="th">Час початку пробки</th>
+        <th class="th">Час кінця пробки</th>
+        <#if role == "transport_employee">
+            <th class="th">Видалення</th>
+        </#if>
+    </thead>
+    <tbody>
+        <#list traficJemTitle as item>
+            <tr class="tr">
+                <td class="td">${item.address}</td>
+                <td class="td">${item.timeStart}</td>
+                <td class="td">${item.timeEnd}</td>
+                <td class="td">
+                    <#if role == "transport_employee">
+                        <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
+                            <input type="submit" value="Видалити пробку"/><br>
+                        </form>
+                    </#if>
+                </td>
+            </tr>
+        </#list>
+   </tbody>
+</table>
+<table class="table">
+    <thead>
+        <th class="th">Адреса</th>
+        <th class="th">Час початку ремонту</th>
+        <th class="th">Час кінця ремонту</th>
+        <#if role == "transport_employee">
+            <th class="th">Видалення</th>
+        </#if>
+    </thead>
+    <tbody>
+        <#list roadRepairTitle as item>
+            <tr class="tr">
+                <td class="td">${item.addres}</td>
+                <td class="td">${item.dateStartRoad}</td>
+                <td class="td">${item.dateEndRoad}</td>
+                <td class="td">
+                    <#if role == "transport_employee">
+                        <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
+                            <input type="submit" value="Видалити ремонт доріг"/><br>
+                        </form>
+                    </#if>
+                </td>
+            </tr>
+        </#list>
+    </tbody>
+</table>
 <#if role == "administrator">
+    <div class="containerButton">
+        <div class="center">
+            <form action="/route/delete/${route.numberRoute}" method="post">
+                <button class="btn">
+                    <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                        <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                        <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                    </svg>
+                    <span>Видалити маршрут</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</#if>
+<#if role == "administrator">
+    <hr>
     <div class="container alignment">
         <div class="brand-title">
             Назначини транспортний засіб
@@ -101,33 +169,6 @@
         </div>
     </div>
 </#if>
-<br><br><br>
-<hr>
-<b>Пробки на маршруте:</b><br>
-<#list traficJemTitle as item>
-    Адрес:${item.address}<br>
-    Время начала:${item.timeStart}<br>
-    Время конца:${item.timeEnd}<br>
-    <#if role == "transport_employee">
-        <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
-            <input type="submit" value="Удалить пробку"/><br>
-        </form>
-    </#if>
-</#list>
-<b>Ремонты дорог:</b><br>
-<#list roadRepairTitle as item>
-    Адрес:${item.addres}<br>
-    Время начала ремонта:${item.dateStartRoad}<br>
-    Время конца ремонта:${item.dateEndRoad}<br>
-    <#if role == "transport_employee">
-            <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
-                <input type="submit" value="Удалить ремонт дорог"/><br>
-            </form>
-        </#if>
-</#list>
-<hr>
-<form action="/route/delete/${route.numberRoute}" method="post">
-    <input type="submit" value="Удалить маршрут"/>
-</form>
+<br>
 </body>
 </html>

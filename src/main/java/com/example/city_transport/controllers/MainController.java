@@ -16,6 +16,9 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -30,6 +33,7 @@ public class MainController {
     private final TypeTransportService typeTransportService;
     private final FunctionsService functionsService;
     private final TicketSoldService ticketSoldService;
+    private final AnaliticaService analiticaService;
     @Autowired
     private HttpSessionBean httpSessionBean;
     @GetMapping("/")
@@ -69,9 +73,17 @@ public class MainController {
     }
     @GetMapping("/analyticks/{result}")
     public String analyticksPage(@PathVariable int result, Model model){
-        model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
-        model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
-        model.addAttribute("result", result);
+        if(Objects.equals(httpSessionBean.getRole(), "transport_employee")) {
+            model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
+            model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
+            model.addAttribute("result", result);
+        }
+        if(Objects.equals(httpSessionBean.getRole(), "administrator")) {
+            Map<Integer, Integer> topFiveMap = new TreeMap<>();
+            analiticaService.findAll(httpSessionBean.getConnection()).
+                    forEach((x) -> topFiveMap.put(x.getNumberRouteR(), x.getKolTicketSoldR()));
+            model.addAttribute("topFive", topFiveMap);
+        }
         model.addAttribute("role", httpSessionBean.getRole());
         return "analyticks";
     }

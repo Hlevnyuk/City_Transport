@@ -53,9 +53,17 @@
 <br><br>
 <#list transport as item>
     <b>id: </b>${item.idTransport}<br>
-    <b>Номер транспорта: </b>${item.numberTransport}<br>
+    <#if item.numberTransport == 0>
+        Номер відустній<br>
+    <#else>
+        <b>Номер транспортного засобу: </b>${item.numberTransport}<br>
+    </#if>
     <b>Тип транспорта: </b>${item.typeTransport}<br>
-    <b>Гараж: </b>${item.garage}<br>
+    <#if item.garage??>
+        <b>Гараж: </b>${item.garage}<br>
+    <#else>
+        Місце гаража відустнє<br>
+    </#if>
 </#list><br><br><br>
 </body>
 </html>

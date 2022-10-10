@@ -32,6 +32,9 @@
         <div class="nav-container">
             <nav class="nav">
                 <a href="/routes" class = "btn btnhelp">Всі маршрути</a>
+                <#if role == "administrator">
+                    <a href="/analyticks/0" class = "btn btnhelp">Аналитика</a>
+                </#if>
                 <#if role == "transport_employee">
                     <a href="/traficJem" class = "btn btnhelp">Пробки</a>
                     <a href="/roadRepair" class = "btn btnhelp">Ремонти доріг</a>

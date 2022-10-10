@@ -29,7 +29,7 @@ public class AnalyticksController {
     private final RouteService routeService;
     private final TicketSoldService ticketSoldService;
     @PostMapping("/analyticks/route")
-    public String tourStatistics(@RequestParam int id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeStart,
+    public String routeStatistics(@RequestParam int id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeStart,
                                  @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeFinal,
                                  Model model, RedirectAttributes redirectAttributes){
         //model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
