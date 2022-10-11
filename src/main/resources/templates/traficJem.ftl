@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/traficJem.css"/>
-    <title>Route</title>
+    <title>Затори</title>
 </head>
 <body>
     <header>
@@ -10,7 +10,7 @@
         <p class="p1">Транспорт</p>
         <a href="/" class = "a2">Головна</a>
     </header>
-    <p class="size">Всі маршрути</p><br>
+    <p class="size">Всі затори</p><br>
     <ul class="list3b">
         <#list traficJemTitle as eltraficJem>
             <li class="text">

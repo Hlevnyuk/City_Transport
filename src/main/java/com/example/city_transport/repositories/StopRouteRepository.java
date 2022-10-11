@@ -12,4 +12,5 @@ public interface StopRouteRepository {
     void save(StopRoute stopRoute, Connection connection) throws SQLException;
     void delete(int numberStop, int numberRoute, Connection connection);
     StopRoute findById(int numberRoute, Connection connection);
+    int checkStopOrder(int numberRoute, Connection connection);
 }

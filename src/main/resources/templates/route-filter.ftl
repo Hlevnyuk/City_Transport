@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/routes.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/routes.css"/>
     <script src="JavaScript/routes.js" defer></script>
     <title>Route</title>
 </head>
@@ -14,9 +14,6 @@
             <a href="/admin-panel" class = "a1">Панель працівника</a>
         </#if>
 </header>
-<#if two?has_content>
-    <p>goji;alijes</p>
-</#if>
 <p class="size">Всі маршрути</p>
 <form action="/route/filter" method="post">
     <div class="dropdown1">
@@ -35,16 +32,20 @@
     </div>
     <button type="submit">Знайти</button>
 </form>
-<ul class="list3b">
-    <#list routeTitle as elroute>
-        <li class="text">
-            <b>Номер маршрута: </b>${elroute.numberRoute}<br>
-            <b>Начальная точка: </b>${elroute.startPoint}<br>
-            <b>Конечная точка: </b>${elroute.endPoint}<br><br>
-            <a href="/routes/${elroute.numberRoute}" class = "btn1">Подробнее...</a><br>
-        </li>
-    </#list>
-</ul>
+<#if routeTitle?size gt 0>
+    <ul class="list3b">
+        <#list routeTitle as elroute>
+            <li class="text">
+                <b>Номер маршрута: </b>${elroute.numberRoute}<br>
+                <b>Начальная точка: </b>${elroute.startPoint}<br>
+                <b>Конечная точка: </b>${elroute.endPoint}<br><br>
+                <a href="/routes/${elroute.numberRoute}" class = "btn1">Подробнее...</a><br>
+            </li>
+        </#list>
+    </ul>
+<#else>
+    <p>Не знайдено</p>
+</#if>
 <br>
 </body>
 </html>

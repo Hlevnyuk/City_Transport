@@ -1,5 +1,7 @@
 package com.example.city_transport.repositories;
 
+import com.example.city_transport.models.Route;
+import com.example.city_transport.models.RouteTitle;
 import com.example.city_transport.models.SetRoute;
 import com.example.city_transport.models.Stop;
 import org.springframework.stereotype.Component;
@@ -91,7 +93,6 @@ public class StopRepositoryImpl implements StopRepository{
 
         }
     }
-
     @Override
     public void deleteById(int numberStop, Connection connection) {
         String query = """
@@ -111,18 +112,18 @@ public class StopRepositoryImpl implements StopRepository{
     public Stop findById(int numberStop, Connection connection) {
         Stop stop = new Stop();
         String query = """
-                        SELECT *
-                        FROM stop
-                        WHERE number_stop = ?
-                       """;
-        try(PreparedStatement statement = connection.prepareStatement(query)){
+                 SELECT *
+                 FROM stop
+                 WHERE number_stop = ?
+                """;
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, numberStop);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 stop.setNumberStop(rs.getInt("number_stop"));
                 stop.setAddress(rs.getString("adres"));
             }
-        } catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return stop;

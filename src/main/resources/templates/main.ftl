@@ -34,6 +34,7 @@
                 <a href="/routes" class = "btn btnhelp">Всі маршрути</a>
                 <#if role == "administrator">
                     <a href="/analyticks/0" class = "btn btnhelp">Аналитика</a>
+                    <a href="/admin-panel" class = "btn btnhelp">Панель працівника</a>
                 </#if>
                 <#if role == "transport_employee">
                     <a href="/traficJem" class = "btn btnhelp">Пробки</a>

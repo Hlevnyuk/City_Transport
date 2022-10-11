@@ -137,22 +137,24 @@
             </form>
         </div>
     </div>
-    <div class="container alignment1">
-        <div class="brand-title">
-            Робота з зупинками
+    <#if maxStopOrder gt stop?size>
+        <div class="container alignment1">
+            <div class="brand-title">
+                Робота з зупинками
+            </div>
+            <div class="inputs">
+                <form action="/routes/addStop/${route.numberRoute}" method="post">
+                    <select name = "numberStop" class="select">
+                        <#list freeStop as item>
+                            <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
+                        </#list>
+                    </select>
+                    <input type="number" name="stopOrder" class="input"/>
+                    <button type="submit" class="button">Добавити</button>
+                </form>
+            </div>
         </div>
-        <div class="inputs">
-            <form action="/routes/addStop/${route.numberRoute}" method="post">
-                <select name = "numberStop" class="select">
-                    <#list freeStop as item>
-                        <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
-                    </#list>
-                </select>
-                <input type="number" name="stopOrder" class="input"/>
-                <button type="submit" class="button">Добавити</button>
-            </form>
-        </div>
-    </div>
+    </#if>
     <div class="container alignment2">
         <div class="brand-title">
             Видалити зупинку

@@ -1,5 +1,7 @@
 package com.example.city_transport.repositories;
 
+import com.example.city_transport.models.Route;
+import com.example.city_transport.models.RouteTitle;
 import com.example.city_transport.models.SetRoute;
 import com.example.city_transport.models.Stop;
 

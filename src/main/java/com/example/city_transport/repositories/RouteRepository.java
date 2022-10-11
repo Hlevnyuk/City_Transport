@@ -13,4 +13,5 @@ public interface RouteRepository{
     void deleteById(int numberRoute, Connection connection);
     Route findById(int numberRoute, Connection connection);
     List<RouteTitle> RouteStartAndEndPoint(Connection connection);
+    List<RouteTitle> findByAddress(int startPoint, int endPoint, Connection connection);
 }

@@ -81,4 +81,23 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
         }
         return stopRoute;
     }
+
+    @Override
+    public int checkStopOrder(int numberRoute, Connection connection) {
+        int max = 0;
+        String query = """
+                            SELECT MAX(stop_order) FROM stop_route
+                            WHERE number_route = ?
+                       """;
+        try(PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, numberRoute);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                max = rs.getInt(1);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return max;
+    }
 }

@@ -105,4 +105,29 @@ public class RouteRepositoryImpl implements RouteRepository{
         }
         return list;
     }
+    @Override
+    public List<RouteTitle> findByAddress(int startPoint, int endPoint, Connection connection) {
+        List<RouteTitle> list = new ArrayList<>();
+        String query = """
+                SELECT * FROM route_title\s
+                WHERE number_route IN (SELECT number_route FROM stop_route\s
+                WHERE number_stop = ?) AND number_route IN (SELECT number_route FROM stop_route\s
+                WHERE number_stop = ?)
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, startPoint);
+            preparedStatement.setInt(2, endPoint);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                RouteTitle routeTitle = new RouteTitle();
+                routeTitle.setNumberRoute(rs.getInt("number_route"));
+                routeTitle.setStartPoint(rs.getString("start_point"));
+                routeTitle.setEndPoint(rs.getString("end_point"));
+                list.add(routeTitle);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return list;
+    }
 }

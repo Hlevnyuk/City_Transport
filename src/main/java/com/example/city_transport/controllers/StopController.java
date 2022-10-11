@@ -22,6 +22,6 @@ public class StopController {
     public String addStop(Stop stop, @RequestParam(name = "numberStop") int numberStop,
                           @RequestParam(name = "address") String address){
         stopService.addStop(stop, httpSessionBean.getConnection());
-        return "redirect:/routes";
+        return "redirect:/admin-panel";
     }
 }

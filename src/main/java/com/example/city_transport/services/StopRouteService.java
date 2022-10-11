@@ -25,4 +25,7 @@ public class StopRouteService {
     public void addStopRoute(StopRoute stopRoute, Connection connection) {
         stopRouteRepositoryImpl.save(stopRoute, connection);
     }
+    public int checkStopOrder(int numberRoute, Connection connection){
+        return stopRouteRepositoryImpl.checkStopOrder(numberRoute, connection);
+    }
 }

@@ -3,6 +3,7 @@ package com.example.city_transport.controllers;
 import com.example.city_transport.bean.HttpSessionBean;
 import com.example.city_transport.models.Route;
 import com.example.city_transport.models.SetRoute;
+import com.example.city_transport.models.Stop;
 import com.example.city_transport.models.StopRoute;
 import com.example.city_transport.services.*;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -35,6 +37,8 @@ public class RouteController {
         model.addAttribute("route", routeService.getRouteByNumberRoute(numberRoute,
                 httpSessionBean.getConnection()));
         model.addAttribute("stop", stopService.findStopByNumberRoute(numberRoute,
+                httpSessionBean.getConnection()));
+        model.addAttribute("maxStopOrder", stopRouteService.checkStopOrder(numberRoute,
                 httpSessionBean.getConnection()));
         model.addAttribute("transport", transportService.findTransportByNumberRoute(numberRoute,
                 httpSessionBean.getConnection()));
@@ -78,7 +82,6 @@ public class RouteController {
         setRouteService.deleteSetRoute(idTransport, httpSessionBean.getConnection());
         return "redirect:/routes/{numberRoute}";
     }
-    //name="${item.numberStop}"
     @PostMapping("/routes/deleteStop/{numberRoute}")
     public String deleteStopRoute(@RequestParam int numberStop, @PathVariable int numberRoute){
         stopRouteService.deleteStopRoute(numberStop, numberRoute, httpSessionBean.getConnection());
@@ -100,5 +103,24 @@ public class RouteController {
         stopRouteService.addStopRoute(new StopRoute(route.getNumberRoute(), endPoint, stopOrder),
                 httpSessionBean.getConnection());
         return "redirect:/routes";
+    }
+    @PostMapping("/route/filter")
+    public String findRoute(@RequestParam int start,
+                            @RequestParam int end, RedirectAttributes redirectAttributes){
+        //stopService.stopList(httpSessionBean.getConnection());
+        //stopService.findByAddress(startPoint, endPoint, httpSessionBean.getConnection())
+        redirectAttributes.addAttribute("start", start);
+        redirectAttributes.addAttribute("end", end);
+        return "redirect:/route-filter/{start}/{end}";
+    }
+    @GetMapping("/route-filter/{start}/{end}")
+    public String findGetRoute(@PathVariable int start,
+                            @PathVariable int end, Model model){
+        //stopService.stopList(httpSessionBean.getConnection());
+        //stopService.findByAddress(startPoint, endPoint, httpSessionBean.getConnection());
+        model.addAttribute("routeTitle", routeService.findByAddress(start, end, httpSessionBean.getConnection()));
+        model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
+        model.addAttribute("role", httpSessionBean.getRole());
+        return "route-filter";
     }
 }

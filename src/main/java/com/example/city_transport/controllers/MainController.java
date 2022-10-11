@@ -43,7 +43,7 @@ public class MainController {
     }
     @GetMapping("/routes")
     public String routePage(Model model) throws SQLException {
-        model.addAttribute("route", routeService.routeList(httpSessionBean.getConnection()));
+//        model.addAttribute("route", routeService.routeList(httpSessionBean.getConnection()));
         model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
         model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getRole());
@@ -86,5 +86,11 @@ public class MainController {
         }
         model.addAttribute("role", httpSessionBean.getRole());
         return "analyticks";
+    }
+    @GetMapping("/admin-panel")
+    public String adminPanelPage(Model model){
+        model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
+        model.addAttribute("role", httpSessionBean.getRole());
+        return "admin-panel";
     }
 }

@@ -24,7 +24,11 @@ public class RouteService {
     public void addRoute(Route route, Connection connection){
         routeRepositoryImpl.save(route, connection);
     }
+
     public List<RouteTitle> routeTitleList(Connection connection){
         return routeRepositoryImpl.RouteStartAndEndPoint(connection);
+    }
+    public List<RouteTitle> findByAddress(int startPoint, int endPoint, Connection connection){
+        return routeRepositoryImpl.findByAddress(startPoint, endPoint, connection);
     }
 }
