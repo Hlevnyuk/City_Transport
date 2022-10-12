@@ -2,13 +2,13 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
-    <title>Route</title>
+    <title>Детальна інформация про договір</title>
 </head>
 <body>
 1. ПРЕДМЕТ ДОГОВОРУ<br><br>
 1.1. В порядку і на умовах, визначених цим Договором, Орендодавець зобов'язується передати Орендарю в тимчасове оплатне користування транспортний засіб вказаний у п. 1.2. цього Договору, а Орендар зобов'язується прийняти його в тимчасове оплатне користування.<br><br>
 1.2. Предмет оренди транспортний засіб: тип транспортного засобу <b>${contract.typeTransport}</b>, кількість:<b>${contract.transportCount}</b><br><br>
-Термін оренд: <b>${contract.dateStartContract}</b> <b>${contract.dateEndContract}</b>
+Термін оренди: від <b>${contract.dateStartContract}</b> до <b>${contract.dateEndContract}</b>
 Фірма: <b>${contract.firm}</b><br><br>
 1.3. Транспортний засіб, зазначений у п. 1.2. цього договору належить Орендодавцю на праві власності на підставі Свідоцтва<br><br>
 2. МЕТА І ПОРЯДОК ОРЕНДИ<br><br>
@@ -52,18 +52,12 @@
 </form>
 <br><br>
 <#list transport as item>
-    <b>id: </b>${item.idTransport}<br>
     <#if item.numberTransport == 0>
         Номер відустній<br>
     <#else>
         <b>Номер транспортного засобу: </b>${item.numberTransport}<br>
     </#if>
-    <b>Тип транспорта: </b>${item.typeTransport}<br>
-    <#if item.garage??>
-        <b>Гараж: </b>${item.garage}<br>
-    <#else>
-        Місце гаража відустнє<br>
-    </#if>
+    <b>Замовлений транспортний засіб: </b>${item.typeTransport}<br>
 </#list><br><br><br>
 </body>
 </html>

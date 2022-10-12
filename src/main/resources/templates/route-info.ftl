@@ -79,13 +79,13 @@
                 <td class="td">${item.addres}</td>
                 <td class="td">${item.dateStartRoad}</td>
                 <td class="td">${item.dateEndRoad}</td>
-                <td class="td">
-                    <#if role == "transport_employee">
+                <#if role == "transport_employee">
+                    <td class="td">
                         <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
                             <input type="submit" value="Видалити ремонт доріг"/><br>
                         </form>
-                    </#if>
-                </td>
+                    </td>
+                </#if>
             </tr>
         </#list>
     </tbody>

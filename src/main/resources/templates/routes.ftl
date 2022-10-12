@@ -14,9 +14,6 @@
             <a href="/admin-panel" class = "a1">Панель працівника</a>
         </#if>
 </header>
-<#if two?has_content>
-    <p>goji;alijes</p>
-</#if>
 <p class="size">Всі маршрути</p>
 <form action="/route/filter" method="post">
     <div class="dropdown1">
@@ -39,8 +36,8 @@
     <#list routeTitle as elroute>
         <li class="text">
             <b>Номер маршрута: </b>${elroute.numberRoute}<br>
-            <b>Начальная точка: </b>${elroute.startPoint}<br>
-            <b>Конечная точка: </b>${elroute.endPoint}<br><br>
+            <b>Початкова точка: </b>${elroute.startPoint}<br>
+            <b>Кінечна точка: </b>${elroute.endPoint}<br><br>
             <a href="/routes/${elroute.numberRoute}" class = "btn1">Подробнее...</a><br>
         </li>
     </#list>
