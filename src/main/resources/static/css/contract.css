@@ -126,3 +126,13 @@ svg {
   font-size: 18px;
   font-weight: 100;
 }
+.invalid {
+    font-size: 20px;
+    color: red;
+    text-align: center;
+}
+.valid {
+    font-size: 20px;
+    color: green;
+    text-align: center;
+}

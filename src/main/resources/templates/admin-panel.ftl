@@ -45,7 +45,7 @@
                     <input type="number" name="endPoint" class="form__input" placeholder="Кінець маршруту"/>
                 </p>
                 <p>
-                    <input type="number" name="stopOrder" class="form__input" placeholder="Номер зупинки"/>
+                    <input type="number" name="stopOrder" class="form__input" placeholder="Кількість зупинок"/>
                 </p>
                 <p>
                     <input type="int" name="idAdministrator" class="form__input" placeholder="Айді працівника"/>

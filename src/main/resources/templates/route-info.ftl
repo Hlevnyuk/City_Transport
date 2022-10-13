@@ -17,7 +17,9 @@
         <th class="th">Номер маршруту</th>
         <th class="th">Зупинки</th>
         <th class="th">Інтервал</th>
-        <th class="th">Дата створення</th>
+        <#if role = "administrator">
+            <th class="th">Дата створення</th>
+        </#if>
         <th class="th">Номер та тип транспорту</th>
     </thead>
     <tbody>
@@ -29,7 +31,9 @@
                 </#list>
             </td>
             <td class="td">${route.interval}</td>
-            <td class="td">${route.dateTime}</td>
+            <#if role = "administrator">
+                <td class="td">${route.dateTime}</td>
+            </#if>
             <td class="td">
                 <#list transport as item>
                     ${item.numberTransport} - ${item.typeTransport}<br>

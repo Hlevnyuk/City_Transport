@@ -11,17 +11,25 @@
         <a href="/" class = "a2">Головна</a>
     </header>
     <p class="size">Всі затори</p><br>
-    <ul class="list3b">
-        <#list traficJemTitle as eltraficJem>
-            <li class="text">
-                <b>Id: </b>${eltraficJem.idTraficJem}<br>
-                <b>Время начала: </b>${eltraficJem.timeStart}<br>
-                <b>Время конца: </b>${eltraficJem.timeEnd}<br>
-                <b>Остановка: </b>${eltraficJem.address}<br><br>
-                <a href="/traficJem/${eltraficJem.idTraficJem}" class = "btn1">Подробнее...</a><br>
-            </li>
-        </#list>
-    </ul>
+    <table class="table">
+        <thead>
+            <th class="th">Айді</th>
+            <th class="th">Час початку</th>
+            <th class="th">Час кінця</th>
+            <th class="th">Зупинка</th>
+        </thead>
+        <tbody>
+            <#list traficJemTitle as eltraficJem>
+                <tr class="tr">
+                    <td class="td">${eltraficJem.idTraficJem}</td>
+                    <td class="td">${eltraficJem.timeStart}</td>
+                    <td class="td">${eltraficJem.timeEnd}</td>
+                    <td class="td">${eltraficJem.address}</td>
+                </tr>
+            </#list>
+        </tbody>
+    </table>
+    <br>
     <hr>
     <#if role == "transport_employee">
         <div class="cont_principal">
@@ -47,6 +55,5 @@
             </div>
         </div>
     </#if>
-    <br>
 </body>
 </html>

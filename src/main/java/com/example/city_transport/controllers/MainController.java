@@ -1,4 +1,5 @@
 package com.example.city_transport.controllers;
+import com.example.city_transport.Comparator.CustomComparator;
 import com.example.city_transport.bean.HttpSessionBean;
 import com.example.city_transport.models.Route;
 import com.example.city_transport.models.TraficJem;
@@ -15,10 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -71,6 +69,15 @@ public class MainController {
         model.addAttribute("role", httpSessionBean.getRole());
         return "contract";
     }
+    public static <K, V> Map<K, V> sortByValues(Map<K, V> map)
+    {
+        Comparator<K> comparator = new CustomComparator(map);
+
+        Map<K, V> sortedMap = new TreeMap<>(comparator);
+        sortedMap.putAll(map);
+
+        return sortedMap;
+    }
     @GetMapping("/analyticks/{result}")
     public String analyticksPage(@PathVariable int result, Model model){
         if(Objects.equals(httpSessionBean.getRole(), "transport_employee")) {
@@ -80,8 +87,10 @@ public class MainController {
         }
         if(Objects.equals(httpSessionBean.getRole(), "administrator")) {
             Map<Integer, Integer> topFiveMap = new TreeMap<>();
+            Map<Integer, Integer> finalTopFiveMap = topFiveMap;
             analiticaService.findAll(httpSessionBean.getConnection()).
-                    forEach((x) -> topFiveMap.put(x.getNumberRouteR(), x.getKolTicketSoldR()));
+                    forEach((x) -> finalTopFiveMap.put(x.getNumberRouteR(), x.getKolTicketSoldR()));
+            topFiveMap = sortByValues(finalTopFiveMap);
             model.addAttribute("topFive", topFiveMap);
         }
         model.addAttribute("role", httpSessionBean.getRole());

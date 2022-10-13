@@ -20,6 +20,7 @@
         <th class="th">Дата закінчення договору</th>
         <th class="th">Кількість замовленого транспорту</th>
         <th class="th">Тип</th>
+        <th class="th">Термін дії</th>
         <th class="th">Детальніше</th>
     </tr>
     <#list contract as item>
@@ -29,6 +30,13 @@
             <td class="td">${item.dateEndContract}</td>
             <td class="td">${item.transportCount}</td>
             <td class="td">${item.typeTransport}</td>
+            <td class="td">
+                <#if aDate gt item.dateEndContract>
+                    <p class="invalid">Не дійсний!</p>
+                <#else>
+                    <p class="valid">Дійсний</p>
+                </#if>
+            </td>
             <td class="td"><a href="/contract/${item.id}" class="aTable button">Перейти</a></td>
         </tr>
     </#list>
