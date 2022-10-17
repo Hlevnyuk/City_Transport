@@ -33,7 +33,7 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout() throws SQLException {
         httpSessionBean.getConnection().close();
-        httpSessionBean.setConnection(loginService.getConnection("guest1", "guest1"));
+        httpSessionBean.setConnection(loginService.getConnection("guest", "guest"));
         httpSessionBean.setId(0);
         httpSessionBean.setRole("guest");
         return "redirect:/";

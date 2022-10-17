@@ -14,19 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoadRepairService {
     private final RoadRepairRepositoryImpl roadRepairRepositoryImpl;
-
     public List<RoadRepair> roadRepairList(Connection connection) {
         return roadRepairRepositoryImpl.findAll(connection);
     }
-
     public void saveRoadRepair(RoadRepair roadRepair, Connection connection) throws SQLException {
         roadRepairRepositoryImpl.save(roadRepair, connection);
     }
-
     public RoadRepair findById(int id, Connection connection) {
         return roadRepairRepositoryImpl.findById(id, connection);
     }
-
     public void delete(int id, Connection connection) {
         roadRepairRepositoryImpl.deleteById(id, connection);
     }
@@ -38,5 +34,11 @@ public class RoadRepairService {
     }
     public void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection){
         roadRepairRepositoryImpl.saveRoadRepairOnStop(roadRepairOnStop, connection);
+    }
+    public List<RoadRepairTitle> findAllRoadRepairTitle(Connection connection){
+        return roadRepairRepositoryImpl.findAllRoadRepairTitle(connection);
+    }
+    public RoadRepairTitle findByIdTitle(int id, Connection connection){
+        return roadRepairRepositoryImpl.findByIdTitle(id, connection);
     }
 }

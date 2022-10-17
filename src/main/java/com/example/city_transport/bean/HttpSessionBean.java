@@ -11,11 +11,11 @@ import java.sql.SQLException;
 public class HttpSessionBean {
     Connection connection;
     int id = 1;
-    String role = "administrator";
+    String role = "client";
     {
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/CityTransport?currentSchema = public",
-                    "admin", "admin");
+                    "guest", "guest");
         } catch (SQLException e) {
             e.printStackTrace();
         }

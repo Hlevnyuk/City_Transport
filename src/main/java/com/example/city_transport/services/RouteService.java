@@ -31,4 +31,7 @@ public class RouteService {
     public List<RouteTitle> findByAddress(int startPoint, int endPoint, Connection connection){
         return routeRepositoryImpl.findByAddress(startPoint, endPoint, connection);
     }
+    public void updateInterval(String interval, int numberRoute, Connection connection){
+        routeRepositoryImpl.updateInterval(interval, numberRoute, connection);
+    }
 }

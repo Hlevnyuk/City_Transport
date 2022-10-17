@@ -38,7 +38,7 @@
             <b>Номер маршрута: </b>${elroute.numberRoute}<br>
             <b>Початкова точка: </b>${elroute.startPoint}<br>
             <b>Кінечна точка: </b>${elroute.endPoint}<br><br>
-            <a href="/routes/${elroute.numberRoute}" class = "btn1">Подробнее...</a><br>
+            <a href="/routes/${elroute.numberRoute}" class = "btn1">Детальніше...</a><br>
         </li>
     </#list>
 </ul>

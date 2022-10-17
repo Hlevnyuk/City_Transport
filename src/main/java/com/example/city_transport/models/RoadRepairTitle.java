@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoadRepairTitle {
+    private int idRoadRepair;
     private int numberRoute;
     private String addres;
     private int numberStop;

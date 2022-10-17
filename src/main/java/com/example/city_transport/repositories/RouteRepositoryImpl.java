@@ -49,6 +49,20 @@ public class RouteRepositoryImpl implements RouteRepository{
         }
     }
     @Override
+    public void updateInterval(String interval, int numberRoute, Connection connection) {
+        String query = """
+                       UPDATE route
+                       SET interv = ? WHERE number_route = ?
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setString(1, interval);
+            preparedStatement.setInt(2, numberRoute);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
     public void deleteById(int numberRoute, Connection connection) {
         String query = """
                         DELETE FROM public.route

@@ -16,8 +16,8 @@
     <thead>
         <th class="th">Номер маршруту</th>
         <th class="th">Зупинки</th>
-        <th class="th">Інтервал</th>
-        <#if role = "administrator">
+        <th class="th">Інтервал їзди транспорту</th>
+        <#if role == "route_employee">
             <th class="th">Дата створення</th>
         </#if>
         <th class="th">Номер та тип транспорту</th>
@@ -30,8 +30,16 @@
                     ${item.address},
                 </#list>
             </td>
-            <td class="td">${route.interval}</td>
-            <#if role = "administrator">
+            <td class="td">${route.interval}
+                <#if role == "route_employee">
+                    <br>
+                    <form action="/route/updateInterval/${route.numberRoute}" method="post">
+                        <input type="text" name="interval" placeholder="Змінити інтервал" autocomplete="off"/>
+                        <button type="submit">Змінити</button>
+                    </form>
+                </#if>
+            </td>
+            <#if role == "route_employee">
                 <td class="td">${route.dateTime}</td>
             </#if>
             <td class="td">
@@ -94,7 +102,7 @@
         </#list>
     </tbody>
 </table>
-<#if role == "administrator">
+<#if role == "route_employee">
     <div class="containerButton">
         <div class="center">
             <form action="/route/delete/${route.numberRoute}" method="post">
@@ -109,7 +117,7 @@
         </div>
     </div>
 </#if>
-<#if role == "administrator">
+<#if role == "route_employee">
     <hr>
     <div class="container alignment">
         <div class="brand-title">

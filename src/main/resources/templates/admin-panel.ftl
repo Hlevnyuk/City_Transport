@@ -13,7 +13,7 @@
         <a href="/routes" class = "a1">Маршрути</a>
 </header>
 <p class="size">Панель працівника по маршруту</p>
-<#if role == "administrator">
+<#if role == "route_employee">
 <br>
     <article class="container">
         <div class="block">

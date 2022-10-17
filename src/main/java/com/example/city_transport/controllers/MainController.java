@@ -57,7 +57,8 @@ public class MainController {
     }
     @GetMapping("/roadRepair")
     public String roadRepairPage(Model model) throws SQLException {
-        model.addAttribute("roadRepair", roadRepairService.roadRepairList(httpSessionBean.getConnection()));
+        model.addAttribute("roadRepairTitle",
+                roadRepairService.findAllRoadRepairTitle(httpSessionBean.getConnection()));
         model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getRole());
         return "roadRepair";
@@ -85,7 +86,7 @@ public class MainController {
             model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
             model.addAttribute("result", result);
         }
-        if(Objects.equals(httpSessionBean.getRole(), "administrator")) {
+        if(Objects.equals(httpSessionBean.getRole(), "route_employee")) {
             Map<Integer, Integer> topFiveMap = new TreeMap<>();
             Map<Integer, Integer> finalTopFiveMap = topFiveMap;
             analiticaService.findAll(httpSessionBean.getConnection()).

@@ -25,7 +25,7 @@ public class RoadRepairController {
     private final StopService stopService;
     @GetMapping("/roadRepair/{id}")
     public String roadRepairPage(@PathVariable int id, Model model){
-        model.addAttribute("roadRepairPage", roadRepairService.findById(id,
+        model.addAttribute("roadRepairTitle", roadRepairService.findByIdTitle(id,
                 httpSessionBean.getConnection()));
         return "roadRepair-info";
     }
@@ -34,6 +34,11 @@ public class RoadRepairController {
         roadRepairService.saveRoadRepair(roadRepair, httpSessionBean.getConnection());
         roadRepairService.saveRoadRepairOnStop(new RoadRepairOnStop(roadRepair.getId(), numberStop),
                 httpSessionBean.getConnection());
+        return "redirect:/roadRepair";
+    }
+    @PostMapping("/roadRepair/delete/{id}")
+    public String roadRepairDelete(@PathVariable int id){
+        roadRepairService.delete(id, httpSessionBean.getConnection());
         return "redirect:/roadRepair";
     }
 }

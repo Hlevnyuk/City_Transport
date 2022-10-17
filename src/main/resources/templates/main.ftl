@@ -32,7 +32,7 @@
         <div class="nav-container">
             <nav class="nav">
                 <a href="/routes" class = "btn btnhelp">Всі маршрути</a>
-                <#if role == "administrator">
+                <#if role == "route_employee">
                     <a href="/analyticks/0" class = "btn btnhelp">Аналитика</a>
                     <a href="/admin-panel" class = "btn btnhelp">Панель працівника</a>
                 </#if>

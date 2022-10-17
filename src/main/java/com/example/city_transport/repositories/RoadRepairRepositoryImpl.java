@@ -89,6 +89,29 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
         }
         return roadRepair;
     }
+
+    @Override
+    public List<RoadRepairTitle> findAllRoadRepairTitle(Connection connection) {
+        List<RoadRepairTitle> list = new ArrayList<>();
+        String query = """
+                       SELECT DISTINCT id_roadrepair, adres, date_startroad, date_endroad FROM road_repair_title
+                       """;
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                RoadRepairTitle roadRepairTitle = new RoadRepairTitle();
+                roadRepairTitle.setIdRoadRepair(rs.getInt("id_roadrepair"));
+                roadRepairTitle.setAddres(rs.getString("adres"));
+                roadRepairTitle.setDateStartRoad(rs.getDate("date_startroad"));
+                roadRepairTitle.setDateEndRoad(rs.getDate("date_endroad"));
+                list.add(roadRepairTitle);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     @Override
     public List<RoadRepairTitle> findByRouteId(int numberRoute, Connection connection){
         List<RoadRepairTitle> listResult = new ArrayList<>();
@@ -101,6 +124,7 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
             ResultSet rs = prst.executeQuery();
             while (rs.next()) {
                 RoadRepairTitle roadRepairTitle = new RoadRepairTitle();
+                roadRepairTitle.setIdRoadRepair(rs.getInt("id_roadrepair"));
                 roadRepairTitle.setNumberRoute(rs.getInt("number_route"));
                 roadRepairTitle.setAddres(rs.getString("adres"));
                 roadRepairTitle.setNumberStop(rs.getInt("number_stop"));
@@ -113,6 +137,31 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
         }
         return listResult;
     }
+
+    @Override
+    public RoadRepairTitle findByIdTitle(int id, Connection connection) {
+        RoadRepairTitle roadRepairTitle = new RoadRepairTitle();
+        String query = """
+                            SELECT * FROM road_repair_title
+                            WHERE id_roadrepair = ?
+                       """;
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                roadRepairTitle.setIdRoadRepair(rs.getInt("id_roadrepair"));
+                roadRepairTitle.setNumberRoute(rs.getInt("number_route"));
+                roadRepairTitle.setAddres(rs.getString("adres"));
+                roadRepairTitle.setNumberStop(rs.getInt("number_stop"));
+                roadRepairTitle.setDateStartRoad(rs.getDate("date_startroad"));
+                roadRepairTitle.setDateEndRoad(rs.getDate("date_endroad"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return roadRepairTitle;
+    }
+
     @Override
     public List<RoadRepair> deleteByNumberRoute(int numberRoute, int numberStop, Connection connection){
         List<RoadRepair> listResult = new ArrayList<>();

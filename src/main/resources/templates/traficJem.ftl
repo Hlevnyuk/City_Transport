@@ -17,14 +17,18 @@
             <th class="th">Час початку</th>
             <th class="th">Час кінця</th>
             <th class="th">Зупинка</th>
+            <th class="th">Видалення<th>
         </thead>
         <tbody>
             <#list traficJemTitle as eltraficJem>
                 <tr class="tr">
-                    <td class="td">${eltraficJem.idTraficJem}</td>
-                    <td class="td">${eltraficJem.timeStart}</td>
-                    <td class="td">${eltraficJem.timeEnd}</td>
-                    <td class="td">${eltraficJem.address}</td>
+                    <form action="/traficJem/delete/${eltraficJem.idTraficJem}" method="post">
+                        <td class="td">${eltraficJem.idTraficJem}</td>
+                        <td class="td">${eltraficJem.timeStart}</td>
+                        <td class="td">${eltraficJem.timeEnd}</td>
+                        <td class="td">${eltraficJem.address}</td>
+                        <td class="td"><button type="submit">Видалити</button></td>
+                    </form>
                 </tr>
             </#list>
         </tbody>

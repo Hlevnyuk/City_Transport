@@ -82,6 +82,12 @@ public class RouteController {
         setRouteService.deleteSetRoute(idTransport, httpSessionBean.getConnection());
         return "redirect:/routes/{numberRoute}";
     }
+    @PostMapping("/route/updateInterval/{numberRoute}")
+    public String updateInterval(@PathVariable int numberRoute, @RequestParam String interval, Model model){
+        routeService.updateInterval(interval, numberRoute, httpSessionBean.getConnection());
+        model.addAttribute("role", httpSessionBean.getRole());
+        return "redirect:/routes/{numberRoute}";
+    }
     @PostMapping("/routes/deleteStop/{numberRoute}")
     public String deleteStopRoute(@RequestParam int numberStop, @PathVariable int numberRoute){
         stopRouteService.deleteStopRoute(numberStop, numberRoute, httpSessionBean.getConnection());
