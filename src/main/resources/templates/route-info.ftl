@@ -34,7 +34,7 @@
                 <#if role == "route_employee">
                     <br>
                     <form action="/route/updateInterval/${route.numberRoute}" method="post">
-                        <input type="text" name="interval" placeholder="Змінити інтервал" autocomplete="off"/>
+                        <input type="text" name="interval" class="inputUpdateQuery" placeholder="Змінити інтервал" autocomplete="off"/>
                         <button type="submit">Змінити</button>
                     </form>
                 </#if>
@@ -103,6 +103,7 @@
     </tbody>
 </table>
 <#if role == "route_employee">
+    <br>
     <div class="containerButton">
         <div class="center">
             <form action="/route/delete/${route.numberRoute}" method="post">

@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
+import java.sql.Date;
 
 @Controller
 @RequiredArgsConstructor
@@ -46,6 +48,12 @@ public class ContractController {
     public String contractDelete(@PathVariable int id){
         contractService.deleteContract(id, httpSessionBean.getConnection());
         return "redirect:/contract";
+    }
+    @PostMapping("/contract/update/end/date/{id}")
+    public String contractUpdate(@PathVariable int id, @RequestParam Date dateEndContract, Model model){
+        contractService.updateContract(dateEndContract, id, httpSessionBean.getConnection());
+        model.addAttribute("role", httpSessionBean.getRole());
+        return "redirect:/contract/{id}";
     }
 //    @GetMapping("/contract/by/transport/{id}")
 //    public String contractTransportInfo(@PathVariable int id){

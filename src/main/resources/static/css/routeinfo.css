@@ -112,6 +112,17 @@ a {
   border-radius: 50px;
   box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
 }
+.inputUpdateQuery{
+    display: block;
+   width: 80%;
+   padding: 0 20px;
+   margin-bottom: 10px;
+   background: #E9EFF6;
+   line-height: 30px;
+   border-width: 0;
+   border-radius: 20px;
+   font-family: 'Roboto', sans-serif;
+}
 .select {
   background: #ecf0f3;
   padding: 10px;

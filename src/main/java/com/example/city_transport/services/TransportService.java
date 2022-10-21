@@ -1,17 +1,10 @@
 package com.example.city_transport.services;
-
-import java.util.ArrayList;
 import com.example.city_transport.models.Transport;
 import com.example.city_transport.repositories.TransportRepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class TransportService {

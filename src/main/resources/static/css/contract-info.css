@@ -85,11 +85,11 @@ header{
 }
 .right-bar {
     position: relative;
-    left: 75%;
+    left: 85%;
     /* float: right; */
     width: 255px;
     padding-left: 15px;
-    bottom: 1250px;
+    bottom: 1050px;
     /* box-sizing: border-box;*/
 }
 .table{

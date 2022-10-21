@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -27,5 +28,8 @@ public class ContractService {
     }
     public void addContract(Contract contract, Connection connection) throws SQLException {
         contractRepositoryImpl.save(contract, connection);
+    }
+    public void updateContract(Date dateEndContract, int id, Connection connection){
+        contractRepositoryImpl.updateValidity(dateEndContract, id, connection);
     }
 }

@@ -4,8 +4,10 @@ import com.example.city_transport.models.Contract;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 @Component
 public class ContractRepositoryImpl implements ContractRepository{
     @Override
@@ -95,5 +97,25 @@ public class ContractRepositoryImpl implements ContractRepository{
             e.printStackTrace();
         }
         return contract;
+    }
+
+    @Override
+    public void updateValidity(Date dateEndContract, int id, Connection connection) {
+        Contract contract = new Contract();
+//        java.util.Date utilPackageDate
+//                = contract.getDateEndContract();
+//        java.sql.Date sqlDate = new java.sql.Date(utilPackageDate.getTime());
+        //Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(dateEndContract);
+        String query = """
+                       UPDATE contract 
+                       SET validity = ? WHERE id_contract = ?
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setDate(1, dateEndContract);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

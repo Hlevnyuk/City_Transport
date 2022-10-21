@@ -43,7 +43,7 @@
                 <form action="/roadRepair/add" method="post" enctype="multipart/form-data">
                     <div class="cont_text_inputs">
                         <input type="number" class="input_form_sign d_block active_inp" placeholder="id пробки" name="id"/>
-                        <select name = "numberStop">
+                        <select name = "numberStop" class="select">
                            <#list stop as item>
                                <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
                            </#list>
