@@ -29,6 +29,6 @@ public class TicketSoldController {
     @PostMapping("/ticketSold/create")
     public String save(TicketSold ticketSold){
         ticketSoldService.save(ticketSold, httpSessionBean.getConnection());
-        return "redirect:/analyticks/0";
+        return "redirect:/analyticksTicketSold/0";
     }
 }

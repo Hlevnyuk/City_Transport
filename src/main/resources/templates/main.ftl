@@ -33,7 +33,7 @@
             <nav class="nav">
                 <a href="/routes" class = "btn btnhelp">Всі маршрути</a>
                 <#if role == "route_employee">
-                    <a href="/analyticks/0" class = "btn btnhelp">Аналитика</a>
+                    <a href="/analyticks" class = "btn btnhelp">Аналитика</a>
                     <a href="/admin-panel" class = "btn btnhelp">Панель працівника</a>
                 </#if>
                 <#if role == "transport_employee">
@@ -41,7 +41,7 @@
                     <a href="/roadRepair" class = "btn btnhelp">Ремонти доріг</a>
                     <a href="/contract" class = "btn btnhelp">Договір</a>
                     <a href="/transport" class = "btn btnhelp">Транспорт</a>
-                    <a href="/analyticks/0" class = "btn btnhelp">Аналитика</a>
+                    <a href="/analyticksTicketSold/0" class = "btn btnhelp">Аналитика</a>
                 </#if>
             </nav>
         </div>

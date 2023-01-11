@@ -9,12 +9,12 @@
     <title>Вхід</title>
 </head>
 <body>
-<form class="decor" action="/login/authorization" method="post">
+<form class="decor" action="/login/authorization" method="post" nSubmit = "return checkform(this)">
     <div class="form-inner">
         <h3>Заповніть форму</h3>
         <br>
-        <input type="text" id="user" name="name" placeholder="Логін" autocomplete="off">
-        <input type="password" id="pass" name="password" placeholder="Пароль" autocomplete="off"><br>
+        <input type="text" id="user" name="name" placeholder="Логін" autocomplete="off" required>
+        <input type="password" id="pass" name="password" placeholder="Пароль" autocomplete="off" required><br>
         <input type="submit" value="Увійти">
     </div>
 </form>

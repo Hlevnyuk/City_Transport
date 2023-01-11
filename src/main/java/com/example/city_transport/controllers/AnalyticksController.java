@@ -28,16 +28,26 @@ public class AnalyticksController {
     private FunctionsService functionsService;
     private final RouteService routeService;
     private final TicketSoldService ticketSoldService;
-    @PostMapping("/analyticks/route")
+    @GetMapping("/analyticks/route")
     public String routeStatistics(@RequestParam int id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeStart,
                                  @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeFinal,
                                  Model model, RedirectAttributes redirectAttributes){
-        //model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
+        model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
         int result = 0;
         result = functionsService.analizRoute(id, timeStart, timeFinal, httpSessionBean.getConnection());
         redirectAttributes.addAttribute("result", result);
-        return "redirect:/analyticks/{result}";
+        return "redirect:/analyticksTicketSold/{result}";
     }
+//    @PostMapping("/analyticksTicketSold/route")
+//    public String routeStatistics2(@RequestParam int id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeStart,
+//                                  @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeFinal,
+//                                  Model model, RedirectAttributes redirectAttributes){
+//
+//        int result = 0;
+//        result = functionsService.analizRoute(id, timeStart, timeFinal, httpSessionBean.getConnection());
+//        redirectAttributes.addAttribute("result", result);
+//        return "redirect:/analyticksTicketSold/{result}";
+//    }
 //    @GetMapping("/statistics/client/")
 //    public String clientStatistics(Model model){
 //        Map<String, Integer> fClientRankMap = new TreeMap<>();

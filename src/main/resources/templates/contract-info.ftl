@@ -14,6 +14,10 @@
 <form action="/contract/delete/${contract.id}" method="post">
     <input type="submit" value="Розірвати контракт"/>
 </form>
+<form action="/contract/update/end/date/${contract.id}" method="post">
+    <input type="date" name="dateEndContract" placeholder="Продовжити термін дії" autocomplete="off"/>
+    <button type="submit">Змінити</button>
+</form>
 <form action="/download/file/${contract.id}/${contract.typeTransport}/${contract.transportCount}/${contract.dateStartContract}/${contract.dateEndContract}/${contract.firm}" method="post">
     <input type="submit" value="скачати"/>
 </form>

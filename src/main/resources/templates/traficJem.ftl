@@ -34,7 +34,6 @@
         </tbody>
     </table>
     <br>
-    <hr>
     <#if role == "transport_employee">
         <div class="cont_principal">
             <div class="cont_centrar">

@@ -79,13 +79,8 @@ public class MainController {
 
         return sortedMap;
     }
-    @GetMapping("/analyticks/{result}")
-    public String analyticksPage(@PathVariable int result, Model model){
-        if(Objects.equals(httpSessionBean.getRole(), "transport_employee")) {
-            model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
-            model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
-            model.addAttribute("result", result);
-        }
+    @GetMapping("/analyticks")
+    public String analyticksPage(Model model){
         if(Objects.equals(httpSessionBean.getRole(), "route_employee")) {
             Map<Integer, Integer> topFiveMap = new TreeMap<>();
             Map<Integer, Integer> finalTopFiveMap = topFiveMap;
@@ -96,6 +91,14 @@ public class MainController {
         }
         model.addAttribute("role", httpSessionBean.getRole());
         return "analyticks";
+    }
+    @GetMapping("/analyticksTicketSold/{result}")
+    public String analyticksTicketSoldPage(@PathVariable int result, Model model){
+        model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
+        model.addAttribute("routeTitle", routeService.routeTitleList(httpSessionBean.getConnection()));
+        model.addAttribute("result", result);
+        model.addAttribute("role", httpSessionBean.getRole());
+        return "analyticksTicketSold";
     }
     @GetMapping("/admin-panel")
     public String adminPanelPage(Model model){

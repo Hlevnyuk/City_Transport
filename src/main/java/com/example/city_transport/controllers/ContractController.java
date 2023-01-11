@@ -13,9 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Date;
 
 @Controller
 @RequiredArgsConstructor
@@ -59,4 +60,15 @@ public class ContractController {
           doc.file(id, typeTransport, transportCount, dateStartContract, dateEndContract, firm);
         return "contract-info";
     }
+    @PostMapping("/contract/update/end/date/{id}")
+    public String contractUpdate(@PathVariable int id, @RequestParam Date dateEndContract, Model model){
+        contractService.updateContract(dateEndContract, id, httpSessionBean.getConnection());
+        model.addAttribute("role", httpSessionBean.getRole());
+        return "redirect:/contract/{id}";
+    }
+//    @PostMapping("/contract/update/{id}")
+//    public String updateValidity(@RequestParam Date dateEndContract, @PathVariable int id, Model model){
+//        model.addAttribute("contract", contractService.updateContract(dateEndContract, id, httpSessionBean.getConnection()));
+//        return "contract-info";
+//    }
 }
