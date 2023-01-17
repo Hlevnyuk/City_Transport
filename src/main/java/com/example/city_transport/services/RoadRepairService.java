@@ -1,6 +1,6 @@
 package com.example.city_transport.services;
 import com.example.city_transport.models.RoadRepair;
-import com.example.city_transport.models.RoadRepairOnStop;
+//import com.example.city_transport.models.RoadRepairOnStop;
 import com.example.city_transport.models.RoadRepairTitle;
 import com.example.city_transport.repositories.RoadRepairRepository;
 import com.example.city_transport.repositories.RoadRepairRepositoryImpl;
@@ -32,9 +32,9 @@ public class RoadRepairService {
     public List<RoadRepair> deleteByNumberRoute(int numberRoute, int numberStop,Connection connection){
         return roadRepairRepositoryImpl.deleteByNumberRoute(numberRoute, numberStop,connection);
     }
-    public void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection){
-        roadRepairRepositoryImpl.saveRoadRepairOnStop(roadRepairOnStop, connection);
-    }
+//    public void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection){
+//        roadRepairRepositoryImpl.saveRoadRepairOnStop(roadRepairOnStop, connection);
+//    }
     public List<RoadRepairTitle> findAllRoadRepairTitle(Connection connection){
         return roadRepairRepositoryImpl.findAllRoadRepairTitle(connection);
     }

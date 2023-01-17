@@ -10,9 +10,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoadRepair {
-    private int id;
+    private int idRoadRepair;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateStartRoad;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateEndRoad;
+    private String addres;
 }

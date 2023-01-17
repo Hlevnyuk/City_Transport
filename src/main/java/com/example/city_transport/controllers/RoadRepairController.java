@@ -1,7 +1,7 @@
 package com.example.city_transport.controllers;
 import com.example.city_transport.bean.HttpSessionBean;
 import com.example.city_transport.models.RoadRepair;
-import com.example.city_transport.models.RoadRepairOnStop;
+//import com.example.city_transport.models.RoadRepairOnStop;
 import com.example.city_transport.models.Stop;
 import com.example.city_transport.services.RoadRepairService;
 import com.example.city_transport.services.StopService;
@@ -30,10 +30,10 @@ public class RoadRepairController {
         return "roadRepair-info";
     }
     @PostMapping("/roadRepair/add")
-    public String roadRepairAdd(@RequestParam int numberStop, RoadRepair roadRepair) throws SQLException {
+    public String roadRepairAdd(RoadRepair roadRepair) throws SQLException {
         roadRepairService.saveRoadRepair(roadRepair, httpSessionBean.getConnection());
-        roadRepairService.saveRoadRepairOnStop(new RoadRepairOnStop(roadRepair.getId(), numberStop),
-                httpSessionBean.getConnection());
+//        roadRepairService.saveRoadRepairOnStop(new RoadRepairOnStop(roadRepair.getId(), numberStop),
+//                httpSessionBean.getConnection());
         return "redirect:/roadRepair";
     }
     @PostMapping("/roadRepair/delete/{id}")

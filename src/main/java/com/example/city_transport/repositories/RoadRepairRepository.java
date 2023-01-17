@@ -15,5 +15,5 @@ public interface RoadRepairRepository {
     List<RoadRepairTitle> findByRouteId(int numberRoute, Connection connection);
     RoadRepairTitle findByIdTitle(int id, Connection connection);
     List<RoadRepair> deleteByNumberRoute(int numberRoute, int numberStop, Connection connection);
-    void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection);
+//    void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection);
 }

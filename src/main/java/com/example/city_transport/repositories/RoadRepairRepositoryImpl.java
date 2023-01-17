@@ -20,7 +20,7 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 RoadRepair roadRepair = new RoadRepair();
-                roadRepair.setId(rs.getInt("id_roadrepair"));
+                roadRepair.setIdRoadRepair(rs.getInt("id_roadrepair"));
                 roadRepair.setDateStartRoad(rs.getDate("date_startroad"));
                 roadRepair.setDateEndRoad(rs.getDate("date_endroad"));
                 listResult.add(roadRepair);
@@ -41,12 +41,13 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
         java.sql.Date sqlDate1 = new java.sql.Date(utilPackageDate1.getTime());
         String query = """
                        INSERT INTO road_repair
-                       VALUES(?,?,?);
+                       VALUES(?,?,?,?);
                        """;
         try(PreparedStatement stmt = connection.prepareStatement(query)){
-            stmt.setInt(1, roadRepair.getId());
+            stmt.setInt(1, roadRepair.getIdRoadRepair());
             stmt.setDate(2, sqlDate);
             stmt.setDate(3, sqlDate1);
+            stmt.setString(4, roadRepair.getAddres());
             stmt.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
@@ -80,7 +81,7 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                roadRepair.setId(rs.getInt("id_roadrepair"));
+                roadRepair.setIdRoadRepair(rs.getInt("id_roadrepair"));
                 roadRepair.setDateStartRoad(rs.getDate("date_startroad"));
                 roadRepair.setDateEndRoad(rs.getDate("date_endroad"));
             }
@@ -182,18 +183,18 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
         return listResult;
     }
 
-    @Override
-    public void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection) {
-        String query = """
-                       INSERT INTO road_repaironstop
-                       VALUES(?,?);
-                       """;
-        try(PreparedStatement stmt = connection.prepareStatement(query)){
-            stmt.setInt(1, roadRepairOnStop.getIdRepairOnStop());
-            stmt.setInt(2, roadRepairOnStop.getNumberStop());
-            stmt.executeUpdate();
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection) {
+//        String query = """
+//                       INSERT INTO road_repaironstop
+//                       VALUES(?,?);
+//                       """;
+//        try(PreparedStatement stmt = connection.prepareStatement(query)){
+//            stmt.setInt(1, roadRepairOnStop.getIdRepairOnStop());
+//            stmt.setInt(2, roadRepairOnStop.getNumberStop());
+//            stmt.executeUpdate();
+//        } catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
 }

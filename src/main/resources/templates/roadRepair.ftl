@@ -41,14 +41,14 @@
             <div class="cont_login">
                 <form action="/roadRepair/add" method="post" enctype="multipart/form-data">
                     <div class="cont_text_inputs">
-                        <input type="number" class="input_form_sign d_block active_inp" placeholder="id пробки" name="id"/>
-                        <select name = "numberStop" class="select">
-                           <#list stop as item>
-                               <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
-                           </#list>
-                        </select>
+                        <input type="number" class="input_form_sign d_block active_inp" placeholder="id пробки" name="idRoadRepair"/>
                         <input type="date" class="input_form_sign d_block  active_inp" placeholder="Час початку" name="dateStartRoad"/>
                         <input type="date" class="input_form_sign d_block  active_inp" placeholder="Час кінця" name="dateEndRoad"/>
+                        <select name = "addres" class="select">
+                            <#list stop as item>
+                                <option name="${item.address}">${item.address}</option>
+                            </#list>
+                        </select>
                     </div>
                     <div class="cont_btn">
                         <button type="submit" class="btn_sign">Добавити ремонт доріг</button>
