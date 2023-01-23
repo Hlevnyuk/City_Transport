@@ -144,7 +144,7 @@ public class Doc {
 
             // сохраняем модель docx документа в файл
             FileOutputStream outputStream = new FileOutputStream("C:\\Users\\Test\\" +
-                    ".Тест.DOCX");
+                    "Договор.DOCX");
             docxModel.write(outputStream);
             outputStream.close();
         } catch (Exception e) {

@@ -76,21 +76,20 @@ public class TransportRepositoryImpl implements TransportRepository {
         }
         return list;
     }
-    @Override
-    public void deleteById(int idTransport, Connection connection) {
-        String query = """
-                        DELETE FROM transport
-                        WHERE id_transport = ?
-                       """;
-        try(PreparedStatement statement = connection.prepareStatement(query)){
-            statement.setInt(1, idTransport);
-            statement.executeUpdate();
-            System.out.println("Record deleted successfully");
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-
+//    @Override
+//    public void deleteById(int idTransport, Connection connection) {
+//        String query = """
+//                        DELETE FROM transport
+//                        WHERE id_transport = ?
+//                       """;
+//        try(PreparedStatement statement = connection.prepareStatement(query)){
+//            statement.setInt(1, idTransport);
+//            statement.executeUpdate();
+//            System.out.println("Record deleted successfully");
+//        } catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
     @Override
     public Transport findById(int idTransport, Connection connection) {
         Transport transport = new Transport();
@@ -155,5 +154,42 @@ public class TransportRepositoryImpl implements TransportRepository {
             throwables.printStackTrace();
         }
         return transportList;
+    }
+
+    @Override
+    public List<Transport> emptyTransport(Connection connection) {
+        List<Transport> transportList = new ArrayList<>();
+        String query = """
+                       SELECT * FROM transport
+                          WHERE number_transport IS null OR garage IS null
+                       """;
+        try(Statement stmt = connection.createStatement()){
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+                Transport transport = new Transport();
+                transport.setIdTransport(rs.getInt("id_transport"));
+                transport.setNumberTransport(rs.getInt("number_transport"));
+                transport.setTypeTransport(rs.getString("type_transport"));
+                transport.setGarage(rs.getString("garage"));
+                transport.setIdContract(rs.getInt("id_contract"));
+                transportList.add(transport);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return transportList;
+    }
+
+    @Override
+    public void updateTransport(int idTransport, Connection connection) {
+        String query = """
+                       UPDATE transport SET number_transport = null, garage = null WHERE id_transport = ?
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, idTransport);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

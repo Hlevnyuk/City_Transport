@@ -13,4 +13,5 @@ public interface StopRouteRepository {
     void delete(int numberStop, int numberRoute, Connection connection);
     StopRoute findById(int numberRoute, Connection connection);
     int checkStopOrder(int numberRoute, Connection connection);
+    List<StopRoute> findByRoute(int numberRoute, Connection connection);
 }

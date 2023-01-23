@@ -1,23 +1,18 @@
 package com.example.city_transport.controllers;
 import com.example.city_transport.Comparator.CustomComparator;
 import com.example.city_transport.bean.HttpSessionBean;
-import com.example.city_transport.models.Route;
-import com.example.city_transport.models.TraficJem;
-import com.example.city_transport.repositories.RouteRepository;
 import com.example.city_transport.services.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.sql.Connection;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.time.LocalTime;
-import java.util.*;
-
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
 @Controller
 @RequiredArgsConstructor
 public class MainController {

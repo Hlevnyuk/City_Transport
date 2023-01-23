@@ -28,4 +28,7 @@ public class StopRouteService {
     public int checkStopOrder(int numberRoute, Connection connection){
         return stopRouteRepositoryImpl.checkStopOrder(numberRoute, connection);
     }
+    public List<StopRoute> findByRoute(int numberRoute, Connection connection){
+        return stopRouteRepositoryImpl.findByRoute(numberRoute, connection);
+    }
 }

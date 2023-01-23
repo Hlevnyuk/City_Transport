@@ -30,19 +30,24 @@
             <form action="/route/create" method="post" class="form form_route" enctype="multipart/form-data">
                 <h3 class="form__title">Створення маршруту</h3>
                 <p>
-                    <input type="number" name="numberRoute" class="form__input" placeholder="Номер маршруту">
-                </p>
-                <p>
                     <input type="text" name="interval" class="form__input" placeholder="Інтервал їзди транспорту"/>
                 </p>
                 <p>
                     <input type="date" name="dateTime" class="form__input" placeholder="Дата створення маршруту"/>
                 </p>
                 <p>
-                    <input type="number" name="startPoint" class="form__input" placeholder="Початок маршруту"/>
+                    <select name = "startPoint" class="form__input">
+                        <#list stop as item>
+                            <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
+                        </#list>
+                    </select>
                 </p>
                 <p>
-                    <input type="number" name="endPoint" class="form__input" placeholder="Кінець маршруту"/>
+                    <select name = "endPoint" class="form__input">
+                        <#list stop as item>
+                            <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
+                        </#list>
+                    </select>
                 </p>
                 <p>
                     <input type="number" name="stopOrder" class="form__input" placeholder="Кількість зупинок"/>
@@ -65,22 +70,22 @@
         </div>
     </article>
     <br><br>
-    <table class="table">
-        <thead>
-            <th class="th">Номер зупинки</th>
-            <th class="th">Адреса</th>
-        </thead>
-        <tbody>
-            <form action="/routes" method="get" enctype="multipart/form-data">
-                 <#list stop as itam>
-                      <tr class="tr">
-                        <td class="td"></b>${itam.numberStop}</td>
-                        <td class="td"></b>${itam.address}</td>
-                      </tr>
-                 </#list>
-            </form>
-        </tbody>
-    </table>
+<#--    <table class="table">-->
+<#--        <thead>-->
+<#--            <th class="th">Номер зупинки</th>-->
+<#--            <th class="th">Адреса</th>-->
+<#--        </thead>-->
+<#--        <tbody>-->
+<#--            <form action="/routes" method="get" enctype="multipart/form-data">-->
+<#--                 <#list stop as itam>-->
+<#--                      <tr class="tr">-->
+<#--                        <td class="td"></b>${itam.numberStop}</td>-->
+<#--                        <td class="td"></b>${itam.address}</td>-->
+<#--                      </tr>-->
+<#--                 </#list>-->
+<#--            </form>-->
+<#--        </tbody>-->
+<#--    </table>-->
 </#if>
 </body>
 </html>

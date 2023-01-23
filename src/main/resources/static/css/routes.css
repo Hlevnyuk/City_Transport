@@ -29,6 +29,10 @@ header{
   font-size: 35px;
   color: #b30000;
 }
+.result {
+    color: #b0b0b0;
+    font-size: 35px;
+}
 a {
     color: #f7f7f7;
     text-decoration: none;
@@ -296,3 +300,86 @@ a {
 .dropdown-content a:hover {background-color: #f1f1f1}
 /* Показать выпадающее меню (используйте JS, чтобы добавить этот класс в .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
 .show {display:block;}
+
+.big {
+    font-size: 1.2em;
+}
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px; /* demo only */
+}
+
+.custom-dropdown select {
+    cursor:pointer;
+    background-color: #2980b9;
+    color: #fff;
+    font-size: inherit;
+    padding: .5em;
+    padding-right: 2.5em;
+    border: 0;
+    margin: 0;
+    border-radius: 3px;
+    text-indent: 0.01px;
+    text-overflow: '';
+    -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.custom-dropdown::before,
+.custom-dropdown::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.custom-dropdown::after { /*  Custom dropdown arrow */
+    content: "\25BC";
+    height: 1em;
+    font-size: .625em;
+    line-height: 1;
+    right: 1.2em;
+    top: 50%;
+    margin-top: -.5em;
+}
+
+.custom-dropdown::before { /*  Custom dropdown arrow cover */
+    width: 2em;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.custom-dropdown select[disabled] {
+    color: rgba(0,0,0,.3);
+}
+
+.custom-dropdown select[disabled]::after {
+    color: rgba(0,0,0,.1);
+}
+
+.custom-dropdown::before {
+    background-color: rgba(0,0,0,.15);
+}
+
+.custom-dropdown::after {
+    color: rgba(0,0,0,.4);
+}
+.btn_sign {
+    background: rgba(255,0,10,1);
+    box-shadow: 0px 2px 20px 2px rgb(255 114 132 / 50%);
+    border-radius: 8px;
+    padding: 15px 30px;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    float: left;
+    left: 37%;
+    top: -55px;
+    /* margin-left: auto; */
+    /* text-align: center; */
+    /* transform: translate(-50%, -50%); */
+    cursor: pointer;
+}

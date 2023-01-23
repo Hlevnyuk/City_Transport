@@ -23,7 +23,7 @@
         <tbody>
             <#list transport as item>
                 <tr class="tr">
-                    <form action="/transport/delete/${item.idTransport}" method="post" enctype="multipart/form-data">
+                    <form action="/transport/update/${item.idTransport}" method="post" enctype="multipart/form-data">
                         <td class="td">${item.numberTransport}</td>
                         <td class="td">${item.typeTransport}</td>
                         <td class="td">${item.garage}</td>

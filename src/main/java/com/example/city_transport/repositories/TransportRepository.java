@@ -10,8 +10,10 @@ public interface TransportRepository {
     List<Transport> findAll(Connection connection);
     List<Transport> findTransportByNumberRoute(int numberRoute, Connection connection);
     List<Transport> findFreeTransport(int numberRoute, Connection connection);
-    void deleteById(int idTransport, Connection connection);
+//    void deleteById(int idTransport, Connection connection);
     Transport findById(int idTransport, Connection connection);
     void change(int idTransport, int numberTransport, String garage, Connection connection);
     List<Transport> findByIdContract(int idContract, Connection connection);
+    List<Transport> emptyTransport(Connection connection);
+    void updateTransport(int idTransport, Connection connection);
 }

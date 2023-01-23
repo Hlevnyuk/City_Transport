@@ -15,8 +15,8 @@ public class TransportService {
     public Transport getTransportByIdTransport(int idTransport, Connection connection){
         return transportRepositoryImpl.findById(idTransport, connection);
     }
-    public void deleteTransport(int idTransport, Connection connection){
-        transportRepositoryImpl.deleteById(idTransport, connection);
+    public void updateTransport(int idTransport, Connection connection){
+        transportRepositoryImpl.updateTransport(idTransport, connection);
     }
     public List<Transport> findTransportByNumberRoute(int numberRoute, Connection connection){
         return transportRepositoryImpl.findTransportByNumberRoute(numberRoute, connection);
@@ -29,5 +29,8 @@ public class TransportService {
     }
     public List<Transport> findByIdContract(int idContract, Connection connection){
         return transportRepositoryImpl.findByIdContract(idContract, connection);
+    }
+    public List<Transport> emptyTransport(Connection connection){
+        return transportRepositoryImpl.emptyTransport(connection);
     }
 }

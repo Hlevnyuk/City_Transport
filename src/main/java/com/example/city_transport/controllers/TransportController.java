@@ -20,8 +20,9 @@ public class TransportController {
                 .stream().filter(el -> el.getNumberTransport() != 0 &&
                         el.getGarage() != null).toList());
         model.addAttribute("transportChange", transportService.transportList(httpSessionBean.getConnection())
-                        .stream().filter(el -> el.getNumberTransport() == 0 ||
+                        .stream().filter(el -> el.getNumberTransport() == 0 &&
                         el.getGarage() == null).toList());
+        //model.addAttribute("emptyTransport", transportService.emptyTransport(httpSessionBean.getConnection()));
         return "transport";
     }
     @PostMapping("/transport/change/{idTransport}")
@@ -30,9 +31,10 @@ public class TransportController {
         transportService.change(idTransport, numberTransport, garage, httpSessionBean.getConnection());
         return "redirect:/transport";
     }
-    @PostMapping("/transport/delete/{idTransport}")
+    @PostMapping("/transport/update/{idTransport}")
     public String transportDelete(@PathVariable int idTransport){
-        transportService.deleteTransport(idTransport, httpSessionBean.getConnection());
+        transportService.updateTransport(idTransport, httpSessionBean.getConnection());
         return "redirect:/transport";
     }
+
 }

@@ -21,8 +21,8 @@ public class RouteService {
     public void deleteRoute(int numberRoute, Connection connection){
         routeRepositoryImpl.deleteById(numberRoute, connection);
     }
-    public void addRoute(Route route, Connection connection){
-        routeRepositoryImpl.save(route, connection);
+    public int addRoute(Route route, Connection connection){
+        return routeRepositoryImpl.save(route, connection);
     }
 
     public List<RouteTitle> routeTitleList(Connection connection){

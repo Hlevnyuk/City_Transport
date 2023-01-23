@@ -90,7 +90,12 @@ public class RouteController {
     }
     @PostMapping("/routes/deleteStop/{numberRoute}")
     public String deleteStopRoute(@RequestParam int numberStop, @PathVariable int numberRoute){
+        //stopRouteService.findByRoute(numberRoute, httpSessionBean.getConnection());
         stopRouteService.deleteStopRoute(numberStop, numberRoute, httpSessionBean.getConnection());
+        int count = stopRouteService.findByRoute(numberRoute, httpSessionBean.getConnection()).size();
+        if(count == 0){
+            return "redirect:/routes";
+        }
         return "redirect:/routes/{numberRoute}";
     }
 
@@ -102,11 +107,12 @@ public class RouteController {
     @PostMapping("route/create")
     public String add(Route route, @RequestParam(name = "startPoint") int startPoint,
                       @RequestParam(name = "endPoint") int endPoint,
-                      @RequestParam(name = "stopOrder") int stopOrder){
-        routeService.addRoute(route, httpSessionBean.getConnection());
-        stopRouteService.addStopRoute(new StopRoute(route.getNumberRoute(), startPoint, 1),
+                      @RequestParam(name = "stopOrder") int stopOrder, Model model){
+        int id = routeService.addRoute(route, httpSessionBean.getConnection());
+        model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
+        stopRouteService.addStopRoute(new StopRoute(id, startPoint, 1),
                 httpSessionBean.getConnection());
-        stopRouteService.addStopRoute(new StopRoute(route.getNumberRoute(), endPoint, stopOrder),
+        stopRouteService.addStopRoute(new StopRoute(id, endPoint, stopOrder),
                 httpSessionBean.getConnection());
         return "redirect:/routes";
     }

@@ -30,23 +30,34 @@ public class RouteRepositoryImpl implements RouteRepository{
         return listResult;
     }
     @Override
-    public void save(Route route, Connection connection) {
+    public int save(Route route, Connection connection) {
         java.util.Date utilPackageDate
                 = route.getDateTime();
         java.sql.Date sqlDate = new java.sql.Date(utilPackageDate.getTime());
+        int id = 0;
         String query = """
-                       INSERT INTO route
-                       VALUES(?,?,?,?);
+                       INSERT INTO route(interv, datetime, id_administrator)
+                       VALUES(?,?,?);
                        """;
+        String query1 = """
+                       SELECT last_value FROM route_number_route_seq;
+                        """;
         try(PreparedStatement stmt = connection.prepareStatement(query)){
-            stmt.setInt(1, route.getNumberRoute());
-            stmt.setString(2, route.getInterval());
-            stmt.setDate(3, sqlDate);
-            stmt.setInt(4, route.getIdAdministrator());
+            stmt.setString(1, route.getInterval());
+            stmt.setDate(2, sqlDate);
+            stmt.setInt(3, route.getIdAdministrator());
             int p = stmt.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
         }
+        try(Statement stmt = connection.createStatement()){
+            ResultSet rs = stmt.executeQuery(query1);
+            rs.next();
+            id = rs.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
     }
     @Override
     public void updateInterval(String interval, int numberRoute, Connection connection) {

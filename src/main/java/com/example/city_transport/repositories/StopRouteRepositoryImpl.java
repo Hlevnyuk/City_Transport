@@ -100,4 +100,27 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
         }
         return max;
     }
+    @Override
+    public List<StopRoute> findByRoute(int numberRoute, Connection connection) {
+        List<StopRoute> listResult = new ArrayList<>();
+        String query = """
+                        SELECT *
+                        FROM stop_route
+                        WHERE number_route = ?
+                       """;
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, numberRoute);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                StopRoute stopRoute = new StopRoute();
+                stopRoute.setNumberRoute(rs.getInt("number_route"));
+                stopRoute.setNumberStop(rs.getInt("number_stop"));
+                stopRoute.setStopOrder(rs.getInt("stop_order"));
+                listResult.add(stopRoute);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listResult;
+    }
 }

@@ -18,19 +18,23 @@
 <form action="/route/filter" method="post">
     <div class="dropdown1">
         <div id="myDropdown" class="dropdown-content1">
-            <select name = "start" class="select">
-                <#list stop as el>
-                    <option value="${el.numberStop}" name="startPoint" onclick="inputFunction(${el.numberStop})">${el.numberStop} - ${el.address}</option>
-                </#list>
-            </select>
-            <select name = "end" class="select">
-               <#list stop as el>
-                   <option value="${el.numberStop}" name="endPoint" onclick="inputFunction(${el.numberStop})">${el.numberStop} - ${el.address}</option>
-               </#list>
-            </select>
+            <span class="custom-dropdown big">
+                <select name = "start">
+                    <#list stop as el>
+                        <option value="${el.numberStop}" name="startPoint" onclick="inputFunction(${el.numberStop})">${el.numberStop} - ${el.address}</option>
+                    </#list>
+                </select>
+            </span>
+            <span class="custom-dropdown big">
+                <select name = "end">
+                   <#list stop as el>
+                       <option value="${el.numberStop}" name="endPoint" onclick="inputFunction(${el.numberStop})">${el.numberStop} - ${el.address}</option>
+                   </#list>
+                </select>
+            </span>
         </div>
     </div>
-    <button type="submit">Знайти</button>
+    <button type="submit" class="btn_sign">Знайти</button>
 </form>
 <#if routeTitle?size gt 0>
     <ul class="list3b">
@@ -44,7 +48,7 @@
         </#list>
     </ul>
 <#else>
-    <p>Не знайдено</p>
+    <p class="result">Не знайдено</p>
 </#if>
 <br>
 </body>

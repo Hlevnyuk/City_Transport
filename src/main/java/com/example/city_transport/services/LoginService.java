@@ -10,8 +10,37 @@ import java.sql.*;
 public class LoginService {
     private final AdministratorService administratorService;
     private final TransportOfficerService transportOfficerService;
-    public Connection getConnection(String name, String password) throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/CityTransport", name, password);
+//    public boolean authenticate(String login, String pass) throws ClassNotFoundException, SQLException {
+//        boolean rc = false;
+//        Statement st = null;
+//        ResultSet rs = null;
+//        Connection con = null;
+//        try {
+//            con = DriverManager.getConnection("jdbc:odbc:register");
+//            String query = "SELECT username FROM registration WHERE username='" + login + "' AND password='" + pass + "';";
+//            st = con.createStatement();
+//            rs = st.executeQuery(query);
+//            rc = rs.next();
+//        } catch (SQLException e) {
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (st != null) {
+//                st.close();
+//            }
+//            if (con != null) {
+//                con.close();
+//            }
+//        }
+//        return rc;
+//    }
+    public Connection getConnection(String name, String password) {
+        try {
+            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/CityTransport", name, password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public int getUserId(String name, Connection connection){
         int userId = 0;
