@@ -3,7 +3,6 @@ package com.example.city_transport.controllers;
 import com.example.city_transport.bean.HttpSessionBean;
 import com.example.city_transport.models.Route;
 import com.example.city_transport.models.SetRoute;
-import com.example.city_transport.models.Stop;
 import com.example.city_transport.models.StopRoute;
 import com.example.city_transport.services.*;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Collections;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,11 +31,14 @@ public class RouteController {
     private final TraficJemService traficJemService;
     private final RoadRepairService roadRepairService;
     @GetMapping("/routes/{numberRoute}")
-    public String routeInfoPage(@PathVariable int numberRoute, Model model) throws SQLException {
+    public String routeInfoPage(@PathVariable int numberRoute, Model model) {
         model.addAttribute("route", routeService.getRouteByNumberRoute(numberRoute,
                 httpSessionBean.getConnection()));
         model.addAttribute("stop", stopService.findStopByNumberRoute(numberRoute,
                 httpSessionBean.getConnection()));
+//        model.addAttribute("stopOrder", stopRouteService.stopOrderByAddress(numberRoute, httpSessionBean.getConnection()));
+//        model.addAttribute("address", stopRouteService.AddressByNumberRouteStopOrder(numberRoute, httpSessionBean.getConnection()));
+        model.addAttribute("stopAddress", stopRouteService.stopOrderAndAddress(numberRoute, httpSessionBean.getConnection()));
         model.addAttribute("maxStopOrder", stopRouteService.checkStopOrder(numberRoute,
                 httpSessionBean.getConnection()));
         model.addAttribute("transport", transportService.findTransportByNumberRoute(numberRoute,
@@ -68,8 +69,18 @@ public class RouteController {
     @PostMapping("/routes/addStop/{numberRoute}")
     public String addStopByNumberRoute(@PathVariable int numberRoute, @RequestParam int numberStop,
                                        @RequestParam int stopOrder){
-        stopRouteService.addStopRoute(new StopRoute(numberRoute, numberStop, stopOrder),
-                httpSessionBean.getConnection());
+        AtomicBoolean alreadyExist = new AtomicBoolean(false);
+        stopRouteService.findByRoute(numberRoute, httpSessionBean.getConnection()).forEach(x ->
+            {if(x.getStopOrder() == stopOrder){
+                alreadyExist.set(true);
+                }
+            });
+        if(alreadyExist.get()){
+            stopRouteService.updateStopOrder(numberStop, stopOrder, httpSessionBean.getConnection());
+        } else {
+            stopRouteService.addStopRoute(new StopRoute(numberRoute, numberStop, stopOrder),
+                    httpSessionBean.getConnection());
+        }
         return "redirect:/routes/{numberRoute}";
     }
     @PostMapping("/routes/{numberRoute}")

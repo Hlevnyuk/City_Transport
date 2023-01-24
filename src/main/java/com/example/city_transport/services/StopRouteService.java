@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -30,5 +31,17 @@ public class StopRouteService {
     }
     public List<StopRoute> findByRoute(int numberRoute, Connection connection){
         return stopRouteRepositoryImpl.findByRoute(numberRoute, connection);
+    }
+    public void updateStopOrder(int numberStop, int stopOrder, Connection connection){
+        stopRouteRepositoryImpl.updateStopOrder(numberStop, stopOrder, connection);
+    }
+//    public List<Integer> stopOrderByAddress(int numberRoute, Connection connection) {
+//        return stopRouteRepositoryImpl.stopOrderByNumberRoute(numberRoute, connection);
+//    }
+//    public List<String> AddressByNumberRouteStopOrder(int numberRoute, Connection connection) {
+//        return stopRouteRepositoryImpl.AddressByNumberRouteStopOrder(numberRoute, connection);
+//    }
+    public Map<String, String> stopOrderAndAddress(int numberRoute, Connection connection) {
+        return stopRouteRepositoryImpl.stopOrderAndAddress(numberRoute, connection);
     }
 }

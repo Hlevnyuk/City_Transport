@@ -124,7 +124,7 @@ public class TransportRepositoryImpl implements TransportRepository {
             statement.setInt(1, numberTransport);
             statement.setString(2, garage);
             statement.setInt(3, idTransport);
-            statement.executeQuery();
+            statement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

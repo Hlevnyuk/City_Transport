@@ -3,18 +3,19 @@ package com.example.city_transport.repositories;
 import com.example.city_transport.models.Stop;
 import com.example.city_transport.models.StopRoute;
 import org.springframework.stereotype.Component;
-
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
 @Component
 public class StopRouteRepositoryImpl implements StopRouteRepository{
     @Override
     public List<StopRoute> findAll(Connection connection) {
         List<StopRoute> listResult = new ArrayList<>();
         String query = """
-                        SELECT *
-                        FROM stop_route
+                        SELECT * FROM stop_route
                        """;
         try (Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
@@ -29,7 +30,6 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
         }
         return listResult;
     }
-
     @Override
     public void save(StopRoute stopRoute, Connection connection) {
         String query = """
@@ -45,7 +45,6 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
             e.printStackTrace();
         }
     }
-
     @Override
     public void delete(int numberStop, int numberRoute, Connection connection) {
         String query = """
@@ -123,4 +122,81 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
         }
         return listResult;
     }
+
+    @Override
+    public void updateStopOrder(int numberStop, int stopOrder, Connection connection) {
+        String query = """
+                       UPDATE stop_route
+                       SET number_stop = ? WHERE stop_order = ?
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, numberStop);
+            preparedStatement.setInt(2, stopOrder);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public Map<String, String> stopOrderAndAddress(int numberRoute, Connection connection) {
+        Map<String, String> map = new LinkedHashMap<>();
+        String query = """
+                        SELECT sr.stop_order, st.adres FROM stop_route sr
+                        JOIN stop st ON sr.number_stop = st.number_stop
+                        WHERE sr.number_route = ?
+                        ORDER BY stop_order ASC
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, numberRoute);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                map.put(Integer.toString(rs.getInt(1)), rs.getString(2));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return map;
+    }
+
+//    @Override
+//    public List<Integer> stopOrderByNumberRoute(int numberRoute, Connection connection) {
+//        List<Integer> list = new ArrayList<>();
+//        String query = """
+//                       SELECT stop_order FROM stop_route
+//                       WHERE number_route = ?
+//                       ORDER BY stop_order ASC
+//                       """;
+//        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+//            preparedStatement.setInt(1, numberRoute);
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                list.add(rs.getInt(1));
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return list;
+//    }
+//
+//    @Override
+//    public List<String> AddressByNumberRouteStopOrder(int numberRoute, Connection connection) {
+//        List<String> list = new ArrayList<>();
+//        String query = """
+//                        SELECT adres FROM stop
+//                                       WHERE number_stop IN(SELECT number_stop FROM stop_route
+//                                       					WHERE number_route = ?
+//                                       					ORDER BY stop_order ASC)
+//                       """;
+//        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+//            preparedStatement.setInt(1, numberRoute);
+//            ResultSet rs = preparedStatement.executeQuery();
+//            while (rs.next()) {
+//                list.add(rs.getString(1));
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return list;
+//    }
 }

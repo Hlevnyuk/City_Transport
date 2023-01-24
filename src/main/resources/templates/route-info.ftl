@@ -15,7 +15,7 @@
 <table class="table">
     <thead>
         <th class="th">Номер маршруту</th>
-        <th class="th">Зупинки</th>
+        <th class="th">Послідовність зупинок</th>
         <th class="th">Інтервал їзди транспорту</th>
         <#if role == "route_employee">
             <th class="th">Дата створення</th>
@@ -26,9 +26,9 @@
         <tr class="tr">
             <td class="td">${route.numberRoute}</td>
             <td class="td">
-                <#list stop as item>
-                    ${item.address},
-                </#list>
+            <#list stopAddress?keys as key>
+                ${key} - ${stopAddress[key]}<br>
+            </#list>
             </td>
             <td class="td">${route.interval}
                 <#if role == "route_employee">
@@ -50,58 +50,74 @@
         </tr>
     </tbody>
 </table>
-<table class="table">
-    <thead>
-        <th class="th">Адреса</th>
-        <th class="th">Час початку пробки</th>
-        <th class="th">Час кінця пробки</th>
-        <#if role == "transport_employee">
-            <th class="th">Видалення</th>
-        </#if>
-    </thead>
-    <tbody>
-        <#list traficJemTitle as item>
-            <tr class="tr">
-                <td class="td">${item.address}</td>
-                <td class="td">${item.timeStart}</td>
-                <td class="td">${item.timeEnd}</td>
-                <td class="td">
-                    <#if role == "transport_employee">
-                        <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
-                            <input type="submit" value="Видалити пробку"/><br>
-                        </form>
-                    </#if>
-                </td>
-            </tr>
-        </#list>
-   </tbody>
-</table>
-<table class="table">
-    <thead>
-        <th class="th">Адреса</th>
-        <th class="th">Час початку ремонту</th>
-        <th class="th">Час кінця ремонту</th>
-        <#if role == "transport_employee">
-            <th class="th">Видалення</th>
-        </#if>
-    </thead>
-    <tbody>
-        <#list roadRepairTitle as item>
-            <tr class="tr">
-                <td class="td">${item.addres}</td>
-                <td class="td">${item.dateStartRoad}</td>
-                <td class="td">${item.dateEndRoad}</td>
-                <#if role == "transport_employee">
+<#--<table class="table">-->
+<#--    <#list stopOrder as itam>-->
+<#--        <th>${itam}</th>-->
+<#--    </#list>-->
+<#--    <tr class="tr">-->
+<#--        <td class="td">-->
+<#--            <#list address as item>-->
+<#--                ${item}-->
+<#--            </#list>-->
+<#--        </td>-->
+<#--    </tr>-->
+<#--</table>-->
+<#if traficJemTitle?size gt 0>
+    <table class="table">
+        <thead>
+            <th class="th">Адреса</th>
+            <th class="th">Час початку пробки</th>
+            <th class="th">Час кінця пробки</th>
+            <#if role == "transport_employee">
+                <th class="th">Видалення</th>
+            </#if>
+        </thead>
+        <tbody>
+            <#list traficJemTitle as item>
+                <tr class="tr">
+                    <td class="td">${item.address}</td>
+                    <td class="td">${item.timeStart}</td>
+                    <td class="td">${item.timeEnd}</td>
                     <td class="td">
-                        <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
-                            <input type="submit" value="Видалити ремонт доріг"/><br>
-                        </form>
+                        <#if role == "transport_employee">
+                            <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
+                                <input type="submit" value="Видалити пробку"/><br>
+                            </form>
+                        </#if>
                     </td>
-                </#if>
-            </tr>
-        </#list>
-    </tbody>
-</table>
+                </tr>
+            </#list>
+       </tbody>
+    </table>
+</#if>
+<#if roadRepairTitle?size gt 0>
+    <table class="table">
+        <thead>
+            <th class="th">Адреса</th>
+            <th class="th">Час початку ремонту</th>
+            <th class="th">Час кінця ремонту</th>
+            <#if role == "transport_employee">
+                <th class="th">Видалення</th>
+            </#if>
+        </thead>
+        <tbody>
+            <#list roadRepairTitle as item>
+                <tr class="tr">
+                    <td class="td">${item.addres}</td>
+                    <td class="td">${item.dateStartRoad}</td>
+                    <td class="td">${item.dateEndRoad}</td>
+                    <#if role == "transport_employee">
+                        <td class="td">
+                            <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
+                                <input type="submit" value="Видалити ремонт доріг"/><br>
+                            </form>
+                        </td>
+                    </#if>
+                </tr>
+            </#list>
+        </tbody>
+    </table>
+</#if>
 <#if role == "route_employee">
     <br>
     <div class="containerButton">
@@ -150,7 +166,7 @@
             </form>
         </div>
     </div>
-    <#if maxStopOrder gt stop?size>
+<#--    <#if maxStopOrder gt stop?size>-->
         <div class="container alignment1">
             <div class="brand-title">
                 Робота з зупинками
@@ -162,12 +178,21 @@
                             <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
                         </#list>
                     </select>
-                    <input type="number" name="stopOrder" class="input"/>
+<#--                    <input type="number" name="stopOrder" class="input"/>-->
+                    <select name = "stopOrder" class="select">
+<#--                        <#list freeStop as item>-->
+<#--                            <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>-->
+<#--                        </#list>-->
+                        <#assign x = maxStopOrder>
+                        <#list 1..x as i>
+                            <option value = ${i}>${i}</option>
+                        </#list>
+                    </select>
                     <button type="submit" class="button">Добавити</button>
                 </form>
             </div>
         </div>
-    </#if>
+<#--    </#if>-->
     <div class="container alignment2">
         <div class="brand-title">
             Видалити зупинку
