@@ -21,18 +21,20 @@ public class LoginController {
     @PostMapping("/login/authorization")
     public String login(@RequestParam String name,
                         @RequestParam String password) throws SQLException {
-        if(loginService.getUser(name, httpSessionBean.getConnection())){
-            if(!(password.equals("route_officer") || password.equals("transport_officer"))){
+//        if(loginService.getUser(name, httpSessionBean.getConnection())){
+            try {
+                httpSessionBean.getConnection().close();
+                httpSessionBean.setConnection(loginService.getConnection(name, password));
+                httpSessionBean.setId(loginService.getUserId(name, httpSessionBean.getConnection()));
+                httpSessionBean.setRole(loginService.getRole(name, httpSessionBean.getConnection()));
+                return "redirect:/";
+            } catch (SQLException e){
+                httpSessionBean.setConnection(loginService.getConnection("guest", "guest"));
+                httpSessionBean.setId(0);
+                httpSessionBean.setRole("guest");
                 return "loginError";
             }
-            httpSessionBean.getConnection().close();
-            httpSessionBean.setConnection(loginService.getConnection(name, password));
-            httpSessionBean.setId(loginService.getUserId(name, httpSessionBean.getConnection()));
-            httpSessionBean.setRole(loginService.getRole(name, httpSessionBean.getConnection()));
-            return "redirect:/";
-        } else {
-            return "loginError";
-        }
+//        }
     }
     @GetMapping("/login")
     public String loginPage(){

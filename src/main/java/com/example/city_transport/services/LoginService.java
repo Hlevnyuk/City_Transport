@@ -35,12 +35,8 @@ public class LoginService{
 //        }
 //        return rc;
 //    }
-    public Connection getConnection(String name, String password) {
-        try {
-            return DriverManager.getConnection("jdbc:postgresql://localhost:5432/CityTransport", name, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public Connection getConnection(String name, String password) throws SQLException {
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/CityTransport", name, password);
     }
     public int getUserId(String name, Connection connection){
         int userId = 0;
@@ -68,22 +64,22 @@ public class LoginService{
         }
         return role;
     }
-    public boolean getUser(String login, Connection connection) throws SQLException {
-        boolean result = false;
-        String user = "";
-        String query = """
-                       SELECT rolname FROM pg_roles
-                       WHERE rolname = ?
-                       """;
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, login);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            user = resultSet.getString(1);
-        }
-        if(login.equals(user)){
-            result = true;
-        }
-        return result;
-    }
+//    public boolean getUser(String login, Connection connection) throws SQLException {
+//        boolean result = false;
+//        String user = "";
+//        String query = """
+//                       SELECT rolname FROM pg_roles
+//                       WHERE rolname = ?
+//                       """;
+//        PreparedStatement preparedStatement = connection.prepareStatement(query);
+//        preparedStatement.setString(1, login);
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//        while(resultSet.next()){
+//            user = resultSet.getString(1);
+//        }
+//        if(login.equals(user)){
+//            result = true;
+//        }
+//        return result;
+//    }
 }
