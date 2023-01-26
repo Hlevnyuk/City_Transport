@@ -7,7 +7,7 @@ import java.sql.*;
 
 @Service
 @RequiredArgsConstructor
-public class LoginService {
+public class LoginService{
     private final AdministratorService administratorService;
     private final TransportOfficerService transportOfficerService;
 //    public boolean authenticate(String login, String pass) throws ClassNotFoundException, SQLException {
@@ -67,5 +67,23 @@ public class LoginService {
             role = resultSet.getString(1);
         }
         return role;
+    }
+    public boolean getUser(String login, Connection connection) throws SQLException {
+        boolean result = false;
+        String user = "";
+        String query = """
+                       SELECT rolname FROM pg_roles
+                       WHERE rolname = ?
+                       """;
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, login);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while(resultSet.next()){
+            user = resultSet.getString(1);
+        }
+        if(login.equals(user)){
+            result = true;
+        }
+        return result;
     }
 }

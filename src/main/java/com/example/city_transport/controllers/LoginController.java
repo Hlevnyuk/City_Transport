@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,11 +21,18 @@ public class LoginController {
     @PostMapping("/login/authorization")
     public String login(@RequestParam String name,
                         @RequestParam String password) throws SQLException {
-        httpSessionBean.getConnection().close();
-        httpSessionBean.setConnection(loginService.getConnection(name, password));
-        httpSessionBean.setId(loginService.getUserId(name, httpSessionBean.getConnection()));
-        httpSessionBean.setRole(loginService.getRole(name, httpSessionBean.getConnection()));
-        return "redirect:/";
+        if(loginService.getUser(name, httpSessionBean.getConnection())){
+            if(!(password.equals("route_officer") || password.equals("transport_officer"))){
+                return "loginError";
+            }
+            httpSessionBean.getConnection().close();
+            httpSessionBean.setConnection(loginService.getConnection(name, password));
+            httpSessionBean.setId(loginService.getUserId(name, httpSessionBean.getConnection()));
+            httpSessionBean.setRole(loginService.getRole(name, httpSessionBean.getConnection()));
+            return "redirect:/";
+        } else {
+            return "loginError";
+        }
     }
     @GetMapping("/login")
     public String loginPage(){
