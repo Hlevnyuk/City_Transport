@@ -16,4 +16,6 @@ public interface TransportRepository {
     List<Transport> findByIdContract(int idContract, Connection connection);
     List<Transport> emptyTransport(Connection connection);
     void updateTransport(int idTransport, Connection connection);
+    int countEmptyTransport(Connection connection);
+    Transport findEmptyTransportByIdContract(int idContract, Connection connection);
 }

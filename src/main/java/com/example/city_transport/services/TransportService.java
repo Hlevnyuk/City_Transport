@@ -33,4 +33,10 @@ public class TransportService {
     public List<Transport> emptyTransport(Connection connection){
         return transportRepositoryImpl.emptyTransport(connection);
     }
+    public int countEmptyTransport(Connection connection){
+        return transportRepositoryImpl.countEmptyTransport(connection);
+    }
+    public Transport findEmptyTransportByIdContract(int idContract, Connection connection){
+        return findEmptyTransportByIdContract(idContract, connection);
+    }
 }

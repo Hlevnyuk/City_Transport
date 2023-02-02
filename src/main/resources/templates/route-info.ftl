@@ -166,7 +166,6 @@
             </form>
         </div>
     </div>
-<#--    <#if maxStopOrder gt stop?size>-->
         <div class="container alignment1">
             <div class="brand-title">
                 Робота з зупинками
@@ -178,11 +177,7 @@
                             <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>
                         </#list>
                     </select>
-<#--                    <input type="number" name="stopOrder" class="input"/>-->
                     <select name = "stopOrder" class="select">
-<#--                        <#list freeStop as item>-->
-<#--                            <option value = "${item.numberStop}" name="${item.numberStop}"> ${item.numberStop} - ${item.address}</option>-->
-<#--                        </#list>-->
                         <#assign x = maxStopOrder>
                         <#list 1..x as i>
                             <option value = ${i}>${i}</option>
@@ -192,7 +187,6 @@
                 </form>
             </div>
         </div>
-<#--    </#if>-->
     <div class="container alignment2">
         <div class="brand-title">
             Видалити зупинку

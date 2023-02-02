@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/transport.css"/>
-    <script src="JavaScript/routes.js" defer></script>
+    <script src="JavaScript/transport.js" defer></script>
     <title>Транспорт</title>
 </head>
 <body>
@@ -37,30 +37,39 @@
     <hr>
     <p class="size">Завершити працю з транспортними засобами</p>
     <br>
-    <#list transportChange as item>
-        <form  action="/transport/change/${item.idTransport}" method="post" onSubmit = "return checkform(this)" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <td>Номер транспорту</td>
-                    <td><input type="number" name="numberTransport" required></td>
-                </tr>
-                <tr>
-                    <td>Тип транспорту</td>
-                    <td>${item.typeTransport}</td>
-                </tr>
-                <tr>
-                    <td>Гараж</td>
-                    <td><input type="text" name="garage" required></td>
-                </tr>
-                <tr>
-                    <td>Номер договору</td>
-                    <td>${item.idContract}</td>
-                </tr>
-                <tr>
-                    <td><input type="submit" value="Добавити"></td>
-                </tr>
-            </table>
-        </form>
-    </#list>
+    <form action="/transport/change" method="post" onSubmit = "return checkform(this)" enctype="multipart/form-data">
+        <input id = "id" type="number" name="idTransport" required placeholder="id транспорту" readonly>
+        <br>
+        <input type="number" name="numberTransport" required placeholder="Номер транспорту">
+        <br>
+        <input id = "type" type="text" name="typeTransport" required placeholder="Тип транспорту">
+        <br>
+        <input type="text" name="garage" required placeholder="Гараж">
+        <br>
+        <select name="idContract" id="selectValue">
+            <#list transportChange as item>
+                <option value=${item.idContract} onclick="myFunction()">${item.idContract}</option>
+            </#list>
+        </select>
+        <input type="submit" value="Добавити">
+    </form>
+    <script>
+
+        function myFunction(){
+            var i, count = 0, index;
+            var transportList = JSON.parse('${transportForm}');
+            document.getElementById("type").value = transportList;
+            var selectValue = document.getElementById("selectValue").value;
+            for (i = 0; i < transportList.length; i++) {
+                if(transportList[i].idContract == selectValue){
+                    count++;
+                    index = i;
+                }
+            }
+            document.getElementById("type").value = transportList[index].typeTransport;
+            document.getElementById("id").value = transportList[index].idTransport;
+
+        }
+    </script>
 </body>
 </html>

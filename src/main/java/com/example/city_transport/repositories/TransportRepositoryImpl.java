@@ -192,4 +192,46 @@ public class TransportRepositoryImpl implements TransportRepository {
             throwables.printStackTrace();
         }
     }
+
+    @Override
+    public int countEmptyTransport(Connection connection) {
+        int result = 0;
+        String query = """
+                       SELECT COUNT(*) AS total FROM transport
+                       WHERE number_transport IS null AND garage IS null
+                       """;
+        try(Statement statement = connection.createStatement()){
+            ResultSet rs = statement.executeQuery(query);
+            while(rs.next()){
+                result = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    @Override
+    public Transport findEmptyTransportByIdContract(int idContract, Connection connection) {
+        Transport transport = new Transport();
+        String query = """
+                        SELECT * FROM transport
+                        WHERE id_contract = ? AND garage IS null AND number_transport IS null
+                        LIMIT 1
+                       """;
+        try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, idContract);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                transport.setIdTransport(rs.getInt("id_transport"));
+                transport.setNumberTransport(rs.getInt("number_transport"));
+                transport.setTypeTransport(rs.getString("type_transport"));
+                transport.setGarage(rs.getString("garage"));
+                transport.setIdContract(rs.getInt("id_contract"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return transport;
+    }
 }
