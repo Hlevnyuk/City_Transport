@@ -23,8 +23,8 @@ public class TraficJemService {
     public void delete(int idTraficJem, Connection connection){
         traficJemRepositoryImpl.deleteById(idTraficJem, connection);
     }
-    public void save(TraficJem traficJem, Connection connection){
-        traficJemRepositoryImpl.save(traficJem, connection);
+    public int save(TraficJem traficJem, Connection connection){
+        return traficJemRepositoryImpl.save(traficJem, connection);
     }
     public List<TraficJemTitle> findAllTraficJemTitle(Connection connection){
         return traficJemRepositoryImpl.findAllTraficJemTitle(connection);

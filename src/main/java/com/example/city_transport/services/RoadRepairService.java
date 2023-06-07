@@ -17,8 +17,8 @@ public class RoadRepairService {
     public List<RoadRepair> roadRepairList(Connection connection) {
         return roadRepairRepositoryImpl.findAll(connection);
     }
-    public void saveRoadRepair(RoadRepair roadRepair, Connection connection) throws SQLException {
-        roadRepairRepositoryImpl.save(roadRepair, connection);
+    public int saveRoadRepair(RoadRepair roadRepair, Connection connection) throws SQLException {
+        return roadRepairRepositoryImpl.save(roadRepair, connection);
     }
     public RoadRepair findById(int id, Connection connection) {
         return roadRepairRepositoryImpl.findById(id, connection);
@@ -32,9 +32,6 @@ public class RoadRepairService {
     public List<RoadRepair> deleteByNumberRoute(int numberRoute, int numberStop,Connection connection){
         return roadRepairRepositoryImpl.deleteByNumberRoute(numberRoute, numberStop,connection);
     }
-//    public void saveRoadRepairOnStop(RoadRepairOnStop roadRepairOnStop, Connection connection){
-//        roadRepairRepositoryImpl.saveRoadRepairOnStop(roadRepairOnStop, connection);
-//    }
     public List<RoadRepairTitle> findAllRoadRepairTitle(Connection connection){
         return roadRepairRepositoryImpl.findAllRoadRepairTitle(connection);
     }

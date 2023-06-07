@@ -16,7 +16,7 @@ public interface StopRouteRepository {
     StopRoute findById(int numberRoute, Connection connection);
     int checkStopOrder(int numberRoute, Connection connection);
     List<StopRoute> findByRoute(int numberRoute, Connection connection);
-    void updateStopOrder(int numberStop, int stopOrder, Connection connection);
+    void updateStopOrder(int numberStop, int stopOrder, int numberRoute, Connection connection);
 //    List<Integer> stopOrderByNumberRoute(int numberRoute, Connection connection);
 //    List<String> AddressByNumberRouteStopOrder(int numberRoute, Connection connection);
     Map<String, String> stopOrderAndAddress(int numberRoute, Connection connection);

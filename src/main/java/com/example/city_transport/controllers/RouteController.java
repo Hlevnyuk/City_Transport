@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
@@ -36,8 +35,6 @@ public class RouteController {
                 httpSessionBean.getConnection()));
         model.addAttribute("stop", stopService.findStopByNumberRoute(numberRoute,
                 httpSessionBean.getConnection()));
-//        model.addAttribute("stopOrder", stopRouteService.stopOrderByAddress(numberRoute, httpSessionBean.getConnection()));
-//        model.addAttribute("address", stopRouteService.AddressByNumberRouteStopOrder(numberRoute, httpSessionBean.getConnection()));
         model.addAttribute("stopAddress", stopRouteService.stopOrderAndAddress(numberRoute, httpSessionBean.getConnection()));
         model.addAttribute("maxStopOrder", stopRouteService.checkStopOrder(numberRoute,
                 httpSessionBean.getConnection()));
@@ -76,7 +73,7 @@ public class RouteController {
                 }
             });
         if(alreadyExist.get()){
-            stopRouteService.updateStopOrder(numberStop, stopOrder, httpSessionBean.getConnection());
+            stopRouteService.updateStopOrder(numberStop, stopOrder, numberRoute, httpSessionBean.getConnection());
         } else {
             stopRouteService.addStopRoute(new StopRoute(numberRoute, numberStop, stopOrder),
                     httpSessionBean.getConnection());
@@ -101,7 +98,6 @@ public class RouteController {
     }
     @PostMapping("/routes/deleteStop/{numberRoute}")
     public String deleteStopRoute(@RequestParam int numberStop, @PathVariable int numberRoute){
-        //stopRouteService.findByRoute(numberRoute, httpSessionBean.getConnection());
         stopRouteService.deleteStopRoute(numberStop, numberRoute, httpSessionBean.getConnection());
         int count = stopRouteService.findByRoute(numberRoute, httpSessionBean.getConnection()).size();
         if(count == 0){
@@ -109,7 +105,6 @@ public class RouteController {
         }
         return "redirect:/routes/{numberRoute}";
     }
-
     @PostMapping("route/delete/{numberRoute}")
     public String delete(@PathVariable int numberRoute){
         routeService.deleteRoute(numberRoute, httpSessionBean.getConnection());
@@ -130,8 +125,6 @@ public class RouteController {
     @PostMapping("/route/filter")
     public String findRoute(@RequestParam int start,
                             @RequestParam int end, RedirectAttributes redirectAttributes){
-        //stopService.stopList(httpSessionBean.getConnection());
-        //stopService.findByAddress(startPoint, endPoint, httpSessionBean.getConnection())
         redirectAttributes.addAttribute("start", start);
         redirectAttributes.addAttribute("end", end);
         return "redirect:/route-filter/{start}/{end}";
@@ -139,8 +132,6 @@ public class RouteController {
     @GetMapping("/route-filter/{start}/{end}")
     public String findGetRoute(@PathVariable int start,
                             @PathVariable int end, Model model){
-        //stopService.stopList(httpSessionBean.getConnection());
-        //stopService.findByAddress(startPoint, endPoint, httpSessionBean.getConnection());
         model.addAttribute("routeTitle", routeService.findByAddress(start, end, httpSessionBean.getConnection()));
         model.addAttribute("stop", stopService.stopList(httpSessionBean.getConnection()));
         model.addAttribute("role", httpSessionBean.getRole());

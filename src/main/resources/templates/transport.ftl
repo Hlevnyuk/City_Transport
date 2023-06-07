@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/transport.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <script src="JavaScript/transport.js" defer></script>
     <title>Транспорт</title>
 </head>
@@ -37,22 +38,32 @@
     <hr>
     <p class="size">Завершити працю з транспортними засобами</p>
     <br>
-    <form action="/transport/change" method="post" onSubmit = "return checkform(this)" enctype="multipart/form-data">
-        <input id = "id" type="number" name="idTransport" required placeholder="id транспорту" readonly>
-        <br>
-        <input type="number" name="numberTransport" required placeholder="Номер транспорту">
-        <br>
-        <input id = "type" type="text" name="typeTransport" required placeholder="Тип транспорту">
-        <br>
-        <input type="text" name="garage" required placeholder="Гараж">
-        <br>
-        <select name="idContract" id="selectValue">
-            <#list transportChange as item>
-                <option value=${item.idContract} onclick="myFunction()">${item.idContract}</option>
-            </#list>
-        </select>
-        <input type="submit" value="Добавити">
-    </form>
+    <div class="cont_principal">
+            <div class="cont_centrar">
+                <div class="cont_login">
+                    <form action="/transport/change" method="post" onSubmit = "return checkform(this)" enctype="multipart/form-data">
+                        <div class="cont_text_inputs">
+                            <input id = "id" type="number" class="input_form_sign d_block  active_inp" name="idTransport" required placeholder="id транспорту" readonly>
+                            <br>
+                            <input type="number" class="input_form_sign d_block  active_inp" name="numberTransport" required placeholder="Номер транспорту">
+                            <br>
+                            <input id = "type" type="text" class="input_form_sign d_block  active_inp" name="typeTransport" required placeholder="Тип транспорту">
+                            <br>
+                            <input type="text" class="input_form_sign d_block  active_inp" name="garage" required placeholder="Гараж">
+                            <br>
+                            <select name="idContract" id="selectValue" class="select">
+                                <#list transportChange as item>
+                                    <option value=${item.idContract} onclick="myFunction()">${item.idContract}</option>
+                                </#list>
+                            </select>
+                            <div class="cont_btn">
+                                <button type="submit" class="btn_sign">Добавити</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
     <script>
 
         function myFunction(){

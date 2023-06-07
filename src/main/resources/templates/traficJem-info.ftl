@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/css/traficJem.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <title>Затори</title>
 </head>
 <body>

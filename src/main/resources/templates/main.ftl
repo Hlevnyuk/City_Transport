@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <title>Главная страница</title>
 </head>
 <body>

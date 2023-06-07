@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TraficJemRepository{
     List<TraficJem> findAll(Connection connection);
-    void save(TraficJem traficJem, Connection connection);
+    int save(TraficJem traficJem, Connection connection);
     void deleteById(int idTraficJem, Connection connection);
     TraficJem findById(int idTraficJem, Connection connection);
     List<TraficJemTitle> findByRouteId(int numberRoute, Connection connection);

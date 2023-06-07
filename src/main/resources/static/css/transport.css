@@ -21,13 +21,15 @@ header{
   left: 100px;
   color: #b0b0b0;
   font-size: 35px;
+  font-family: 'Marske', sans-serif;
 }
 .p1{
   position: absolute;
   top: 20px;
   left: 275px;
   font-size: 35px;
-  color: #b30000;
+  color: #e04646;
+  font-family: 'Marske', sans-serif;
 }
 a {
     color: #f7f7f7;
@@ -69,4 +71,93 @@ a {
     padding: 10px;
     color: white;
     font-family: 'Play',sans-serif;
+}
+.cont_principal {
+    position: relative;
+    /* width: 300px; */
+    height: 500px;
+}
+.cont_centrar {
+    position: absolute;
+    width: 320px;
+    left:50%;
+    top:50%;
+    margin-left: -160px;
+    margin-top: -160px;
+}
+.cont_centrar {
+    position: relative;
+    width: 320px;
+    float: left;
+    background-image: linear-gradient(-226deg, #FFFFFF 8%, #EEF3F5 100%);
+    border-radius: 8px;
+    transition: all 0.5s;
+}
+.cont_btn {
+    position: relative;
+    float: left;
+}
+.cont_text_inputs {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+.select {
+    position: relative;
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #B0BEC5;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.5s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+    text-align: center;
+    opacity: 1;
+}
+.input_form_sign {
+    position: relative;
+    float: left;
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #B0BEC5 ;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.5s;
+      height: 0px;
+      margin: 0px;
+      padding: 0px;
+    opacity: 0;
+    display: none;
+}
+.d_none {
+    display: none;
+}
+.d_block {
+    display: block;
+}
+.active_inp {
+    margin: 5% 5% ;
+    padding: 10px 0px;
+    opacity: 1;
+    height: 5px;
+}
+.btn_sign {
+    background: rgba(255,0,10,1);
+    box-shadow: 0px 2px 20px 2px rgb(255 114 132 / 50%);
+    border-radius: 8px;
+    padding: 15px 30px;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    float: left;
+    left: 70%;
+    right: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
 }

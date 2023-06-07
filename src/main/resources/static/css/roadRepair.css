@@ -21,13 +21,15 @@ header{
   left: 100px;
   color: #b0b0b0;
   font-size: 35px;
+  font-family: 'Marske', sans-serif;
 }
 .p1{
   position: absolute;
   top: 20px;
   left: 275px;
   font-size: 35px;
-  color: #b30000;
+  color: #e04646;
+  font-family: 'Marske', sans-serif;
 }
 a {
     color: #f7f7f7;
@@ -69,6 +71,14 @@ a {
     padding: 10px;
     color: white;
     font-family: 'Play',sans-serif;
+}
+.butonbtn {
+    font-size: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #f7f7f7;
+    text-decoration: none;
+    background-color: #555555;
+    outline: none;
 }
 .cont_principal {
     position: relative;
@@ -150,11 +160,8 @@ a {
     font-size: 14px;
     position: relative;
     float: left;
-    /* margin-left: auto; */
-    /* text-align: center; */
-    left: 41%;
+    left: 25%;
     right: 50%;
-    /* transform: translate(-50%, -50%); */
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: pointer;

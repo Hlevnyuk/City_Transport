@@ -33,27 +33,38 @@ public class TraficJemRepositoryImpl implements TraficJemRepository{
         return listResult;
     }
     @Override
-    public void save(TraficJem traficJem, Connection connection) {
+    public int save(TraficJem traficJem, Connection connection) {
         java.util.Date utilPackageDate1
                 = traficJem.getTimeStart();
         java.sql.Time sqlDate1 = new java.sql.Time(utilPackageDate1.getTime());
         java.util.Date utilPackageDate2
                 = traficJem.getTimeEnd();
         java.sql.Time sqlDate2 = new java.sql.Time(utilPackageDate2.getTime());
+        int id = 0;
         String query = """
-                       INSERT INTO trafic_jem
-                       VALUES(?,?,?,?,?);
+                       INSERT INTO trafic_jem(number_employee, time_start, time_final, number_stop)
+                       VALUES(?,?,?,?);
                        """;
+        String query1 = """
+                       SELECT last_value FROM trafic_jem_id_trafic_jem_seq;
+                        """;
         try(PreparedStatement stmt = connection.prepareStatement(query)){
-            stmt.setInt(1, traficJem.getIdTraficJem());
-            stmt.setInt(2, traficJem.getNumberEmployee());
-            stmt.setTime(3, sqlDate1);
-            stmt.setTime(4, sqlDate2);
-            stmt.setInt(5, traficJem.getNumberStop());
+            stmt.setInt(1, traficJem.getNumberEmployee());
+            stmt.setTime(2, sqlDate1);
+            stmt.setTime(3, sqlDate2);
+            stmt.setInt(4, traficJem.getNumberStop());
             stmt.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
         }
+        try(Statement stmt = connection.createStatement()){
+            ResultSet rs = stmt.executeQuery(query1);
+            rs.next();
+            id = rs.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
     }
     @Override
     public void deleteById(int idTraficJem, Connection connection) {

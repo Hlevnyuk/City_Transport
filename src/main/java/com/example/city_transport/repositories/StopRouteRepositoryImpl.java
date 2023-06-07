@@ -124,14 +124,15 @@ public class StopRouteRepositoryImpl implements StopRouteRepository{
     }
 
     @Override
-    public void updateStopOrder(int numberStop, int stopOrder, Connection connection) {
+    public void updateStopOrder(int numberStop, int stopOrder, int numberRoute, Connection connection) {
         String query = """
                        UPDATE stop_route
-                       SET number_stop = ? WHERE stop_order = ?
+                       SET number_stop = ? WHERE stop_order = ? AND number_route = ?
                        """;
         try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
             preparedStatement.setInt(1, numberStop);
             preparedStatement.setInt(2, stopOrder);
+            preparedStatement.setInt(3, numberRoute);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

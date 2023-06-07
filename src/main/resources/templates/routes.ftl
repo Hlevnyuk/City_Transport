@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/routes.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <script src="JavaScript/routes.js" defer></script>
     <title>Route</title>
 </head>
@@ -39,7 +40,6 @@
 <ul class="list3b">
     <#list routeTitle as elroute>
         <li class="text">
-            <b>Номер маршрута: </b>${elroute.numberRoute}<br>
             <b>Початкова точка: </b>${elroute.startPoint}<br>
             <b>Кінечна точка: </b>${elroute.endPoint}<br><br>
             <a href="/routes/${elroute.numberRoute}" class = "btn1">Детальніше...</a><br>

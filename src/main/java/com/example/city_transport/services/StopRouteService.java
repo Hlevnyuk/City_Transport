@@ -32,8 +32,8 @@ public class StopRouteService {
     public List<StopRoute> findByRoute(int numberRoute, Connection connection){
         return stopRouteRepositoryImpl.findByRoute(numberRoute, connection);
     }
-    public void updateStopOrder(int numberStop, int stopOrder, Connection connection){
-        stopRouteRepositoryImpl.updateStopOrder(numberStop, stopOrder, connection);
+    public void updateStopOrder(int numberStop, int stopOrder, int numberRoute, Connection connection){
+        stopRouteRepositoryImpl.updateStopOrder(numberStop, stopOrder, numberRoute, connection);
     }
 //    public List<Integer> stopOrderByAddress(int numberRoute, Connection connection) {
 //        return stopRouteRepositoryImpl.stopOrderByNumberRoute(numberRoute, connection);

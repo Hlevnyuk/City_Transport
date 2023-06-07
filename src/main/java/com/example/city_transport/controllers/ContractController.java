@@ -66,9 +66,4 @@ public class ContractController {
         model.addAttribute("role", httpSessionBean.getRole());
         return "redirect:/contract/{id}";
     }
-//    @PostMapping("/contract/update/{id}")
-//    public String updateValidity(@RequestParam Date dateEndContract, @PathVariable int id, Model model){
-//        model.addAttribute("contract", contractService.updateContract(dateEndContract, id, httpSessionBean.getConnection()));
-//        return "contract-info";
-//    }
 }

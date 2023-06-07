@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/traficJem.css"/>
+    <link rel="stylesheet" type="text/css" href="css/roadRepair.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <title>Route</title>
 </head>
 <body>
@@ -13,7 +14,6 @@
     <p class="size">Всі ремонти доріг</p>
     <table class="table">
         <thead>
-            <th class="th">Айді</th>
             <th class="th">Час початку</th>
             <th class="th">Час кінця</th>
             <th class="th">Зупинка</th>
@@ -23,12 +23,11 @@
             <#list roadRepairTitle as elroadRepair>
                 <tr class="tr">
                     <form action="/roadRepair/delete/${elroadRepair.idRoadRepair}" method="post">
-                        <td class="td">${elroadRepair.idRoadRepair}</td>
                         <td class="td">${elroadRepair.dateStartRoad}</td>
                         <td class="td">${elroadRepair.dateEndRoad}</td>
                         <td class="td">${elroadRepair.addres}</td>
                         <td class="td">
-                            <button type="submit">Видалити</button>
+                            <button type="submit" class="butonbtn">Видалити</button>
                         </td>
                     </form>
                 </tr>
@@ -41,7 +40,6 @@
             <div class="cont_login">
                 <form action="/roadRepair/add" method="post" enctype="multipart/form-data">
                     <div class="cont_text_inputs">
-                        <input type="number" class="input_form_sign d_block active_inp" placeholder="id пробки" name="idRoadRepair"/>
                         <input type="date" class="input_form_sign d_block  active_inp" placeholder="Час початку" name="dateStartRoad"/>
                         <input type="date" class="input_form_sign d_block  active_inp" placeholder="Час кінця" name="dateEndRoad"/>
                         <select name = "addres" class="select">

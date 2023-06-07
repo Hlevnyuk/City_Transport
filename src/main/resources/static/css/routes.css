@@ -21,13 +21,15 @@ header{
   left: 100px;
   color: #b0b0b0;
   font-size: 35px;
+  font-family: 'Marske', sans-serif;
 }
 .p1{
   position: absolute;
   top: 20px;
   left: 275px;
   font-size: 35px;
-  color: #b30000;
+  color: #e04646;
+  font-family: 'Marske', sans-serif;
 }
 .result {
     color: #b0b0b0;

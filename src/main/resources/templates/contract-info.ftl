@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/css/contract-info.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <title>Детальна інформация про договір</title>
 </head>
 <body>
@@ -9,6 +10,7 @@
         <p class="p">Міський</p>
         <p class="p1">Транспорт</p>
         <a href="/" class = "a a2">Головна</a>
+        <a href="/contract" class = "a a3">Договори</a>
 </header>
 <p class="size">Договір</p><br>
 <form action="/contract/delete/${contract.id}" method="post">

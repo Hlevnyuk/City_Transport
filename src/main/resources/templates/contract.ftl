@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/contract.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <title>Договори</title>
 </head>
 <body>

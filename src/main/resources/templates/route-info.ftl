@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/css/routeinfo.css"/>
+    <link href="https://fonts.cdnfonts.com/css/marske" rel="stylesheet">
     <title>Route</title>
 </head>
 <body>
@@ -9,6 +10,7 @@
         <p class="p">Міський</p>
         <p class="p1">Транспорт</p>
         <a href="/" class = "a2">Головна</a>
+        <a href="/routes" class = "a3">Маршрути</a>
 </header>
 <p class="size">Детальна інформація про маршрут</p>
 <br>
@@ -50,18 +52,6 @@
         </tr>
     </tbody>
 </table>
-<#--<table class="table">-->
-<#--    <#list stopOrder as itam>-->
-<#--        <th>${itam}</th>-->
-<#--    </#list>-->
-<#--    <tr class="tr">-->
-<#--        <td class="td">-->
-<#--            <#list address as item>-->
-<#--                ${item}-->
-<#--            </#list>-->
-<#--        </td>-->
-<#--    </tr>-->
-<#--</table>-->
 <#if traficJemTitle?size gt 0>
     <table class="table">
         <thead>
@@ -81,7 +71,7 @@
                     <td class="td">
                         <#if role == "transport_employee">
                             <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
-                                <input type="submit" value="Видалити пробку"/><br>
+                                <input type="submit" class="butonbtn" value="Видалити пробку"/><br>
                             </form>
                         </#if>
                     </td>
@@ -109,7 +99,7 @@
                     <#if role == "transport_employee">
                         <td class="td">
                             <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
-                                <input type="submit" value="Видалити ремонт доріг"/><br>
+                                <input type="submit" class="butonbtn" value="Видалити ремонт доріг"/><br>
                             </form>
                         </td>
                     </#if>

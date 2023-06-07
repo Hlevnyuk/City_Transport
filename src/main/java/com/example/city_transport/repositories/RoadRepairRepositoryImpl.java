@@ -32,26 +32,37 @@ public class RoadRepairRepositoryImpl implements RoadRepairRepository{
     }
 
     @Override
-    public void save(RoadRepair roadRepair, Connection connection) throws SQLException {
+    public int save(RoadRepair roadRepair, Connection connection) throws SQLException {
         java.util.Date utilPackageDate
                 = roadRepair.getDateStartRoad();
         java.sql.Date sqlDate = new java.sql.Date(utilPackageDate.getTime());
         java.util.Date utilPackageDate1
                 = roadRepair.getDateEndRoad();
         java.sql.Date sqlDate1 = new java.sql.Date(utilPackageDate1.getTime());
+        int id = 0;
         String query = """
-                       INSERT INTO road_repair
-                       VALUES(?,?,?,?);
+                       INSERT INTO road_repair(date_startroad, date_endroad, adres)
+                       VALUES(?,?,?);
                        """;
+        String query1 = """
+                       SELECT last_value FROM road_repair_id_roadrepair_seq;
+                        """;
         try(PreparedStatement stmt = connection.prepareStatement(query)){
-            stmt.setInt(1, roadRepair.getIdRoadRepair());
-            stmt.setDate(2, sqlDate);
-            stmt.setDate(3, sqlDate1);
-            stmt.setString(4, roadRepair.getAddres());
+            stmt.setDate(1, sqlDate);
+            stmt.setDate(2, sqlDate1);
+            stmt.setString(3, roadRepair.getAddres());
             stmt.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
         }
+        try(Statement stmt = connection.createStatement()){
+            ResultSet rs = stmt.executeQuery(query1);
+            rs.next();
+            id = rs.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
     }
 
     @Override

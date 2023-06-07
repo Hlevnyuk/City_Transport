@@ -1,5 +1,4 @@
 package com.example.city_transport.controllers;
-
 import com.example.city_transport.bean.HttpSessionBean;
 import com.example.city_transport.services.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -8,10 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.sql.SQLException;
-import java.util.Objects;
-
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
@@ -21,7 +17,6 @@ public class LoginController {
     @PostMapping("/login/authorization")
     public String login(@RequestParam String name,
                         @RequestParam String password) throws SQLException {
-//        if(loginService.getUser(name, httpSessionBean.getConnection())){
             try {
                 httpSessionBean.getConnection().close();
                 httpSessionBean.setConnection(loginService.getConnection(name, password));
@@ -34,7 +29,6 @@ public class LoginController {
                 httpSessionBean.setRole("guest");
                 return "loginError";
             }
-//        }
     }
     @GetMapping("/login")
     public String loginPage(){

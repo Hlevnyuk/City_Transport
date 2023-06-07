@@ -21,13 +21,15 @@ header{
     left: 100px;
     color: #b0b0b0;
     font-size: 35px;
+    font-family: 'Marske', sans-serif;
 }
 .p1{
     position: absolute;
     top: 20px;
     left: 275px;
     font-size: 35px;
-    color: #b30000;
+    color: #e04646;
+    font-family: 'Marske', sans-serif;
 }
 .a {
     color: #f7f7f7;
@@ -58,7 +60,7 @@ header{
     margin-right: auto;
 }
 .th, .td:first-child {
-    background: #FF0000;
+    background: #e04646;
     color: white;
     padding: 10px 20px;
 }
