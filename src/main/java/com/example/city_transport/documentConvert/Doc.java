@@ -25,40 +25,27 @@ import java.util.Date;
 public class Doc {
     public void file(int id, String typeTransport, int transportCount, String dateStartContract, String dateEndContract, String firm){
         try {
-            // создаем модель docx документа,
-            // к которой будем прикручивать наполнение (колонтитулы, текст)
             XWPFDocument docxModel = new XWPFDocument();
             CTSectPr ctSectPr = docxModel.getDocument().getBody().addNewSectPr();
-            // получаем экземпляр XWPFHeaderFooterPolicy для работы с колонтитулами
             XWPFHeaderFooterPolicy headerFooterPolicy = new XWPFHeaderFooterPolicy(docxModel, ctSectPr);
-            // создаем верхний колонтитул Word файла
             CTP ctpHeaderModel = createHeaderModel(
                     "Верхний колонтитул - создано с помощью Apache POI на Java :)"
             );
-            // устанавливаем сформированный верхний
-            // колонтитул в модель документа Word
             XWPFParagraph headerParagraph = new XWPFParagraph(ctpHeaderModel, docxModel);
             headerFooterPolicy.createHeader(
                     XWPFHeaderFooterPolicy.DEFAULT,
                     new XWPFParagraph[]{headerParagraph}
             );
-            // создаем нижний колонтитул docx файла
             CTP ctpFooterModel = createFooterModel("Просто нижний колонтитул");
-            // устанавливаем сформированый нижний
-            // колонтитул в модель документа Word
             XWPFParagraph footerParagraph = new XWPFParagraph(ctpFooterModel, docxModel);
             headerFooterPolicy.createFooter(
                     XWPFHeaderFooterPolicy.DEFAULT,
                     new XWPFParagraph[]{footerParagraph}
             );
-            // создаем обычный параграф, который будет расположен слева,
-            // будет синим курсивом со шрифтом 25 размера
             XWPFParagraph bodyParagraph = docxModel.createParagraph();
             bodyParagraph.setAlignment(ParagraphAlignment.LEFT);
             XWPFRun paragraphConfig = bodyParagraph.createRun();
-//            paragraphConfig.setItalic(true);
             paragraphConfig.setFontSize(14);
-            // HEX цвет без решетки #
             paragraphConfig.setColor("000000");
             paragraphConfig.setText(
                     "Договір оренди транспортного засобу N " + id + "\n" + " 1. ПРЕДМЕТ ДОГОВОРУ\n"
@@ -141,7 +128,6 @@ public class Doc {
                             .concat(" чи незаконності й ін.), що безпосередньо перешкоджаючому виконанню зобов'язань, терміни виконання таких")
                             .concat(" зобов'язань відповідно відсуваються на час дії форс-мажорних обставин.")
             );
-            // сохраняем модель docx документа в файл
             FileOutputStream outputStream = new FileOutputStream("C:\\Users\\Test\\" +
                     "Договор.DOCX");
             docxModel.write(outputStream);
@@ -152,7 +138,6 @@ public class Doc {
         System.out.println("Успешно записан в файл");
     }
     private static CTP createFooterModel(String footerContent) {
-        // создаем футер или нижний колонтитул
         CTP ctpFooterModel = CTP.Factory.newInstance();
         CTR ctrFooterModel = ctpFooterModel.addNewR();
         CTText cttFooter = ctrFooterModel.addNewT();
@@ -160,7 +145,6 @@ public class Doc {
         return ctpFooterModel;
     }
     private static CTP createHeaderModel(String headerContent) {
-        // создаем хедер или верхний колонтитул
         CTP ctpHeaderModel = CTP.Factory.newInstance();
         CTR ctrHeaderModel = ctpHeaderModel.addNewR();
         CTText cttHeader = ctrHeaderModel.addNewT();

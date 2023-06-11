@@ -36,10 +36,10 @@
                 <#if role == "route_employee">
                     <a href="/analyticks" class = "btn btnhelp">Аналитика</a>
                     <a href="/admin-panel" class = "btn btnhelp">Панель працівника</a>
-                </#if>
-                <#if role == "transport_employee">
                     <a href="/traficJem" class = "btn btnhelp">Пробки</a>
                     <a href="/roadRepair" class = "btn btnhelp">Ремонти доріг</a>
+                </#if>
+                <#if role == "transport_employee">
                     <a href="/contract" class = "btn btnhelp">Договір</a>
                     <a href="/transport" class = "btn btnhelp">Транспорт</a>
                     <a href="/analyticksTicketSold/0" class = "btn btnhelp">Аналитика</a>

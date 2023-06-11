@@ -18,7 +18,7 @@ public class TicketSoldRepositoryImpl implements TicketSoldRepository{
             ResultSet rs = stmt.executeQuery(query);
             while(rs.next()){
                 TicketSold ticketSold = new TicketSold();
-                ticketSold.setIdTransport(rs.getInt("id_transport"));
+                ticketSold.setNumberTransport(rs.getInt("id_transport"));
                 ticketSold.setDateSold(rs.getDate("date"));
                 ticketSold.setKolTicketSold(rs.getInt("kol_ticket_sold"));
                 ticketSold.setId(rs.getInt("id"));
@@ -40,7 +40,7 @@ public class TicketSoldRepositoryImpl implements TicketSoldRepository{
                        VALUES(?, ?, ?)
                        """;
         try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
-            preparedStatement.setInt(1, ticketSold.getIdTransport());
+            preparedStatement.setInt(1, ticketSold.getNumberTransport());
             preparedStatement.setDate(2, sqlDate);
             preparedStatement.setInt(3, ticketSold.getKolTicketSold());
             int p = preparedStatement.executeUpdate();

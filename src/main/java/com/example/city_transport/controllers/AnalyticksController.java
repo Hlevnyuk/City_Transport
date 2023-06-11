@@ -1,7 +1,6 @@
 package com.example.city_transport.controllers;
 import com.example.city_transport.bean.HttpSessionBean;
 import com.example.city_transport.services.FunctionsService;
-import com.example.city_transport.services.RouteService;
 import com.example.city_transport.services.TicketSoldService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +18,14 @@ public class AnalyticksController {
     private HttpSessionBean httpSessionBean;
     @Autowired
     private FunctionsService functionsService;
-    private final RouteService routeService;
     private final TicketSoldService ticketSoldService;
     @GetMapping("/analyticks/route")
-    public String routeStatistics(@RequestParam int id, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeStart,
+    public String routeStatistics(@RequestParam int numberTransport, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeStart,
                                  @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date timeFinal,
                                  Model model, RedirectAttributes redirectAttributes){
         model.addAttribute("ticketSold", ticketSoldService.findAll(httpSessionBean.getConnection()));
         int result = 0;
-        result = functionsService.analizRoute(id, timeStart, timeFinal, httpSessionBean.getConnection());
+        result = functionsService.analizRoute(numberTransport, timeStart, timeFinal, httpSessionBean.getConnection());
         redirectAttributes.addAttribute("result", result);
         return "redirect:/analyticksTicketSold/{result}";
     }

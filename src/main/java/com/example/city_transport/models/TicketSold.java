@@ -10,9 +10,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TicketSold {
-    private int idTransport;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateSold;
     private int kolTicketSold;
     private int id;
+    private int numberTransport;
 }

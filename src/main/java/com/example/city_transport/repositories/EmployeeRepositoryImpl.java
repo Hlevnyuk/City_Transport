@@ -7,12 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 @Component
-public class TransportOfficerRepositoryImpl implements TransportOfficerRepository{
+public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     public int findIdByLogin(String login, Connection connection) {
         int userId = 0;
         String query = """
-                SELECT number_employee FROM transport_officer
+                SELECT number_employee FROM employee
                 WHERE login = ?
                 """;
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {

@@ -38,6 +38,7 @@ public class SetRouteRepositoryImpl implements SetRouteRepository{
         try(PreparedStatement stmt = connection.prepareStatement(query)){
             stmt.setInt(1, setRoute.getNumberRoute());
             stmt.setInt(2, setRoute.getIdTransport());
+//            stmt.setInt(3, setRoute.getNumberTransport());
             int p = stmt.executeUpdate();
         } catch(SQLException e){
             e.printStackTrace();
@@ -72,6 +73,7 @@ public class SetRouteRepositoryImpl implements SetRouteRepository{
             while(rs.next()) {
                 setRoute.setNumberRoute(rs.getInt("number_route"));
                 setRoute.setIdTransport(rs.getInt("id_transport"));
+//                setRoute.setNumberTransport(rs.getInt("number_transport"));
             }
         } catch(SQLException e){
             e.printStackTrace();

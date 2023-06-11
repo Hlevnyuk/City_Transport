@@ -76,20 +76,6 @@ public class TransportRepositoryImpl implements TransportRepository {
         }
         return list;
     }
-//    @Override
-//    public void deleteById(int idTransport, Connection connection) {
-//        String query = """
-//                        DELETE FROM transport
-//                        WHERE id_transport = ?
-//                       """;
-//        try(PreparedStatement statement = connection.prepareStatement(query)){
-//            statement.setInt(1, idTransport);
-//            statement.executeUpdate();
-//            System.out.println("Record deleted successfully");
-//        } catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
     @Override
     public Transport findById(int idTransport, Connection connection) {
         Transport transport = new Transport();

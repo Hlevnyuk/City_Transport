@@ -69,7 +69,7 @@
                     <td class="td">${item.timeStart}</td>
                     <td class="td">${item.timeEnd}</td>
                     <td class="td">
-                        <#if role == "transport_employee">
+                        <#if role == "route_employee">
                             <form action="/routes/deleteTraficJem/${route.numberRoute}/${item.numberStop}" method="post">
                                 <input type="submit" class="butonbtn" value="Видалити пробку"/><br>
                             </form>
@@ -96,7 +96,7 @@
                     <td class="td">${item.addres}</td>
                     <td class="td">${item.dateStartRoad}</td>
                     <td class="td">${item.dateEndRoad}</td>
-                    <#if role == "transport_employee">
+                    <#if role == "route_employee">
                         <td class="td">
                             <form action="/routes/deleteRoadRepair/${item.numberRoute}/${item.numberStop}" method="post">
                                 <input type="submit" class="butonbtn" value="Видалити ремонт доріг"/><br>
@@ -134,7 +134,9 @@
             <form action="/routes/${route.numberRoute}" method="post">
                 <select name = "idTransport" class="select">
                     <#list freeTransport as item>
-                        <option value = "${item.idTransport}"> ${item.idTransport} - ${item.numberTransport}</option>
+                        <#if item.numberTransport gt 0>
+                            <option value = "${item.idTransport}"> ${item.idTransport} - ${item.numberTransport}</option>
+                        </#if>
                     </#list>
                 </select>
                 <button type="submit" class="button">Назначити</button>

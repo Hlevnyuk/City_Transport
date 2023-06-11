@@ -47,7 +47,7 @@
                             <br>
                             <input type="number" class="input_form_sign d_block  active_inp" name="numberTransport" required placeholder="Номер транспорту">
                             <br>
-                            <input id = "type" type="text" class="input_form_sign d_block  active_inp" name="typeTransport" required placeholder="Тип транспорту">
+                            <input id = "type" type="text" class="input_form_sign d_block  active_inp" name="typeTransport" required placeholder="Тип транспорту" readonly>
                             <br>
                             <input type="text" class="input_form_sign d_block  active_inp" name="garage" required placeholder="Гараж">
                             <br>
@@ -65,7 +65,6 @@
             </div>
     </div>
     <script>
-
         function myFunction(){
             var i, count = 0, index;
             var transportList = JSON.parse('${transportForm}');

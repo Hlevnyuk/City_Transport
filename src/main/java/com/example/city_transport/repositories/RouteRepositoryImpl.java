@@ -102,7 +102,7 @@ public class RouteRepositoryImpl implements RouteRepository{
                 route.setNumberRoute(rs.getInt("number_route"));
                 route.setInterval(rs.getString("interv"));
                 route.setDateTime(rs.getDate("datetime"));
-                route.setIdAdministrator(rs.getInt("id_administrator"));
+                route.setIdAdministrator(rs.getInt("number_employee"));
             }
         } catch(SQLException e){
             e.printStackTrace();

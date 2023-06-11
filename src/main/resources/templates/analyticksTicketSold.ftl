@@ -155,32 +155,17 @@
 </header>
 <br><br><br>
 <table class="table">
+    <th class="th">id транспорту</th>
     <th class="th">Дата</th>
     <th class="th">Кількість проданих білетів</th>
     <#list ticketSold as item>
         <tr class="tr">
+            <td class="td">${item.numberTransport}</td>
             <td class="td">${item.dateSold}</td>
             <td class="td">${item.kolTicketSold}</td>
         </tr>
     </#list>
 </table>
-<#--<#if role == "transport_employee">-->
-<#--    <form action="/ticketSold/create" method="post" enctype="multipart/form-data">-->
-<#--        <b>id транспорту: <input type="number" name="idTransport"/></b><br><br>-->
-<#--        <b>Дата продажу: <input type="date" name="dateSold"/></b><br><br>-->
-<#--        <b>Кількість проданих: <input type="number" name="kolTicketSold"/></b><br><br>-->
-<#--        <input type="submit" value="Добавити"/><br>-->
-<#--    </form>-->
-<#--    <form action="/analyticks/route" method="post" enctype="multipart/form-data">-->
-<#--        <b>Номер маршруту:</b> <input type="number" name="id"/><br><br>-->
-<#--        <b>Дата початку:</b> <input type="date" name="timeStart"/><br><br>-->
-<#--        <b>Дата кінця:</b> <input type="date" name="timeFinal"/><br><br>-->
-<#--        <input type="submit" value="Відобразити"/><br><br>-->
-<#--    </form><br>-->
-<#--    <#if result?has_content>-->
-<#--        <b>Результат:</b> ${result}<br>-->
-<#--    </#if>-->
-<#--</#if>-->
 <br>
 <div class="cont_principal">
     <div class="cont_centrar">
@@ -188,7 +173,7 @@
             <form action="/ticketSold/create" method="post" enctype="multipart/form-data">
                 <div class="cont_text_inputs">
                     <p>
-                        <input type="number" name="idTransport" class="input_form_sign d_block active_inp" placeholder="id транспорту">
+                        <input type="number" name="numberTransport" class="input_form_sign d_block active_inp" placeholder="id транспорту">
                     </p>
                     <p>
                         <input type="date" name="dateSold" class="input_form_sign d_block active_inp date" placeholder="Дата продажу"/>
@@ -210,7 +195,7 @@
             <form action="/analyticks/route" method="post" enctype="multipart/form-data">
                 <div class="cont_text_inputs">
                     <p>
-                        <input type="number" name="id" class="input_form_sign d_block active_inp" placeholder="Номер маршруту"/>
+                        <input type="number" name="numberTransport" class="input_form_sign d_block active_inp" placeholder="Номер маршруту"/>
                     </p>
                     <p>
                         <input type="date" name="timeStart" class="input_form_sign d_block active_inp date" placeholder="Дата початку"/>
@@ -231,22 +216,5 @@
         </div>
     </div>
 </div>
-<br><br>
-<#--<table class="table">-->
-<#--    <thead>-->
-<#--    <th class="th">Номер зупинки</th>-->
-<#--    <th class="th">Адреса</th>-->
-<#--    </thead>-->
-<#--    <tbody>-->
-<#--    <form action="/routes" method="get" enctype="multipart/form-data">-->
-<#--        <#list stop as itam>-->
-<#--            <tr class="tr">-->
-<#--                <td class="td"></b>${itam.numberStop}</td>-->
-<#--                <td class="td"></b>${itam.address}</td>-->
-<#--            </tr>-->
-<#--        </#list>-->
-<#--    </form>-->
-<#--    </tbody>-->
-<#--</table>-->
 </body>
 </html>
