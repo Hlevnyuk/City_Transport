@@ -22,9 +22,7 @@ public class MainController {
     private final StopService stopService;
     private final RoadRepairService roadRepairService;
     private final ContractService contractService;
-    private final FirmService firmService;
     private final TypeTransportService typeTransportService;
-    private final FunctionsService functionsService;
     private final TicketSoldService ticketSoldService;
     private final AnaliticaService analiticaService;
     @Autowired

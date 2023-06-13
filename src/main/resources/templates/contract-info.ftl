@@ -14,15 +14,13 @@
 </header>
 <p class="size">Договір</p><br>
 <form action="/contract/delete/${contract.id}" method="post">
-<#--    <input type="submit" value="Розірвати контракт"/>-->
     <button class="button button2">Розірвати контракт</button>
 </form>
 <form action="/contract/update/end/date/${contract.id}" method="post">
     <input type="date" name="dateEndContract" placeholder="Продовжити термін дії" autocomplete="off"/>
     <button type="submit" class="button button2">Змінити</button>
 </form>
-<form action="/download/file/${contract.id}/${contract.typeTransport}/${contract.transportCount}/${contract.dateStartContract}/${contract.dateEndContract}/${contract.firm}" method="post">
-<#--    <input type="submit" value="скачати"/>-->
+<form action="/download/file/${contract.id}">
     <button class="button button2">скачати</button>
 </form>
 <div id="main">

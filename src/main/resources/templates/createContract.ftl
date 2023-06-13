@@ -18,7 +18,6 @@
             <div class="cont_login">
                 <form action="/contract/create" method="post" enctype="multipart/form-data">
                     <div class="cont_text_inputs">
-                        <input type="number" class="input_form_sign d_block active_inp" placeholder="id договору" name="id"/>
                         <input type="text" class="input_form_sign d_block active_inp" placeholder="Фірма" name="firm"/>
                         <input type="date" class="input_form_sign d_block  active_inp" placeholder="Дата створення" name="dateStartContract"/>
                         <input type="date" class="input_form_sign d_block  active_inp" placeholder="Дата закінчення" name="dateEndContract"/>
@@ -28,6 +27,7 @@
                                  <option value = "${item.name}"> ${item.name}</option>
                             </#list>
                         </select>
+                        <input type="number" class="input_form_sign d_block  active_inp" placeholder="Номер працівника" name="numberEmployee"/>
                     </div>
                     <div class="cont_btn">
                         <button type="submit" class="btn_sign">Створити договір</button>

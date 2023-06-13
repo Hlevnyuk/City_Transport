@@ -16,4 +16,6 @@ public class Contract {
     private Date dateEndContract;
     private int transportCount;
     private String typeTransport;
+    private int numberEmployee;
+    private String filepath;
 }
